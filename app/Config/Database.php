@@ -27,9 +27,15 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
+<<<<<<< HEAD
         'username'     => 'root',
         'password'     => '',
         'database'     => 'chakanoks_scms',
+=======
+        'username'     => '',
+        'password'     => '',
+        'database'     => '',
+>>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -130,6 +136,10 @@ class Database extends Config
 
     //    /**
     //     * Sample database connection for OCI8.
+<<<<<<< HEAD
+=======
+    //     *
+>>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
     //     * You may need the following environment variables:
     //     *   NLS_LANG                = 'AMERICAN_AMERICA.UTF8'
     //     *   NLS_DATE_FORMAT         = 'YYYY-MM-DD HH24:MI:SS'

@@ -14,7 +14,11 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
+<<<<<<< HEAD
 CI_ENVIRONMENT = development
+=======
+# CI_ENVIRONMENT = production
+>>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
 
 #--------------------------------------------------------------------
 # APP
@@ -30,12 +34,22 @@ CI_ENVIRONMENT = development
 # DATABASE
 #--------------------------------------------------------------------
 
+<<<<<<< HEAD
 database.default.hostname = localhost
 database.default.database = chakanoks_scms
 database.default.username = root
 database.default.password =
 database.default.DBDriver = MySQLi
 database.default.port = 3306
+=======
+# database.default.hostname = localhost
+# database.default.database = ci4
+# database.default.username = root
+# database.default.password = root
+# database.default.DBDriver = MySQLi
+# database.default.DBPrefix =
+# database.default.port = 3306
+>>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
 
 # If you use MySQLi as tests, first update the values of Config\Database::$tests.
 # database.tests.hostname = localhost
