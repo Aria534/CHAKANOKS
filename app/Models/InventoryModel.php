@@ -14,7 +14,7 @@ class InventoryModel extends Model {
         return $this->select("
                 SUM(current_stock * p.unit_price) as stock_value,
                 SUM(CASE WHEN available_stock <= p.minimum_stock THEN 1 ELSE 0 END) as low_stock_items
-            ")
+            ") //
             ->join('products p', 'p.product_id = inventory.product_id')
             ->where('branch_id', $branchId)
             ->first();

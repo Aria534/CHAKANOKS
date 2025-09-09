@@ -1,4 +1,4 @@
-<?php /** Central Office Dashboard */ ?>
+<?php?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
