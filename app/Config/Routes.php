@@ -6,21 +6,32 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-<<<<<<< HEAD
+// Base route -> Login page
 $routes->get('/', 'Auth::login');
-=======
-$routes->get('/', 'Home::index');
->>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
-$routes->get('/login', 'Auth::login');
-$routes->post('/login', 'Auth::attemptLogin');
+
+// Auth
+$routes->get('login', 'Auth::login');
+$routes->post('login', 'Auth::attemptLogin');
+$routes->get('logout', 'Auth::logout');
+
+// Dashboard (role-based dispatch)
+$routes->get('dashboard', 'Dashboard::index');
+
+// Direct views for each dashboard (useful for testing)
+$routes->get('dashboard/central', static fn() => view('dashboard/central_admin'));
+$routes->get('dashboard/branch-manager', static fn() => view('dashboard/branch_manager'));
+$routes->get('dashboard/franchise', static fn() => view('dashboard/franchise_manager'));
+$routes->get('dashboard/inventory', static fn() => view('dashboard/inventory_staff'));
+$routes->get('dashboard/logistics', static fn() => view('dashboard/logistics_coordinator'));
+
+// Optional Home
+$routes->get('home', 'Home::index');
+
+$routes->get('/branches', 'BranchController::index');
+$routes->get('/products', 'ProductController::index');
+$routes->get('/orders', 'OrderController::index');
 $routes->get('/logout', 'Auth::logout');
-$routes->get('/dashboard', 'Dashboard::index');
-<<<<<<< HEAD
-=======
-// Default and Home routes
-$routes->get('/', 'Home::index');
->>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
-$routes->get('/home', 'Home::index');
-// Register routes
-// Registration disabled
+$routes->get('/inventory', 'InventoryController::index');
+
+
 

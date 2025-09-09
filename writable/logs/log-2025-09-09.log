@@ -1,0 +1,889 @@
+DEBUG - 2025-09-09 13:57:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 13:58:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 13:59:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 13:59:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:00:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:00:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:19:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-09 14:19:50 --> ErrorException: Undefined variable $summary
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard\branch_manager.php on line 27.
+ 1 APPPATH\Views\dashboard\branch_manager.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $summary', 'C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php', 27)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/branch_manager', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(15): view('dashboard/branch_manager')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 14:20:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-09 14:21:54 --> ErrorException: Undefined variable $summary
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard\branch_manager.php on line 27.
+ 1 APPPATH\Views\dashboard\branch_manager.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $summary', 'C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php', 27)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/branch_manager', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(15): view('dashboard/branch_manager')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 14:21:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:22:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:22:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-09 14:22:02 --> ErrorException: Undefined variable $summary
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard\branch_manager.php on line 27.
+ 1 APPPATH\Views\dashboard\branch_manager.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $summary', 'C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php', 27)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\branch_manager.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/branch_manager', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(15): view('dashboard/branch_manager')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 14:26:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:31:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:33:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:33:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:33:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:33:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:34:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:35:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:40:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:40:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:42:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:42:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:42:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:42:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:42:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:43:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:43:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:46:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:46:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:48:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-09 14:48:52 --> ErrorException: Undefined variable $categoryStats
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard\central_admin.php on line 60.
+ 1 APPPATH\Views\dashboard\central_admin.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $categoryStats', 'C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\central_admin.php', 60)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\central_admin.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/central_admin', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(13): view('dashboard/central_admin')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 14:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 14:56:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-09 15:01:04 --> ErrorException: Undefined variable $categoryStats
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard\central_admin.php on line 65.
+ 1 APPPATH\Views\dashboard\central_admin.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $categoryStats', 'C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\central_admin.php', 65)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chakanoks\\app\\Views\\dashboard\\central_admin.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/central_admin', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(13): view('dashboard/central_admin')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:04:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:19:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:22:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:22:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:22:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:28:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-09 15:28:16 --> mysqli_sql_exception: Unknown column 'b.manager_id' in 'on clause' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `b`.`bra...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `b`.`bra...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `b`.`bra...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `b`.`bra...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\BranchController.php(12): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\BranchController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BranchController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:28:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.manager_id' in 'on clause'
+[Method: GET, Route: branches]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`', [], false)
+ 2 APPPATH\Controllers\BranchController.php(12): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BranchController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BranchController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:28:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.manager_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`', [], false)
+ 4 APPPATH\Controllers\BranchController.php(12): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BranchController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BranchController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:28:16 --> [Caused by] mysqli_sql_exception: Unknown column 'b.manager_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `b`.`branch_id`, `b`.`branch_name`, `u`.`username` as `manager_name`
+FROM `branches` `b`
+LEFT JOIN `users` `u` ON `u`.`user_id` = `b`.`manager_id`', [], false)
+ 5 APPPATH\Controllers\BranchController.php(12): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BranchController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BranchController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-09 15:31:57 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(13): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:31:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(13): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:31:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(13): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:31:57 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_code` = `po`.`branch_code`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(13): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:32:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-09 15:34:47 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:34:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:34:47 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:34:48 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-09 15:34:51 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:34:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:34:51 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:34:51 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-09 15:35:17 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:35:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:35:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:35:17 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-09 15:35:21 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:35:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:35:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:35:21 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:38:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:38:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-09 15:38:21 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:38:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:38:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:38:21 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-09 15:38:26 --> mysqli_sql_exception: Unknown column 'po.order_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`or...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`or...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`or...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`or...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:38:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:38:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:38:26 --> [Caused by] mysqli_sql_exception: Unknown column 'po.order_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`order_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-09 15:41:00 --> mysqli_sql_exception: Unknown column 'po.po_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:41:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.po_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:41:00 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.po_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:41:00 --> [Caused by] mysqli_sql_exception: Unknown column 'po.po_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:41:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-09 15:41:05 --> mysqli_sql_exception: Unknown column 'po.po_id' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-09 15:41:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.po_id' in 'field list'
+[Method: GET, Route: orders]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 2 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:41:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.po_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 4 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-09 15:41:05 --> [Caused by] mysqli_sql_exception: Unknown column 'po.po_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_id`, `po`.`status`, `po`.`created_at`, `b`.`branch_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+ORDER BY `po`.`created_at` DESC', [], false)
+ 5 APPPATH\Controllers\OrderController.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-09 15:42:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:44:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:51:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:51:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:51:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:51:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:52:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:53:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:55:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:56:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:56:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:58:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 15:58:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:00:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:02:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:09:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-09 16:09:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

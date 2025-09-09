@@ -4,14 +4,8 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-<<<<<<< HEAD
-        return view('Inventory');
-=======
-
-        return view('Inventory');
-        return view('Login');
->>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
+        return redirect()->to(site_url('login'));
     }
 }

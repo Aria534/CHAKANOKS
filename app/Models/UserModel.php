@@ -8,7 +8,6 @@ class UserModel extends Model
 {
     protected $table      = 'users';
     protected $primaryKey = 'user_id';
-<<<<<<< HEAD
     protected $allowedFields = [
         'username', 'password', 'email', 'first_name', 'last_name', 
         'phone', 'role', 'status', 'last_login', 'created_at', 'updated_at'
@@ -38,7 +37,5 @@ class UserModel extends Model
             'is_unique' => 'Email must be unique.'
         ]
     ];
-=======
-    protected $allowedFields = ['username','password','role','status'];
->>>>>>> 064e4f59a89e4f96ebf3c58f1700be8c6edf7665
+
 }
