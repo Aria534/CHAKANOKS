@@ -8,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      background: #fef250; /* bright yellow background */
+      background: #fef250; 
     }
 
     .container {
