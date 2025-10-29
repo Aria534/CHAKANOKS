@@ -25,11 +25,6 @@ class CreateUserBranchesTable extends Migration
                 'constraint' => 11,
                 'unsigned' => true
             ],
-            'is_primary' => [
-                'type' => 'BOOLEAN',
-                'default' => false,
-                'comment' => 'Primary branch for the user'
-            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true

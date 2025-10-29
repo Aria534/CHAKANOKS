@@ -6,13 +6,28 @@ use CodeIgniter\Model;
 
 class PurchaseOrderModel extends Model
 {
-    protected $table            = 'purchaseorders';
-    protected $primaryKey       = 'id';
+    protected $table            = 'purchase_orders';
+    protected $primaryKey       = 'purchase_order_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'po_number',
+        'branch_id',
+        'supplier_id',
+        'requested_by',
+        'approved_by',
+        'status',
+        'total_amount',
+        'requested_date',
+        'approved_date',
+        'expected_delivery_date',
+        'actual_delivery_date',
+        'notes',
+        'created_at',
+        'updated_at',
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +36,7 @@ class PurchaseOrderModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

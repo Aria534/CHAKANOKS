@@ -133,15 +133,37 @@
           <th>Item Name</th>
           <th>Branch</th>
           <th>Stock Level</th>
-          <th>Expiry Date</th>
+          <th>Stock Value</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="6" style="text-align:center; color:#999;">No data available</td>
-        </tr>
+        <?php if (!empty($inventory)): ?>
+          <?php foreach ($inventory as $item): ?>
+            <tr>
+              <td><?= esc($item['product_name']) ?></td>
+              <td><?= esc($item['branch_name']) ?></td>
+              <td><?= esc($item['current_stock']) ?></td>
+              <td>₱<?= number_format($item['stock_value'], 2) ?></td>
+              <td>
+                <?php
+                $status = $item['current_stock'] > 10 ? 'In Stock' : ($item['current_stock'] > 0 ? 'Low Stock' : 'Out of Stock');
+                $color = $status == 'In Stock' ? 'green' : ($status == 'Low Stock' ? 'orange' : 'red');
+                ?>
+                <span style="color: <?= $color ?>; font-weight: bold;"><?= $status ?></span>
+              </td>
+              <td class="actions">
+                <button class="edit">✏️</button>
+                <button class="delete">🗑️</button>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="6" style="text-align:center; color:#999;">No data available</td>
+          </tr>
+        <?php endif; ?>
       </tbody>
     </table>
   </div>

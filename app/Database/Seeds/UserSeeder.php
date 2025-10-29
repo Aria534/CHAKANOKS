@@ -161,6 +161,27 @@ class UserSeeder extends Seeder
             ]
         ];
 
-        $this->db->table('users')->insertBatch($data);
+        $builder = $this->db->table('users');
+        foreach ($data as $row) {
+            // Try to find by username or email
+            $existing = $builder
+                ->groupStart()
+                    ->where('username', $row['username'])
+                    ->orWhere('email', $row['email'])
+                ->groupEnd()
+                ->get()
+                ->getRowArray();
+
+            // Reset builder state before next write
+            $builder->resetQuery();
+
+            if ($existing && isset($existing['user_id'])) {
+                $builder->where('user_id', $existing['user_id'])->update($row);
+                $builder->resetQuery();
+            } else {
+                $builder->insert($row);
+                $builder->resetQuery();
+            }
+        }
     }
 }

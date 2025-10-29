@@ -1,0 +1,212 @@
+DEBUG - 2025-10-23 12:38:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:38:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:38:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:38:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-23 12:39:17 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\LogisticsDashboard.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-23 12:39:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: dashboard/logistics]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\LogisticsDashboard.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-23 12:39:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'ordered\'
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'ordered\'
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\LogisticsDashboard.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-23 12:39:17 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'ordered\'
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'ordered\'
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'ordered\'
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`po_number`, `b`.`branch_name`, `s`.`name` AS `supplier_name`, `po`.`expected_delivery_date`, `po`.`requested_date`
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\LogisticsDashboard.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-23 12:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-23 12:39:20 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `s`.`nam...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `s`.`nam...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `s`.`nam...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`nam...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(33): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-23 12:39:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: dashboard/franchise]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= :po.created_at:
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\FranchiseDashboard.php(33): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-23 12:39:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= \'2025-09-23 12:39:20\'
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= \'2025-09-23 12:39:20\'
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= :po.created_at:
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\FranchiseDashboard.php(33): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-23 12:39:20 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= \'2025-09-23 12:39:20\'
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= \'2025-09-23 12:39:20\'
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= \'2025-09-23 12:39:20\'
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`name` as `supplier_name`, COUNT(*) as total_orders
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`created_at` >= :po.created_at:
+GROUP BY `s`.`name`
+ORDER BY `total_orders` DESC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\FranchiseDashboard.php(33): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-23 12:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-23 12:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
