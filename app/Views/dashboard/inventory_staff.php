@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inventory Staff Dashboard</title>
+  <title>Inventory – <?= esc($branchName ?? 'Branch') ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body { background:#f8fafc; }
@@ -17,28 +17,27 @@
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="<?= site_url('dashboard') ?>">ChakaNoks</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="<?= site_url('orders') ?>">Orders</a></li>
-          <li class="nav-item"><a class="nav-link active" href="<?= site_url('inventory') ?>">Inventory</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?= site_url('inventory/scan') ?>">Scan</a></li>
-          <li class="nav-item"><a class="nav-link text-danger" href="<?= site_url('logout') ?>">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?= view('templete/navbar', ['active' => 'inventory']) ?>
   <div class="wrap">
-    <div class="title">Inventory Staff Dashboard</div>
+    <div class="title d-flex justify-content-between align-items-center">
+      <span>Inventory – <?= esc($branchName ?? 'Branch') ?></span>
+      <?php if (!empty($canSwitchBranches)): ?>
+      <form method="get" action="<?= site_url('inventory') ?>" class="d-flex align-items-center" style="gap:8px;">
+        <select name="branch_id" class="form-select form-select-sm" onchange="this.form.submit()">
+          <option value="all">All Branches</option>
+          <?php foreach(($branches ?? []) as $b): ?>
+            <option value="<?= (int)$b['branch_id'] ?>" <?= ((int)($selectedBranchId ?? 0) === (int)$b['branch_id']) ? 'selected' : '' ?>>
+              <?= esc($b['branch_name']) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+        <noscript><button class="btn btn-sm btn-primary">View</button></noscript>
+      </form>
+      <?php endif; ?>
+    </div>
     <div class="grid">
       <div class="card" style="grid-column: 1 / -1;">
-        <h5 class="mb-3">All Products (Branch)</h5>
+        <h5 class="mb-3">All Products – <?= esc($branchName ?? 'Branch') ?></h5>
         <div class="table-responsive">
           <table class="table table-sm">
             <thead>
@@ -119,6 +118,9 @@
         <?php endif; ?>
         <form method="post" action="<?= site_url('/inventory/adjust') ?>">
           <?= csrf_field() ?>
+          <?php if (!empty($selectedBranchId)): ?>
+            <input type="hidden" name="branch_id" value="<?= (int)$selectedBranchId ?>">
+          <?php endif; ?>
           <div class="mb-2">
             <label class="form-label">Product</label>
             <select name="product_id" class="form-select" required>

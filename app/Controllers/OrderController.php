@@ -18,7 +18,7 @@ class OrderController extends BaseController
             $branch = $db->table('user_branches')
                 ->select('branch_id')
                 ->where('user_id', $userId)
-                ->where('is_primary', 1)
+                ->orderBy('user_branch_id', 'ASC')
                 ->get()->getRowArray();
             if ($branch && isset($branch['branch_id'])) {
                 $builder->where('po.branch_id', (int)$branch['branch_id']);
@@ -35,20 +35,58 @@ class OrderController extends BaseController
 
     public function create()
     {
+        $session = session();
+        $role = (string) ($session->get('role') ?? '');
+        $userId = (int) ($session->get('user_id') ?? 0);
+
+        if (!in_array($role, ['branch_manager','central_admin','system_admin'])) {
+            return redirect()->to(site_url('/orders'))->with('error', 'Unauthorized');
+        }
+
         $db = db_connect();
-        $branches = $db->table('branches')->select('branch_id, branch_name')->orderBy('branch_name')->get()->getResultArray();
-        $suppliers = $db->table('suppliers')->select('supplier_id, name')->orderBy('name')->get()->getResultArray();
+        $suppliers = $db->table('suppliers')->select('supplier_id, supplier_name as name')->orderBy('supplier_name')->get()->getResultArray();
         $products = $db->table('products')->select('product_id, product_name, unit_price')->orderBy('product_name')->get()->getResultArray();
-        return view('dashboard/orders_create', compact('branches','suppliers','products'));
+
+        $selectedBranchId = 0;
+        if ($role === 'branch_manager') {
+            $branch = $db->table('user_branches')
+                ->select('branch_id')
+                ->where('user_id', $userId)
+                ->orderBy('user_branch_id','ASC')
+                ->get()->getRowArray();
+            $selectedBranchId = (int)($branch['branch_id'] ?? 0);
+            $branches = [];
+            if ($selectedBranchId > 0) {
+                $b = $db->table('branches')->select('branch_id, branch_name')->where('branch_id', $selectedBranchId)->get()->getRowArray();
+                if ($b) { $branches = [$b]; }
+            }
+        } else {
+            $branches = $db->table('branches')->select('branch_id, branch_name')->orderBy('branch_name')->get()->getResultArray();
+        }
+
+        return view('dashboard/orders_create', compact('branches','suppliers','products','selectedBranchId'));
     }
 
     public function store()
     {
         $session = session();
+        $role = (string) ($session->get('role') ?? '');
         $userId = (int) ($session->get('user_id') ?? 0);
+        if (!in_array($role, ['branch_manager','central_admin','system_admin'])) {
+            return redirect()->back()->with('error', 'Unauthorized');
+        }
         $db = db_connect();
 
         $branchId = (int) $this->request->getPost('branch_id');
+        if ($role === 'branch_manager') {
+            // Force to manager's branch
+            $branch = $db->table('user_branches')
+                ->select('branch_id')
+                ->where('user_id', $userId)
+                ->orderBy('user_branch_id','ASC')
+                ->get()->getRowArray();
+            $branchId = (int)($branch['branch_id'] ?? 0);
+        }
         $supplierId = (int) $this->request->getPost('supplier_id');
         $items = (array) $this->request->getPost('items'); // [ [product_id, qty] ... ]
 
@@ -153,7 +191,7 @@ class OrderController extends BaseController
         $session = session();
         $userId = (int) ($session->get('user_id') ?? 0);
         $role = (string) ($session->get('role') ?? '');
-        if (!in_array($role, ['central_admin','system_admin','inventory_staff'])) {
+        if (!in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager'])) {
             return redirect()->back()->with('error', 'Unauthorized');
         }
         $db = db_connect();
@@ -165,6 +203,19 @@ class OrderController extends BaseController
         $po = $poModel->find($id);
         if (!$po) return redirect()->back()->with('error', 'Order not found');
         if (!in_array($po['status'], ['ordered','approved','pending'])) return redirect()->back()->with('error', 'Order is not in receivable state');
+
+        // For branch_manager or inventory_staff, ensure the PO belongs to their branch
+        if (in_array($role, ['branch_manager','inventory_staff'])) {
+            $branch = $db->table('user_branches')
+                ->select('branch_id')
+                ->where('user_id', $userId)
+                ->orderBy('user_branch_id', 'ASC')
+                ->get()->getRowArray();
+            $myBranchId = (int)($branch['branch_id'] ?? 0);
+            if ($myBranchId <= 0 || (int)$po['branch_id'] !== $myBranchId) {
+                return redirect()->back()->with('error', 'Unauthorized branch');
+            }
+        }
 
         $items = $itemModel->where('purchase_order_id', $id)->findAll();
         $now = date('Y-m-d H:i:s');

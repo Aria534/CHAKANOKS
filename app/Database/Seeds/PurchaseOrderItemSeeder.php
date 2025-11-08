@@ -39,7 +39,7 @@ class PurchaseOrderItemSeeder extends Seeder
                 $data[] = [
                     'purchase_order_id' => $poId,
                     'product_id' => $product['product_id'],
-                    'quantity' => $quantity,
+                    'quantity_requested' => $quantity,
                     'unit_price' => $unitPrice,
                     'total_price' => $quantity * $unitPrice,
                     'created_at' => date('Y-m-d H:i:s'),

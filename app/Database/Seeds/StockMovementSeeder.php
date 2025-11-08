@@ -18,11 +18,15 @@ class StockMovementSeeder extends Seeder
         $productRows = $db->table('products')->select('product_id')->get()->getResultArray();
         $productIds = array_column($productRows, 'product_id');
 
-        if (empty($branchIds) || empty($productIds)) {
+        // Fetch user IDs for created_by
+        $userRows = $db->table('users')->select('user_id')->get()->getResultArray();
+        $userIds = array_column($userRows, 'user_id');
+
+        if (empty($branchIds) || empty($productIds) || empty($userIds)) {
             return;
         }
 
-        $movementTypes = ['stock_in', 'stock_out', 'adjustment'];
+        $movementTypes = ['in', 'out', 'adjustment'];
         $data = [];
 
         // Create movements for each branch
@@ -36,9 +40,13 @@ class StockMovementSeeder extends Seeder
                     'branch_id' => $branchId,
                     'movement_type' => $movementTypes[array_rand($movementTypes)],
                     'quantity' => $quantity,
-                    'reason' => 'Sample movement',
+                    'reference_type' => null,
+                    'reference_id' => null,
+                    'unit_price' => null,
+                    'total_value' => null,
+                    'notes' => 'Sample movement',
+                    'created_by' => $userIds[array_rand($userIds)],
                     'created_at' => $createdAt,
-                    'updated_at' => $createdAt
                 ];
             }
         }

@@ -68,7 +68,7 @@
       </form>
     </div>
     <div class="text-center pb-3">
-      <small class="text-muted">© <?= date('Y') ?> ChakaNoks</small>
+      <small class="text-muted"> <?= date('Y') ?> ChakaNoks</small>
     </div>
   </div>
 

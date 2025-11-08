@@ -207,6 +207,18 @@ class ProductSeeder extends Seeder
             ]
         ];
 
-        $this->db->table('products')->insertBatch($data);
+        $builder = $this->db->table('products');
+        foreach ($data as $row) {
+            // Upsert by unique product_code
+            $existing = $builder->where('product_code', $row['product_code'])->get()->getRowArray();
+            $builder->resetQuery();
+
+            if ($existing && isset($existing['product_id'])) {
+                $builder->where('product_id', (int)$existing['product_id'])->update($row);
+            } else {
+                $builder->insert($row);
+            }
+            $builder->resetQuery();
+        }
     }
 }

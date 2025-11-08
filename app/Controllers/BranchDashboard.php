@@ -18,7 +18,7 @@ $branch = $db->table('user_branches ub')
     ->select('b.branch_id, b.branch_name, b.manager_name')
     ->join('branches b', 'b.branch_id = ub.branch_id')
     ->where('ub.user_id', $userId)
-    ->where('ub.is_primary', 1)
+    ->orderBy('ub.user_branch_id', 'ASC')
     ->get()
     ->getRowArray();
 
@@ -35,6 +35,8 @@ $branch = $db->table('user_branches ub')
                 'recentMovements' => []
             ]);
         }
+        // Default branch_id (ensures safety)
+        $branchId = $branch['branch_id'] ?? 0;
 
         // Get summary from inventory
         $inventoryModel = new InventoryModel();

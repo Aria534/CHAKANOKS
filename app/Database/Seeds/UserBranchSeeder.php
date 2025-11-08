@@ -26,19 +26,19 @@ class UserBranchSeeder extends Seeder
 
         $links = [
             // Central Admins -> CENTRAL
-            ['username' => 'admin', 'branch_code' => 'CENTRAL', 'is_primary' => true],
-            ['username' => 'Central Admin', 'branch_code' => 'CENTRAL', 'is_primary' => true],
+            ['username' => 'admin', 'branch_code' => 'CENTRAL'],
+            ['username' => 'Central Admin', 'branch_code' => 'CENTRAL'],
 
             // Branch Managers -> their branches (matching new usernames)
-            ['username' => 'Branch Manager1', 'branch_code' => 'SM001', 'is_primary' => true],
-            ['username' => 'Branch Manager2', 'branch_code' => 'ABR001', 'is_primary' => true],
-            ['username' => 'Branch Manager3', 'branch_code' => 'GAI001', 'is_primary' => true],
-            ['username' => 'Branch Manager4', 'branch_code' => 'NCC001', 'is_primary' => true],
-            ['username' => 'Branch Manager5', 'branch_code' => 'VIC001', 'is_primary' => true],
+            ['username' => 'Branch Manager1', 'branch_code' => 'SM001'],
+            ['username' => 'Branch Manager2', 'branch_code' => 'ABR001'],
+            ['username' => 'Branch Manager3', 'branch_code' => 'GAI001'],
+            ['username' => 'Branch Manager4', 'branch_code' => 'NCC001'],
+            ['username' => 'Branch Manager5', 'branch_code' => 'VIC001'],
 
             // Inventory staff (single account) -> assign to two branches
-            ['username' => 'staff1', 'branch_code' => 'SM001', 'is_primary' => false],
-            ['username' => 'staff1', 'branch_code' => 'ABR001', 'is_primary' => false],
+            ['username' => 'staff1', 'branch_code' => 'SM001'],
+            ['username' => 'staff1', 'branch_code' => 'ABR001'],
         ];
 
         foreach ($links as $link) {
@@ -57,7 +57,6 @@ class UserBranchSeeder extends Seeder
             $db->table('user_branches')->insert([
                 'user_id' => $userId,
                 'branch_id' => $branchId,
-                'is_primary' => (bool) $link['is_primary'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);

@@ -15,32 +15,10 @@
     </style>
 </head>
 <body>
-    <!-- ✅ Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="<?= site_url('dashboard') ?>">ChakaNoks Central Admin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('dashboard') ?>">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('inventory') ?>">Inventory</a></li>
-            <li class="nav-item"><a class="nav-link active" href="<?= site_url('orders') ?>">Orders</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('branches') ?>">Branches</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('products') ?>">Products</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('dashboard/logistics') ?>">Logistics</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('dashboard/franchise') ?>">Franchising</a></li>
-            <li class="nav-item"><a class="nav-link text-danger" href="<?= site_url('logout') ?>">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?= view('templete/navbar', ['active' => 'orders']) ?>
 
     <div class="wrap">
         <div class="title">Purchase Orders</div>
-
         <?php $role = (string)(session('role') ?? ''); ?>
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <div>
@@ -49,7 +27,6 @@
               <?php endif; ?>
             </div>
         </div>
-
         <div class="card">
             <table class="table table-striped">
                 <thead>

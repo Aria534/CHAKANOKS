@@ -39,7 +39,7 @@ class Auth extends BaseController
             ->select('b.branch_id, b.branch_name, b.manager_name')
             ->join('branches b', 'b.branch_id = ub.branch_id')
             ->where('ub.user_id', $user['user_id'])
-            ->where('ub.is_primary', 1) // kunin yung primary branch
+            ->orderBy('ub.user_branch_id', 'ASC')
             ->get()
             ->getRowArray();
 

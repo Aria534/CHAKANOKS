@@ -146,3 +146,937 @@ Stack trace:
 #12 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 #13 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
 #14 {main}
+CRITICAL - 2025-10-29 16:08:03 --> ParseError: syntax error, unexpected token "<<", expecting end of file
+[Method: CLI, Route: db:seed/DatabaseSeeder]
+in APPPATH\Config\Routes.php on line 20.
+ 1 SYSTEMPATH\CLI\Console.php(41): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 2 SYSTEMPATH\Boot.php(388): CodeIgniter\CLI\Console->run()
+ 3 SYSTEMPATH\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 4 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2025-10-29 16:12:47 --> mysqli_sql_exception: Duplicate entry 'FP001' for key 'product_code' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `pr...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pr...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pr...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pr...', NULL, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\ProductSeeder.php(210): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\ProductSeeder->run()
+#7 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\DatabaseSeeder.php(16): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+ERROR - 2025-10-29 16:15:20 --> mysqli_sql_exception: Duplicate entry 'FP001' for key 'product_code' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `pr...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pr...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pr...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pr...', NULL, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\ProductSeeder.php(210): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\ProductSeeder->run()
+#7 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\DatabaseSeeder.php(16): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+ERROR - 2025-10-29 16:17:25 --> mysqli_sql_exception: Duplicate entry '1-3' for key 'product_id_branch_id' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', NULL, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\InventorySeeder.php(59): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\InventorySeeder->run()
+#7 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\DatabaseSeeder.php(18): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+ERROR - 2025-10-29 16:23:09 --> mysqli_sql_exception: Duplicate entry 'PO-2025-001' for key 'po_number' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pu...', NULL, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\PurchaseOrderSeeder.php(61): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\PurchaseOrderSeeder->run()
+#7 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\DatabaseSeeder.php(19): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+ERROR - 2025-10-29 16:24:47 --> mysqli_sql_exception: Unknown column 'reason' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `st...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `st...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `st...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `st...', NULL, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\StockMovementSeeder.php(46): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\StockMovementSeeder->run()
+#7 C:\xampp\htdocs\Chakanoks\app\Database\Seeds\DatabaseSeeder.php(21): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\Chakanoks\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+DEBUG - 2025-10-29 16:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:28:52 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:32:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:32:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:32:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:34:46 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:34:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:34:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:34:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:35:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:35:14 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:36:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:47:47 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:47:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:47:51 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:48:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-29 16:48:34 --> ParseError: syntax error, unexpected token "<<"
+[Method: GET, Route: orders]
+in APPPATH\Controllers\OrderController.php on line 10.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Chakanoks\\app\\Controllers\\OrderController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\OrderController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\OrderController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\OrderController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:49:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:49:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:50:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 16:51:55 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 16:51:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: dashboard/inventory]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:51:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 2
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 2
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:51:55 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 2
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 2
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 2
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:52:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:52:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:53:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:53:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:54:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:55:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 16:56:57 --> mysqli_sql_exception: Unknown column 'name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `supplie...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `supplie...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `supplie...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `supplie...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\OrderController.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\OrderController->create()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 16:56:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'name' in 'field list'
+[Method: GET, Route: orders/create]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`', [], false)
+ 2 APPPATH\Controllers\OrderController.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->create()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:56:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`', [], false)
+ 4 APPPATH\Controllers\OrderController.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->create()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:56:57 --> [Caused by] mysqli_sql_exception: Unknown column 'name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `supplier_id`, `name`
+FROM `suppliers`
+ORDER BY `name`', [], false)
+ 5 APPPATH\Controllers\OrderController.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OrderController->create()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OrderController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:57:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 16:59:44 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 16:59:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: inventory]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:59:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:59:44 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 16:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 16:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 16:59:53 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 16:59:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: inventory]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:59:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 16:59:53 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 17:00:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 17:00:06 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 17:00:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: inventory]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 17:00:06 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 17:00:06 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 17:03:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:03:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-29 17:03:37 --> mysqli_sql_exception: Unknown column 's.name' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-29 17:03:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+[Method: GET, Route: inventory]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 2 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 17:03:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 4 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-29 17:03:37 --> [Caused by] mysqli_sql_exception: Unknown column 's.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = 3
+AND `po`.`status` IN (\'approved\',\'ordered\')
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`status`, `po`.`expected_delivery_date`, `s`.`name` as `supplier_name`
+FROM `purchase_orders` `po`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`branch_id` = :po.branch_id:
+AND `po`.`status` IN :po.status:
+ORDER BY `po`.`expected_delivery_date` ASC
+ LIMIT 10', [...], false)
+ 5 APPPATH\Controllers\InventoryController.php(57): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-29 17:03:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:03:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:03:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:10:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:10:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:11:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:11:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:12:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:19:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:19:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:20:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:22:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:26:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:28:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:31:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:35:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:36:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:36:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:36:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:36:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:36:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:37:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:38:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:38:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:38:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:38:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:39:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:39:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:42:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:43:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:43:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-29 17:43:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

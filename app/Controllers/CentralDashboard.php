@@ -16,7 +16,7 @@ class CentralDashboard extends BaseController {
             ->get()
             ->getRowArray();
 
-        // Low Stock Alerts (siguraduhin tama column name sa DB mo: current_stock o available_stock)
+        // Low Stock Alerts (uses available_stock vs product minimum)
         $lowStock = $db->table('inventory i')
             ->select('COUNT(*) as low_count')
             ->join('products p', 'p.product_id = i.product_id')
@@ -68,7 +68,6 @@ class CentralDashboard extends BaseController {
             ->limit(10)
             ->get()
             ->getResultArray();
-
         // Pass data to view
         return view('dashboard/central_admin', [
             'stockValue'    => $stockValue['total_value'] ?? 0,

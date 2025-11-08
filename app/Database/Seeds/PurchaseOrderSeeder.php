@@ -58,6 +58,17 @@ class PurchaseOrderSeeder extends Seeder
             }
         }
 
-        $db->table('purchase_orders')->insertBatch($data);
+        $builder = $db->table('purchase_orders');
+        foreach ($data as $row) {
+            $existing = $builder->where('po_number', $row['po_number'])->get()->getRowArray();
+            $builder->resetQuery();
+
+            if ($existing && isset($existing['purchase_order_id'])) {
+                $builder->where('purchase_order_id', (int)$existing['purchase_order_id'])->update($row);
+            } else {
+                $builder->insert($row);
+            }
+            $builder->resetQuery();
+        }
     }
 }

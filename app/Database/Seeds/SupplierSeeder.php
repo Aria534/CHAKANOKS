@@ -71,6 +71,22 @@ class SupplierSeeder extends Seeder
             ]
         ];
 
-        $this->db->table('suppliers')->insertBatch($data);
+        $builder = $this->db->table('suppliers');
+        foreach ($data as $row) {
+            $email = trim(strtolower($row['email'] ?? ''));
+            if ($email !== '') {
+                $existing = $builder->where('email', $email)->get()->getRowArray();
+            } else {
+                $existing = $builder->where('supplier_name', $row['supplier_name'])->get()->getRowArray();
+            }
+            $builder->resetQuery();
+
+            if ($existing && isset($existing['supplier_id'])) {
+                $builder->where('supplier_id', (int)$existing['supplier_id'])->update($row);
+            } else {
+                $builder->insert($row);
+            }
+            $builder->resetQuery();
+        }
     }
 }
