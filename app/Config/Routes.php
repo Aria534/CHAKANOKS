@@ -24,6 +24,13 @@ $routes->get('dashboard/franchise', 'FranchiseDashboard::index');
 $routes->get('dashboard/inventory', 'InventoryController::index');
 $routes->get('dashboard/logistics', 'LogisticsDashboard::index');
 
+// ✅ Add this route for your logistics tracking page
+$routes->get('logistics', 'LogisticsDashboard::index');
+
+
+$routes->get('franchise', 'FranchiseDashboard::index');
+
+
 // Optional Home
 $routes->get('home', 'Home::index');
 
@@ -42,6 +49,3 @@ $routes->post('/orders', 'OrderController::store');
 $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');
-
-
-
