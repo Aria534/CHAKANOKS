@@ -54,7 +54,21 @@ class Auth extends BaseController
             'isLoggedIn' => true,
         ]);
 
-        return redirect()->to(site_url('dashboard'));
+        // Redirect based on user role
+        switch ($user['role']) {
+            case 'admin':
+                return redirect()->to(site_url('dashboard/central'));
+            case 'branch_manager':
+                return redirect()->to(site_url('dashboard/branch-manager'));
+            case 'franchise':
+                return redirect()->to(site_url('dashboard/franchise'));
+            case 'inventory_manager':
+                return redirect()->to(site_url('dashboard/inventory'));
+            case 'logistics':
+                return redirect()->to(site_url('dashboard/logistics'));
+            default:
+                return redirect()->to(site_url('dashboard'));
+        }
     }
 
     public function logout(): RedirectResponse
