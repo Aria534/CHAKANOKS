@@ -1,0 +1,72 @@
+CRITICAL - 2025-11-11 01:40:44 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "logistics_view.php"
+[Method: GET, Route: logistics]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('logistics_view.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('logistics_view', [], true)
+ 3 APPPATH\Controllers\Logistics.php(9): view('logistics_view')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Logistics->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Logistics))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-11 01:41:06 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "logistics.php"
+[Method: GET, Route: logistics]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('logistics.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('logistics', [], true)
+ 3 APPPATH\Controllers\Logistics.php(9): view('logistics')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Logistics->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Logistics))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-11 01:48:04 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "logistics_dashboard.php"
+[Method: GET, Route: logistics]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('logistics_dashboard.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('logistics_dashboard', [], true)
+ 3 APPPATH\Controllers\LogisticsDashboard.php(10): view('logistics_dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-11 01:56:34 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "franchise_dashboard.php"
+[Method: GET, Route: dashboard/franchise]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('franchise_dashboard.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('franchise_dashboard', [], true)
+ 3 APPPATH\Controllers\FranchiseDashboard.php(9): view('franchise_dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-11 11:49:11 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "logistics_dashboard.php"
+[Method: GET, Route: logistics]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('logistics_dashboard.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('logistics_dashboard', [], true)
+ 3 APPPATH\Controllers\LogisticsDashboard.php(10): view('logistics_dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LogisticsDashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LogisticsDashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-11 12:16:48 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "franchise_dashboard.php"
+[Method: GET, Route: dashboard/franchise]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('franchise_dashboard.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('franchise_dashboard', [], true)
+ 3 APPPATH\Controllers\FranchiseDashboard.php(9): view('franchise_dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

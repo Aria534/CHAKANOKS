@@ -1,0 +1,174 @@
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    public function run()
+    {
+        $data = [
+            
+            [
+                'username' => 'Central Office Admin',
+                'password' => password_hash('central123', PASSWORD_DEFAULT),
+                'email' => 'central@chakanoks.com',
+                'first_name' => 'Jhondell',
+                'last_name' => 'Ranises',
+                'phone' => '+63 82 123-4567',
+                'role' => 'central_admin',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            // System Administrator (IT) - Super Admin
+            [
+                'username' => 'Super Admin',
+                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'email' => 'admin@chakanoks.com',
+                'first_name' => 'System',
+                'last_name' => 'Admin',
+                'phone' => '+63 82 111-0000',
+                'role' => 'system_admin',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            // Franchise Manager
+            [
+                'username' => 'franchise manager',
+                'password' => password_hash('franchise123', PASSWORD_DEFAULT),
+                'email' => 'franchise@chakanoks.com',
+                'first_name' => 'Franchise',
+                'last_name' => 'Manager',
+                'phone' => '+63 82 222-0000',
+                'role' => 'franchise_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            // Logistics Coordinator
+            [
+                'username' => 'logistics coordinator',
+                'password' => password_hash('logistics123', PASSWORD_DEFAULT),
+                'email' => 'logistics@chakanoks.com',
+                'first_name' => 'Logistics',
+                'last_name' => 'Coordinator',
+                'phone' => '+63 82 333-0000',
+                'role' => 'logistics_coordinator',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        
+            // Branch Managers (one per branch)
+            [
+                'username' => 'Branch Manager1',
+                'password' => password_hash('branch123', PASSWORD_DEFAULT),
+                'email' => 'branch1@chakanoks.com',
+                'first_name' => 'SM',
+                'last_name' => 'Lanang Manager',
+                'phone' => '+63 82 200-0001',
+                'role' => 'branch_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'username' => 'Branch Manager2',
+                'password' => password_hash('branch123', PASSWORD_DEFAULT),
+                'email' => 'branch2@chakanoks.com',
+                'first_name' => 'Abreeza',
+                'last_name' => 'Manager',
+                'phone' => '+63 82 200-0002',
+                'role' => 'branch_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'username' => 'Branch Manager3',
+                'password' => password_hash('branch123', PASSWORD_DEFAULT),
+                'email' => 'branch3@chakanoks.com',
+                'first_name' => 'Gaisano',
+                'last_name' => 'Manager',
+                'phone' => '+63 82 200-0003',
+                'role' => 'branch_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'username' => 'Branch Manager4',
+                'password' => password_hash('branch123', PASSWORD_DEFAULT),
+                'email' => 'branch4@chakanoks.com',
+                'first_name' => 'NCCC',
+                'last_name' => 'Manager',
+                'phone' => '+63 82 200-0004',
+                'role' => 'branch_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'username' => 'Branch Manager5',
+                'password' => password_hash('branch123', PASSWORD_DEFAULT),
+                'email' => 'branch5@chakanoks.com',
+                'first_name' => 'Victoria',
+                'last_name' => 'Manager',
+                'phone' => '+63 82 200-0005',
+                'role' => 'branch_manager',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            // Inventory Staff (single account only)
+            [
+                'username' => 'Inventory Staff',
+                'password' => password_hash('inventory123', PASSWORD_DEFAULT),
+                'email' => 'inventory@chakanoks.com',
+                'first_name' => 'Inventory',
+                'last_name' => 'Staff',
+                'phone' => '+63 82 789-0123',
+                'role' => 'inventory_staff',
+                'status' => 'active',
+                'last_login' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+
+        $builder = $this->db->table('users');
+        foreach ($data as $row) {
+            // Try to find by username or email
+            $existing = $builder
+                ->groupStart()
+                    ->where('username', $row['username'])
+                    ->orWhere('email', $row['email'])
+                ->groupEnd()
+                ->get()
+                ->getRowArray();
+
+            // Reset builder state before next write
+            $builder->resetQuery();
+
+            if ($existing && isset($existing['user_id'])) {
+                $builder->where('user_id', $existing['user_id'])->update($row);
+                $builder->resetQuery();
+            } else {
+                $builder->insert($row);
+                $builder->resetQuery();
+            }
+        }
+    }
+}
