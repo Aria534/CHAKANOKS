@@ -12,18 +12,13 @@ class CreateUsersTable extends Migration
             'user_id'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'username'  => ['type' => 'VARCHAR', 'constraint' => 50, 'unique' => true],
             'password'  => ['type' => 'VARCHAR', 'constraint' => 255],
-<<<<<<< HEAD
             'email'     => ['type' => 'VARCHAR', 'constraint' => 100, 'unique' => true],
             'first_name' => ['type' => 'VARCHAR', 'constraint' => 50],
             'last_name' => ['type' => 'VARCHAR', 'constraint' => 50],
             'phone'     => ['type' => 'VARCHAR', 'constraint' => 20, 'null' => true],
-            'role'      => ['type' => "ENUM('admin','franchise_manager','logistics_coordinator','branch_manager','inventory_staff','supplier')", 'default' => 'inventory_staff'],
+            'role'      => ['type' => "ENUM('central_admin','system_admin','franchise_manager','logistics_coordinator','branch_manager','inventory_staff','supplier')", 'default' => 'inventory_staff'],
             'status'    => ['type' => "ENUM('active','inactive')", 'default' => 'active'],
             'last_login' => ['type' => 'DATETIME', 'null' => true],
-=======
-            'role'      => ['type' => "ENUM('admin','staff','supplier','customer')", 'default' => 'staff'],
-            'status'    => ['type' => "ENUM('active','inactive')", 'default' => 'active'],
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);

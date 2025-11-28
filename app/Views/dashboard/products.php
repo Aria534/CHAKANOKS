@@ -1,45 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Products</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChakaNoks - Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { margin:0; font-family: Arial, sans-serif; background:#f9fafb; }
-        .wrap { padding:24px; }
-        .title { font-size:24px; font-weight:800; color:#111827; margin-bottom:20px; }
-        .card { background:#fff; border-radius:12px; padding:18px; box-shadow:0 4px 12px rgba(0,0,0,.08); margin-bottom:20px; }
-        table { width:100%; border-collapse: collapse; }
-        th, td { padding:10px; border-bottom:1px solid #e5e7eb; text-align:left; }
-        th { color:#374151; font-size:13px; text-transform:uppercase; letter-spacing:.04em; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #503e2cff;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 220px;
+            background: #1a1a1a;
+            color: #b75a03ff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
+        .sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; }
+        .sidebar nav a {
+            color:#aaa;
+            text-decoration:none;
+            font-weight:500;
+            padding:0.6rem 1rem;
+            border-radius:6px;
+            transition:0.2s;
+        }
+        .sidebar nav a:hover { background:#2c2c2c; color:#fff; }
+        .sidebar a.active, .sidebar a:hover {
+            background: #ff9320ff;
+            color: #fff;
+        }
+        .sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
+
+        /* --- Main content --- */
+        .main-content { margin-left: 220px; padding: 2rem; }
+
+        .page-title { 
+            font-size:1.8rem; 
+            margin-bottom:1.5rem; 
+            font-weight:600; 
+            color:#fff;
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
+        }
+
+        .table-card { background:#fff; border-radius:14px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,0,0,0.06); border:1px solid #e8e8e8; }
+        .table-card table { width:100%; border-collapse:collapse; font-size:14px; }
+        .table-card th { text-align:left; padding:.8rem; font-weight:700; color:#666; border-bottom:1px solid #f0f0f0; }
+        .table-card td { padding:.8rem; border-bottom:1px solid #f7f7f7; color:#444; }
+        .table-card tbody tr:hover { background-color: #f9f9f9; }
+
+        @media (max-width:768px){ .main-content { margin-left: 0; padding:1rem; } .sidebar { width: 100%; height: auto; position: relative; } }
     </style>
 </head>
 <body>
-    <!-- ✅ Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="<?= site_url('dashboard') ?>">ChakaNoks Central Admin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('dashboard') ?>">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('branches') ?>">Branches</a></li>
-            <li class="nav-item"><a class="nav-link active" href="<?= site_url('products') ?>">Products</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('orders') ?>">Orders</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= site_url('inventory') ?>">Inventory</a></li>
-            <li class="nav-item"><a class="nav-link text-danger" href="<?= site_url('logout') ?>">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <div class="wrap">
-        <div class="title">Products</div>
-        <div class="card">
-            <table class="table table-striped">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">ChakaNoks</div>
+        <nav>
+            <a href="<?= site_url('dashboard') ?>">Dashboard</a>
+            <a href="<?= site_url('branches') ?>">Branches</a>
+            <a href="<?= site_url('products') ?>" class="active">Products</a>
+            <a href="<?= site_url('orders') ?>">Orders</a>
+            <a href="<?= site_url('inventory') ?>">Inventory</a>
+            <a href="<?= site_url('logout') ?>" class="logout">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="page-title">Products</div>
+
+        <div class="table-card">
+            <table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -68,7 +117,6 @@
         </div>
     </div>
 
-    <!-- ✅ Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

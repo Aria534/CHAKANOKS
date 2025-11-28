@@ -24,8 +24,10 @@ $routes->get('dashboard/franchise', 'FranchiseDashboard::index');
 $routes->get('dashboard/inventory', 'InventoryController::index');
 $routes->get('dashboard/logistics', 'LogisticsDashboard::index');
 
-// ✅ Add this route for your logistics tracking page
+// Logistics Dashboard Routes
 $routes->get('logistics', 'LogisticsDashboard::index');
+$routes->get('shipments', 'LogisticsDashboard::shipments');
+$routes->get('routes', 'LogisticsDashboard::routes');
 
 
 $routes->get('franchise', 'FranchiseDashboard::index');

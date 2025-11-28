@@ -36,9 +36,12 @@ class UserBranchSeeder extends Seeder
             ['username' => 'Branch Manager4', 'branch_code' => 'NCC001'],
             ['username' => 'Branch Manager5', 'branch_code' => 'VIC001'],
 
-            // Inventory staff (single account) -> assign to two branches
-            ['username' => 'staff1', 'branch_code' => 'SM001'],
-            ['username' => 'staff1', 'branch_code' => 'ABR001'],
+            // Inventory staff (single account) -> assign to all branches
+            ['username' => 'Inventory Staff', 'branch_code' => 'SM001'],
+            ['username' => 'Inventory Staff', 'branch_code' => 'ABR001'],
+            ['username' => 'Inventory Staff', 'branch_code' => 'GAI001'],
+            ['username' => 'Inventory Staff', 'branch_code' => 'NCC001'],
+            ['username' => 'Inventory Staff', 'branch_code' => 'VIC001'],
         ];
 
         foreach ($links as $link) {

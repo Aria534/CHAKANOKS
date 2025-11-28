@@ -3,29 +3,275 @@ namespace App\Controllers;
 
 class InventoryController extends BaseController
 {
+    /**
+     * Get inventory view for a specific branch
+     * 
+     * @param object $db Database connection
+     * @param int $branchId Branch ID
+     * @param array $allBranches List of all branches for dropdown
+     * @param string $userRole Current user's role
+     * @param int $userId Current user ID
+     * @return string Rendered view
+     */
+private function getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId)
+    {
+        // Validate database connection
+        if (!is_object($db)) {
+            $db = \Config\Database::connect();
+        }
+        
+        // Validate branch ID
+        if (!is_numeric($branchId) || $branchId <= 0) {
+            return view('errors/html/error_404', [
+                'message' => 'Invalid branch ID',
+                'code' => 404
+            ]);
+        }
+        // Make sure we have a valid database connection
+        if (!is_object($db)) {
+            $db = \Config\Database::connect();
+        }
+        // Get branch name for the view
+        $branchMeta = [];
+        try {
+            $branchMeta = $db->table('branches')
+                ->select('branch_name')
+                ->where('branch_id', $branchId)
+                ->where('status', 'active')
+                ->get()
+                ->getRowArray();
+                
+            if (empty($branchMeta)) {
+                throw new \Exception('Branch not found');
+            }
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching branch details: ' . $e->getMessage());
+            return view('errors/html/error_404', [
+                'message' => 'Branch not found',
+                'code' => 404
+            ]);
+        }
+
+        $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff']);
+        
+        // Get low stock items for this branch
+        $lowStockItems = [];
+        try {
+            $lowStockItems = $db->table('inventory i')
+                ->select('p.product_name, i.available_stock, p.minimum_stock')
+                ->join('products p', 'p.product_id = i.product_id', 'left')
+                ->where('i.branch_id', $branchId)
+                ->where('i.available_stock <= p.minimum_stock')
+                ->where('p.status', 'active')
+                ->where('i.status', 'active')
+                ->orderBy('p.product_name', 'ASC')
+                ->get()
+                ->getResultArray();
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching low stock items: ' . $e->getMessage());
+            // Continue with empty array for low stock items
+        }
+
+        // Get pending purchase orders
+        $pendingReceives = $db->table('purchase_orders po')
+            ->select('po.purchase_order_id, po.po_number, po.status, po.expected_delivery_date, s.supplier_name')
+            ->join('suppliers s', 's.supplier_id = po.supplier_id', 'left')
+            ->where('po.branch_id', $branchId)
+            ->whereIn('po.status', ['approved', 'ordered'])
+            ->orderBy('po.expected_delivery_date', 'ASC')
+            ->limit(10)
+            ->get()
+            ->getResultArray();
+
+        try {
+            // Get all active products with their inventory for this branch
+            $branchInventory = $db->table('products p')
+                ->select('p.product_id, p.product_name, p.unit_price, p.minimum_stock, 
+                         COALESCE(i.current_stock, 0) as current_stock,
+                         COALESCE(i.available_stock, 0) as available_stock,
+                         (COALESCE(i.current_stock, 0) * p.unit_price) as stock_value,
+                         p.status as product_status')
+                ->join('inventory i', 'i.product_id = p.product_id AND i.branch_id = ' . (int)$branchId, 'left')
+                ->where('p.status', 'active')
+                ->orderBy('p.product_name', 'ASC')
+                ->get()
+                ->getResultArray();
+
+            // If no inventory records exist yet, create zero entries for all active products
+            if (empty($branchInventory)) {
+                $products = $db->table('products')
+                    ->select('product_id, product_name, unit_price, minimum_stock')
+                    ->where('status', 'active')
+                    ->orderBy('product_name', 'ASC')
+                    ->get()
+                    ->getResultArray();
+
+                $branchInventory = array_map(function($product) {
+                    return [
+                        'product_id' => $product['product_id'],
+                        'product_name' => $product['product_name'],
+                        'unit_price' => $product['unit_price'],
+                        'minimum_stock' => $product['minimum_stock'],
+                        'current_stock' => 0,
+                        'available_stock' => 0,
+                        'stock_value' => 0,
+                        'product_status' => 'active'
+                    ];
+                }, $products);
+            }
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching branch inventory: ' . $e->getMessage());
+            $branchInventory = [];
+        }
+
+        return view('dashboard/inventory_staff', [
+            'lowStockItems' => $lowStockItems,
+            'pendingReceives' => $pendingReceives,
+            'products' => $branchInventory, // All products with inventory data
+            'branchInventory' => $branchInventory,
+            'branchName' => $branchMeta['branch_name'] ?? 'Unknown Branch',
+            'branches' => $allBranches,
+            'selectedBranchId' => $branchId,
+            'canSwitchBranches' => $canSwitch && count($allBranches) > 1,
+        ]);
+    }
+
+    /**
+     * Get aggregated inventory view for all branches
+     * 
+     * @param object $db Database connection
+     * @param array $allBranches List of all branches
+     * @param bool $isStaffView Whether this is for staff view
+     * @return string Rendered view
+     */
+private function getAggregatedInventoryView($db, $allBranches, $isStaffView = false)
+    {
+        // Make sure we have a valid database connection
+        if (!is_object($db)) {
+            $db = \Config\Database::connect();
+        }
+        // Aggregated view for staff across all branches
+        $lowStockItems = $db->table('inventory i')
+            ->select('b.branch_name, p.product_name, i.available_stock, p.minimum_stock')
+            ->join('products p', 'p.product_id = i.product_id', 'left')
+            ->join('branches b', 'b.branch_id = i.branch_id', 'left')
+            ->where('i.available_stock <= p.minimum_stock')
+            ->orderBy('b.branch_name', 'ASC')
+            ->orderBy('p.product_name', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $pendingReceives = $db->table('purchase_orders po')
+            ->select('po.purchase_order_id, po.po_number, po.status, po.expected_delivery_date, s.supplier_name')
+            ->join('suppliers s', 's.supplier_id = po.supplier_id', 'left')
+            ->whereIn('po.status', ['approved','ordered'])
+            ->orderBy('po.expected_delivery_date', 'ASC')
+            ->limit(10)
+            ->get()
+            ->getResultArray();
+
+        // Get all products with aggregated inventory
+        $branchInventory = $db->table('products p')
+            ->select('p.product_id, p.product_name, p.unit_price, p.minimum_stock,
+                     COALESCE(SUM(i.current_stock), 0) as current_stock,
+                     COALESCE(SUM(i.available_stock), 0) as available_stock,
+                     (COALESCE(SUM(i.current_stock * p.unit_price), 0)) as stock_value')
+            ->join('inventory i', 'i.product_id = p.product_id', 'left')
+            ->groupBy('p.product_id')
+            ->orderBy('p.product_name', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        return view('dashboard/inventory_staff', [
+            'lowStockItems' => $lowStockItems,
+            'pendingReceives' => $pendingReceives,
+            'products' => $branchInventory,
+            'branchInventory' => $branchInventory,
+            'expirySoon' => [],
+            'lowStockCount' => count($lowStockItems),
+            'branchName' => 'All Branches',
+            'branches' => $allBranches,
+            'selectedBranchId' => 0,
+            'canSwitchBranches' => true,
+        ]);
+    }
+
     public function index()
     {
-        $db = db_connect();
-
+        // Initialize database connection
+        $db = \Config\Database::connect();
+        
+        // Get session data
         $session = session();
-        $userRole = $session->get('role') ?? '';
-        $userId = $session->get('user_id') ?? 0;
+        if (!$session->has('role') || !$session->has('user_id')) {
+            return redirect()->to(site_url('login'))->with('error', 'Please login first');
+        }
+        
+        $userRole = $session->get('role');
+        $userId = $session->get('user_id');
+        
+        // Check if user has access to inventory
+        if (!in_array($userRole, ['inventory_staff', 'central_admin', 'system_admin', 'branch_manager'])) {
+            return redirect()->back()->with('error', 'You do not have permission to access this page');
+        }
         $requestedBranchRaw = $this->request->getGet('branch_id');
         $requestedBranchId = is_numeric($requestedBranchRaw) ? (int) $requestedBranchRaw : 0;
         $requestedAll = (is_string($requestedBranchRaw) && strtolower($requestedBranchRaw) === 'all');
 
-        // Default query builder
-        $builder = $db->table('inventory i')
-            ->select('i.inventory_id, b.branch_name, p.product_name, i.current_stock, p.unit_price, (i.current_stock * p.unit_price) as stock_value')
-            ->join('branches b', 'b.branch_id = i.branch_id', 'left')
-            ->join('products p', 'p.product_id = i.product_id', 'left');
+        // Get all branches for dropdown
+        $allBranches = [];
+        try {
+            $query = $db->table('branches')
+                ->select('branch_id, branch_name')
+                ->where('status', 'active');
+            
+            // For inventory staff, only show branches they're assigned to
+            if ($userRole === 'inventory_staff') {
+                $query->whereIn('branch_id', function($builder) use ($userId) {
+                    return $builder->select('branch_id')
+                        ->from('user_branches')
+                        ->where('user_id', $userId);
+                });
+            }
+            
+            $allBranches = $query->orderBy('branch_name', 'ASC')
+                ->get()
+                ->getResultArray();
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching branches: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error loading branch data');
+        }
+
+        // Default query builder for inventory listing
+        try {
+            $builder = $db->table('inventory i')
+                ->select('i.*, b.branch_name, p.product_name, p.unit_price, p.minimum_stock, 
+                         (i.available_stock * p.unit_price) as stock_value')
+                ->join('branches b', 'b.branch_id = i.branch_id', 'left')
+                ->join('products p', 'p.product_id = i.product_id', 'left')
+                ->where('i.available_stock >', 0);
+                
+            // Apply branch filter if specified
+            if ($requestedBranchId > 0) {
+                $builder->where('i.branch_id', $requestedBranchId);
+            }
+            
+            // Get inventory data with error handling
+            $inventory = $builder->get()->getResultArray();
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching inventory: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error loading inventory data: ' . $e->getMessage());
+        }
 
         // Filter inventory based on user role
-        if ($userRole === 'inventory_staff' || $userRole === 'branch_manager' || $requestedBranchId > 0 || $requestedAll) {
+        if (in_array($userRole, ['inventory_staff', 'branch_manager', 'central_admin', 'system_admin']) || $requestedBranchId > 0 || $requestedAll) {
             // Resolve effective branch ID
             $branchId = 0;
-            // If staff/manager, enforce their own branch
-            if ($userRole === 'inventory_staff' || $userRole === 'branch_manager') {
+            
+            // If staff/manager, enforce their own branch unless they have permission to view all
+            if (in_array($userRole, ['inventory_staff', 'branch_manager'])) {
                 $branchId = (int) ($session->get('branch_id') ?? 0);
                 if ($branchId <= 0) {
                     $branch = $db->table('user_branches')
@@ -35,7 +281,15 @@ class InventoryController extends BaseController
                         ->get()
                         ->getRowArray();
                     if (!$branch || !isset($branch['branch_id'])) {
-                        return view('dashboard/inventory_staff', ['lowStockItems' => []]);
+                        return view('dashboard/inventory_staff', [
+                            'lowStockItems' => [],
+                            'branchInventory' => [],
+                            'pendingReceives' => [],
+                            'products' => [],
+                            'branchName' => 'Unknown Branch',
+                            'branches' => $allBranches,
+                            'canSwitchBranches' => false
+                        ]);
                     }
                     $branchId = (int)$branch['branch_id'];
                 }
@@ -43,16 +297,27 @@ class InventoryController extends BaseController
             // Allow switching via URL for central/system and inventory_staff
             if (in_array($userRole, ['central_admin','system_admin','inventory_staff']) && ($requestedBranchId > 0 || $requestedAll)) {
                 $branchId = $requestedBranchId;
+                
+                // If 'all' is selected, show aggregated view for inventory_staff
+                if ($requestedAll && $userRole === 'inventory_staff') {
+                    return $this->getAggregatedInventoryView($db, $allBranches, true);
+                }
             }
 
             if ($branchId <= 0 || $requestedAll) {
-                // Provide selector context
                 $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff']);
-                $allBranches = $canSwitch
-                    ? $db->table('branches')->select('branch_id, branch_name')->orderBy('branch_name','ASC')->get()->getResultArray()
-                    : [];
-
-                if ($userRole === 'inventory_staff' && $requestedAll) {
+                
+                // If no specific branch and not requesting all, show inventory staff their branch or central view
+                if ($userRole === 'inventory_staff' && !$requestedAll) {
+                    // Get the first branch if none selected
+                    if ($branchId <= 0 && !empty($allBranches)) {
+                        $branchId = (int)$allBranches[0]['branch_id'];
+                    }
+                    return $this->getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId);
+                }
+                
+                // For central admin or when viewing all branches
+                if ($requestedAll || $userRole === 'central_admin' || $userRole === 'system_admin') {
                     // Aggregated view for staff across all branches, but keep the same dashboard UI
                     $lowStockItems = $db->table('inventory i')
                         ->select('b.branch_name, p.product_name, i.available_stock, p.minimum_stock')
@@ -99,8 +364,15 @@ class InventoryController extends BaseController
                 }
 
                 // Default consolidated table view (central/system or unresolved)
-                $inventory = $builder->orderBy('b.branch_name', 'ASC')->get()->getResultArray();
-                return view('dashboard/inventory', ['inventory' => $inventory]);
+                $inventory = $builder->orderBy('b.branch_name', 'ASC')
+                                      ->orderBy('p.product_name', 'ASC')
+                                      ->get()
+                                      ->getResultArray();
+                    
+                return view('dashboard/inventory', [
+                    'inventory' => $inventory,
+                    'branches' => $allBranches
+                ]);
             }
 
             $builder->where('i.branch_id', $branchId);

@@ -39,11 +39,7 @@ class UserSeeder extends Seeder
             ],
             // Franchise Manager
             [
-<<<<<<< HEAD
                 'username' => 'franchise manager',
-=======
-                'username' => 'franchise.mgr',
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'password' => password_hash('franchise123', PASSWORD_DEFAULT),
                 'email' => 'franchise@chakanoks.com',
                 'first_name' => 'Franchise',
@@ -57,11 +53,7 @@ class UserSeeder extends Seeder
             ],
             // Logistics Coordinator
             [
-<<<<<<< HEAD
                 'username' => 'logistics coordinator',
-=======
-                'username' => 'logistics.coord',
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'password' => password_hash('logistics123', PASSWORD_DEFAULT),
                 'email' => 'logistics@chakanoks.com',
                 'first_name' => 'Logistics',
@@ -73,32 +65,11 @@ class UserSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
-<<<<<<< HEAD
         
             // Branch Managers (one per branch)
             [
                 'username' => 'Branch Manager1',
                 'password' => password_hash('branch123', PASSWORD_DEFAULT),
-=======
-            // Supplier user (external portal)
-            [
-                'username' => 'supplier.user',
-                'password' => password_hash('supplier123', PASSWORD_DEFAULT),
-                'email' => 'supplier@chakanoks.com',
-                'first_name' => 'Supplier',
-                'last_name' => 'User',
-                'phone' => '+63 82 444-0000',
-                'role' => 'supplier',
-                'status' => 'active',
-                'last_login' => null,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            // Branch Managers (one per branch)
-            [
-                'username' => 'Branch Manager1',
-                'password' => password_hash('branch1', PASSWORD_DEFAULT),
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'email' => 'branch1@chakanoks.com',
                 'first_name' => 'SM',
                 'last_name' => 'Lanang Manager',
@@ -111,11 +82,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'Branch Manager2',
-<<<<<<< HEAD
                 'password' => password_hash('branch123', PASSWORD_DEFAULT),
-=======
-                'password' => password_hash('branch2', PASSWORD_DEFAULT),
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'email' => 'branch2@chakanoks.com',
                 'first_name' => 'Abreeza',
                 'last_name' => 'Manager',
@@ -128,11 +95,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'Branch Manager3',
-<<<<<<< HEAD
                 'password' => password_hash('branch123', PASSWORD_DEFAULT),
-=======
-                'password' => password_hash('branch3', PASSWORD_DEFAULT),
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'email' => 'branch3@chakanoks.com',
                 'first_name' => 'Gaisano',
                 'last_name' => 'Manager',
@@ -145,11 +108,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'Branch Manager4',
-<<<<<<< HEAD
                 'password' => password_hash('branch123', PASSWORD_DEFAULT),
-=======
-                'password' => password_hash('branch4', PASSWORD_DEFAULT),
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'email' => 'branch4@chakanoks.com',
                 'first_name' => 'NCCC',
                 'last_name' => 'Manager',
@@ -162,11 +121,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'Branch Manager5',
-<<<<<<< HEAD
                 'password' => password_hash('branch123', PASSWORD_DEFAULT),
-=======
-                'password' => password_hash('branch5', PASSWORD_DEFAULT),
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'email' => 'branch5@chakanoks.com',
                 'first_name' => 'Victoria',
                 'last_name' => 'Manager',
@@ -179,19 +134,11 @@ class UserSeeder extends Seeder
             ],
             // Inventory Staff (single account only)
             [
-<<<<<<< HEAD
                 'username' => 'Inventory Staff',
                 'password' => password_hash('inventory123', PASSWORD_DEFAULT),
                 'email' => 'inventory@chakanoks.com',
                 'first_name' => 'Inventory',
                 'last_name' => 'Staff',
-=======
-                'username' => 'staff1',
-                'password' => password_hash('staff123', PASSWORD_DEFAULT),
-                'email' => 'inventory1@chakanoks.com',
-                'first_name' => 'Inventory',
-                'last_name' => 'Staff 1',
->>>>>>> 1e32aec7eed9bc8b1e2e3358829a23410772375f
                 'phone' => '+63 82 789-0123',
                 'role' => 'inventory_staff',
                 'status' => 'active',
