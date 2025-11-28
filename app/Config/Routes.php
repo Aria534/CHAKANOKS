@@ -48,6 +48,10 @@ $routes->post('/inventory/scan', 'InventoryController::processScan');
 // Orders (use existing purchase_orders table for PR -> PO flow)
 $routes->get('/orders/create', 'OrderController::create');
 $routes->post('/orders', 'OrderController::store');
+
+// Reports
+$routes->get('reports', 'ReportsController::index');
+$routes->get('reports/generate/(:any)', 'ReportsController::generate/$1');
 $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');

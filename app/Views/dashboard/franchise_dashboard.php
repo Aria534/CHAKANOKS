@@ -8,80 +8,246 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?= view('templete/sidebar_styles') ?>
     <style>
-        .main-content { margin-left: 220px; padding: 2rem; }
-        .page-title { font-size:2rem; margin-bottom:2rem; font-weight:600; color:#1a1a1a; }
-        .stat-card { background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #9C27B0; }
-        .stat-card h6 { color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .stat-card .number { font-size: 2rem; font-weight: 700; color: #9C27B0; }
-        .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: none; }
-        .card-header { background: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 1.5rem; }
-        .card-header h5 { margin: 0; color: #1a1a1a; font-weight: 600; }
-        .table { margin: 0; }
-        .table thead th { background: #f8f9fa; border-bottom: 2px solid #dee2e6; color: #666; font-weight: 600; }
-        .badge-pending { background: #FFC107; color: #000; }
-        .badge-approved { background: #4CAF50; color: #fff; }
-        @media (max-width:768px) { .main-content { margin-left: 0; padding:1rem; } }
+        :root {
+            --primary-color: #9C27B0;
+            --secondary-color: #2196F3;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --danger-color: #F44336;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        .main-content { 
+            margin-left: 240px; 
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .page-title { 
+            font-size: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            font-weight: 600; 
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        /* Stat Cards */
+        .stat-card { 
+            background: #fff; 
+            border-radius: 10px; 
+            padding: 1.25rem; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h6 { 
+            color: #7f8c8d; 
+            font-size: 0.8rem; 
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-card .number { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Cards */
+        .card { 
+            background: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: none;
+            margin-bottom: 1.5rem;
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-header { 
+            background: #fff; 
+            border-bottom: 1px solid #e9ecef; 
+            padding: 1rem 1.25rem;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .card-header h5 { 
+            margin: 0; 
+            color: #2c3e50; 
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        /* Tables */
+        .table { 
+            margin: 0;
+            font-size: 0.9rem;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .table thead th { 
+            background: #f8fafc; 
+            border-bottom: 2px solid #e9ecef; 
+            color: #7f8c8d; 
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.75rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .table td {
+            padding: 0.75rem 1rem;
+            vertical-align: middle;
+            border-top: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+        
+        /* Chart Containers */
+        .chart-container {
+            position: relative;
+            height: 280px;
+            width: 100%;
+            min-height: 200px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .stat-card {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
 <body>
     <?= view('templete/sidebar', ['active' => 'franchise']) ?>
 
     <div class="main-content">
-        <div class="page-title">🏪 Franchise Dashboard</div>
+        <div class="page-title">
+            <i class="fas fa-store"></i>
+            <span>Franchise Dashboard</span>
+        </div>
 
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <h6>Total Branches</h6>
+        <!-- Stats Row -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card fade-in" style="animation-delay: 0.1s">
+                    <h6><i class="fas fa-code-branch me-1"></i> Total Branches</h6>
                     <div class="number"><?= $totalBranches ?? 0 ?></div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <h6>Total Inventory Value</h6>
-                    <div class="number" style="font-size: 1.5rem;">₱<?= number_format($totalInventoryValue ?? 0, 0) ?></div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card fade-in" style="animation-delay: 0.2s">
+                    <h6><i class="fas fa-boxes me-1"></i> Inventory Value</h6>
+                    <div class="number">₱<?= number_format($totalInventoryValue ?? 0, 0) ?></div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <h6>Total Orders</h6>
-                    <div class="number" style="color: #2196F3;"><?= $totalOrders ?? 0 ?></div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card fade-in" style="animation-delay: 0.3s">
+                    <h6><i class="fas fa-shopping-cart me-1"></i> Total Orders</h6>
+                    <div class="number" style="color: var(--secondary-color);"><?= $totalOrders ?? 0 ?></div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <h6>Pending Orders</h6>
-                    <div class="number" style="color: #FF9800;"><?= $pendingOrders ?? 0 ?></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Category Distribution</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Branch Performance</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="performanceChart"></canvas>
-                    </div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="stat-card fade-in" style="animation-delay: 0.4s">
+                    <h6><i class="fas fa-clock me-1"></i> Pending Orders</h6>
+                    <div class="number" style="color: var(--warning-color);"><?= $pendingOrders ?? 0 ?></div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h5>Branch Performance Details</h5>
+        <!-- Charts Row -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-lg-6">
+                <div class="card h-100 fade-in" style="animation-delay: 0.2s">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-pie me-2"></i>Category Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card h-100 fade-in" style="animation-delay: 0.3s">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-bar me-2"></i>Branch Performance</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card fade-in" style="animation-delay: 0.4s">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-table me-2"></i>Branch Performance Details</h5>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-download me-1"></i> Export
+                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
