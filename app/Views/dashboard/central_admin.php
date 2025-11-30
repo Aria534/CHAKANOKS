@@ -92,6 +92,7 @@ td { padding:.8rem; border-bottom:1px solid #f7f7f7; color:#444; }
     <div class="logo">ChakaNoks</div>
     <nav>
         <a href="<?= site_url('dashboard') ?>" class="active">Dashboard</a>
+        <a href="<?= site_url('users') ?>">Manage Users</a>
         <a href="<?= site_url('branches') ?>">Branches</a>
         <a href="<?= site_url('products') ?>">Products</a>
         <a href="<?= site_url('orders') ?>">Orders</a>

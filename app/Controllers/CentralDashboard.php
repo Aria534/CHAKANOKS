@@ -1,5 +1,7 @@
-<?php 
+<?php
 namespace App\Controllers;
+
+use App\Models\UserModel;
 
 class CentralDashboard extends BaseController {
     public function index() {
@@ -127,5 +129,101 @@ class CentralDashboard extends BaseController {
             'lowStockList'  => $lowStockList ?: [],
             'pendingOrdersList' => $pendingOrdersList ?: [],
         ]);
+    }
+
+    public function manageUsers() {
+        $role = (string) (session('role') ?? '');
+        if (!in_array($role, ['central_admin','system_admin'])) {
+            return redirect()->to(site_url('dashboard'));
+        }
+
+        $userModel = new UserModel();
+        $users = $userModel->findAll();
+
+        return view('dashboard/manage_users', [
+            'users' => $users
+        ]);
+    }
+
+    public function createUser() {
+        $role = (string) (session('role') ?? '');
+        if (!in_array($role, ['central_admin','system_admin'])) {
+            return redirect()->to(site_url('dashboard'));
+        }
+
+        if ($this->request->getMethod() === 'post') {
+            $userModel = new UserModel();
+            $data = [
+                'username' => $this->request->getPost('username'),
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                'email' => $this->request->getPost('email'),
+                'first_name' => $this->request->getPost('first_name'),
+                'last_name' => $this->request->getPost('last_name'),
+                'phone' => $this->request->getPost('phone'),
+                'role' => $this->request->getPost('role'),
+                'status' => $this->request->getPost('status'),
+            ];
+
+            if ($userModel->insert($data)) {
+                return redirect()->to(site_url('users'))->with('success', 'User created successfully.');
+            } else {
+                return redirect()->back()->withInput()->with('errors', $userModel->errors());
+            }
+        }
+
+        return view('dashboard/create_user');
+    }
+
+    public function editUser($userId) {
+        $role = (string) (session('role') ?? '');
+        if (!in_array($role, ['central_admin','system_admin'])) {
+            return redirect()->to(site_url('dashboard'));
+        }
+
+        $userModel = new UserModel();
+        $user = $userModel->find($userId);
+
+        if (!$user) {
+            return redirect()->to(site_url('users'))->with('error', 'User not found.');
+        }
+
+        if ($this->request->getMethod() === 'post') {
+            $data = [
+                'username' => $this->request->getPost('username'),
+                'email' => $this->request->getPost('email'),
+                'first_name' => $this->request->getPost('first_name'),
+                'last_name' => $this->request->getPost('last_name'),
+                'phone' => $this->request->getPost('phone'),
+                'role' => $this->request->getPost('role'),
+                'status' => $this->request->getPost('status'),
+            ];
+
+            $password = $this->request->getPost('password');
+            if (!empty($password)) {
+                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+            }
+
+            if ($userModel->update($userId, $data)) {
+                return redirect()->to(site_url('users'))->with('success', 'User updated successfully.');
+            } else {
+                return redirect()->back()->withInput()->with('errors', $userModel->errors());
+            }
+        }
+
+        return view('dashboard/edit_user', ['user' => $user]);
+    }
+
+    public function deleteUser($userId) {
+        $role = (string) (session('role') ?? '');
+        if (!in_array($role, ['central_admin','system_admin'])) {
+            return redirect()->to(site_url('dashboard'));
+        }
+
+        $userModel = new UserModel();
+        if ($userModel->delete($userId)) {
+            return redirect()->to(site_url('users'))->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->to(site_url('users'))->with('error', 'Failed to delete user.');
+        }
     }
 }

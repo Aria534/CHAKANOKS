@@ -55,3 +55,11 @@ $routes->get('reports/generate/(:any)', 'ReportsController::generate/$1');
 $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');
+
+// Manage Users
+$routes->get('/users', 'CentralDashboard::manageUsers');
+$routes->get('/users/create', 'CentralDashboard::createUser');
+$routes->post('/users/create', 'CentralDashboard::createUser');
+$routes->get('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
+$routes->post('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
+$routes->get('/users/delete/(:num)', 'CentralDashboard::deleteUser/$1');
