@@ -60,6 +60,7 @@ $routes->get('/purchase-orders/view/(:num)', 'OrderController::view/$1'); // Ali
 // Reports
 $routes->get('reports', 'ReportsController::index');
 $routes->get('reports/generate/(:any)', 'ReportsController::generate/$1');
+$routes->get('reports/exportPdf/(:any)', 'ReportsController::exportPdf/$1');
 $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');

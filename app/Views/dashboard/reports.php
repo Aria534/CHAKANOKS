@@ -280,9 +280,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+    let currentReportType = 'inventory';
+    let currentReportData = null;
+
     function generateReport(type) {
+        currentReportType = type;
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
+        
+        if (!startDate || !endDate) {
+            alert('Please select both start and end dates');
+            return;
+        }
         
         // Show loading state
         const reportOutput = document.getElementById('reportOutput');
@@ -293,92 +302,388 @@
                 <div class="spinner-border text-warning" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <p class="mt-3 text-muted">Generating report...</p>
+                <p class="mt-3 text-muted">Generating ${type} report...</p>
             </div>
         `;
         
         // Scroll to report output
         reportOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         
-        // In a real application, you would make an AJAX call to your server
-        // For now, we'll simulate a delay and show sample data
-        setTimeout(() => {
-            // Sample data - in a real app, this would come from your server
-            const sampleData = {
-                'inventory': {
-                    title: 'Inventory Report',
-                    columns: ['Product', 'SKU', 'Current Stock', 'Value', 'Status'],
-                    data: [
-                        ['Product A', 'SKU001', 150, '₱1,500.00', 'In Stock'],
-                        ['Product B', 'SKU002', 0, '₱0.00', 'Out of Stock'],
-                        ['Product C', 'SKU003', 45, '₱2,250.00', 'Low Stock'],
-                        ['Product D', 'SKU004', 200, '₱3,000.00', 'In Stock']
-                    ]
-                },
-                'sales': {
-                    title: 'Sales Report',
-                    columns: ['Date', 'Order ID', 'Product', 'Quantity', 'Amount'],
-                    data: [
-                        ['2025-12-15', 'ORD1001', 'Product A', 5, '₱250.00'],
-                        ['2025-12-16', 'ORD1002', 'Product B', 2, '₱180.00'],
-                        ['2025-12-16', 'ORD1003', 'Product C', 10, '₱500.00'],
-                        ['2025-12-17', 'ORD1004', 'Product A', 3, '₱150.00']
-                    ]
-                },
-                'orders': {
-                    title: 'Order Report',
-                    columns: ['Order ID', 'Customer', 'Date', 'Status', 'Total'],
-                    data: [
-                        ['ORD1001', 'John Doe', '2025-12-15', 'Completed', '₱250.00'],
-                        ['ORD1002', 'Jane Smith', '2025-12-16', 'Shipped', '₱180.00'],
-                        ['ORD1003', 'Acme Corp', '2025-12-16', 'Processing', '₱500.00'],
-                        ['ORD1004', 'XYZ Company', '2025-12-17', 'Pending', '₱150.00']
-                    ]
+        // Fetch report data from server
+        const url = `<?= site_url('reports/generate/') ?>${type}?start_date=${startDate}&end_date=${endDate}`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === false) {
+                    throw new Error(data.error || 'Failed to generate report');
                 }
-            };
+                
+                currentReportData = data;
+                displayReport(data);
+            })
+            .catch(error => {
+                console.error('Error generating report:', error);
+                reportContent.innerHTML = `
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> ${error.message || 'Failed to generate report. Please try again.'}
+                    </div>
+                `;
+            });
+    }
+
+    function displayReport(report) {
+        const reportContent = document.getElementById('reportContent');
+        let html = '';
+        
+        // Display based on report type
+        switch(report.type) {
+            case 'inventory':
+                html = displayInventoryReport(report);
+                break;
+            case 'sales':
+                html = displaySalesReport(report);
+                break;
+            case 'orders':
+                html = displayOrdersReport(report);
+                break;
+            default:
+                html = '<div class="alert alert-warning">Unknown report type</div>';
+        }
+        
+        reportContent.innerHTML = html;
+    }
+
+    function displayInventoryReport(report) {
+        const summary = report.summary || {};
+        const data = report.data || [];
+        
+        let html = `
+            <div class="mb-4">
+                <h4>${report.title}</h4>
+                <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+            </div>
             
-            const report = sampleData[type] || sampleData['inventory'];
-            
-            // Generate HTML table
-            let html = `
-                <h4 class="mb-3">${report.title} (${startDate} to ${endDate})</h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                ${report.columns.map(col => `<th>${col}</th>`).join('')}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${report.data.map(row => `
-                                <tr>
-                                    ${row.map(cell => `<td>${cell}</td>`).join('')}
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Products</h6>
+                            <h3 class="card-title">${summary.total_products || 0}</h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-3 text-muted small">
-                    <p>Report generated on ${new Date().toLocaleString()}</p>
+                <div class="col-md-3">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Value</h6>
+                            <h3 class="card-title">₱${formatNumber(summary.total_value || 0)}</h3>
+                        </div>
+                    </div>
                 </div>
-            `;
+                <div class="col-md-3">
+                    <div class="card bg-warning bg-opacity-10">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Low Stock</h6>
+                            <h3 class="card-title text-warning">${summary.low_stock_count || 0}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-danger bg-opacity-10">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Out of Stock</h6>
+                            <h3 class="card-title text-danger">${summary.out_of_stock_count || 0}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            reportContent.innerHTML = html;
+            <!-- Data Table -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>SKU</th>
+                            <th>Branch</th>
+                            <th class="text-end">Current Stock</th>
+                            <th class="text-end">Min Level</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Stock Value</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        if (data.length === 0) {
+            html += '<tr><td colspan="8" class="text-center text-muted">No inventory data available</td></tr>';
+        } else {
+            data.forEach(item => {
+                const statusClass = item.status === 'Out of Stock' ? 'danger' : 
+                                   item.status === 'Low Stock' ? 'warning' : 'success';
+                html += `
+                    <tr>
+                        <td>${item.product_name || 'N/A'}</td>
+                        <td>${item.product_code || 'N/A'}</td>
+                        <td>${item.branch_name || 'N/A'}</td>
+                        <td class="text-end">${item.current_stock || 0}</td>
+                        <td class="text-end">${item.minimum_stock || 0}</td>
+                        <td class="text-end">₱${formatNumber(item.unit_price || 0)}</td>
+                        <td class="text-end">₱${formatNumber(item.stock_value || 0)}</td>
+                        <td><span class="badge bg-${statusClass}">${item.status}</span></td>
+                    </tr>
+                `;
+            });
+        }
+        
+        html += `
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 text-muted small">
+                <p>Report generated on ${new Date(report.generated_at).toLocaleString()}</p>
+            </div>
+        `;
+        
+        return html;
+    }
+
+    function displaySalesReport(report) {
+        const summary = report.summary || {};
+        const data = report.data || [];
+        
+        let html = `
+            <div class="mb-4">
+                <h4>${report.title}</h4>
+                <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+            </div>
             
-        }, 1000);
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Transactions</h6>
+                            <h3 class="card-title">${summary.total_transactions || 0}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success bg-opacity-10">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+                            <h3 class="card-title text-success">₱${formatNumber(summary.total_revenue || 0)}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Quantity Sold</h6>
+                            <h3 class="card-title">${summary.total_quantity_sold || 0}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Table -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Branch</th>
+                            <th class="text-end">Quantity</th>
+                            <th class="text-end">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        if (data.length === 0) {
+            html += '<tr><td colspan="6" class="text-center text-muted">No sales data available for this period</td></tr>';
+        } else {
+            data.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${formatDate(item.date)}</td>
+                        <td>${item.order_id || 'N/A'}</td>
+                        <td>${item.product_name || 'N/A'}</td>
+                        <td>${item.branch_name || 'N/A'}</td>
+                        <td class="text-end">${item.quantity || 0}</td>
+                        <td class="text-end">₱${formatNumber(item.total_value || 0)}</td>
+                    </tr>
+                `;
+            });
+        }
+        
+        html += `
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 text-muted small">
+                <p>Report generated on ${new Date(report.generated_at).toLocaleString()}</p>
+            </div>
+        `;
+        
+        return html;
+    }
+
+    function displayOrdersReport(report) {
+        const summary = report.summary || {};
+        const data = report.data || [];
+        const statusBreakdown = summary.status_breakdown || {};
+        
+        let html = `
+            <div class="mb-4">
+                <h4>${report.title}</h4>
+                <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+            </div>
+            
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-2">
+                    <div class="card bg-light">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Total Orders</h6>
+                            <h3 class="card-title">${summary.total_orders || 0}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card bg-warning bg-opacity-10">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Pending</h6>
+                            <h4 class="card-title text-warning">${statusBreakdown.pending || 0}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card bg-info bg-opacity-10">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Approved</h6>
+                            <h4 class="card-title text-info">${statusBreakdown.approved || 0}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card bg-primary bg-opacity-10">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Ordered</h6>
+                            <h4 class="card-title text-primary">${statusBreakdown.ordered || 0}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card bg-success bg-opacity-10">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Delivered</h6>
+                            <h4 class="card-title text-success">${statusBreakdown.delivered || 0}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card bg-light">
+                        <div class="card-body text-center">
+                            <h6 class="card-subtitle mb-2 text-muted small">Total Amount</h6>
+                            <h5 class="card-title">₱${formatNumber(summary.total_amount || 0)}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Table -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>PO Number</th>
+                            <th>Branch</th>
+                            <th>Supplier</th>
+                            <th>Requested Date</th>
+                            <th>Requested By</th>
+                            <th>Status</th>
+                            <th class="text-end">Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        if (data.length === 0) {
+            html += '<tr><td colspan="7" class="text-center text-muted">No orders data available for this period</td></tr>';
+        } else {
+            data.forEach(item => {
+                const status = item.status || 'pending';
+                const statusClass = {
+                    'pending': 'warning',
+                    'approved': 'info',
+                    'ordered': 'primary',
+                    'delivered': 'success',
+                    'cancelled': 'danger'
+                }[status.toLowerCase()] || 'secondary';
+                
+                html += `
+                    <tr>
+                        <td><strong>${item.po_number || 'N/A'}</strong></td>
+                        <td>${item.branch_name || 'N/A'}</td>
+                        <td>${item.supplier_name || 'N/A'}</td>
+                        <td>${formatDate(item.requested_date)}</td>
+                        <td>${item.requested_by || 'N/A'}</td>
+                        <td><span class="badge bg-${statusClass}">${status.toUpperCase()}</span></td>
+                        <td class="text-end">₱${formatNumber(item.total_amount || 0)}</td>
+                    </tr>
+                `;
+            });
+        }
+        
+        html += `
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 text-muted small">
+                <p>Report generated on ${new Date(report.generated_at).toLocaleString()}</p>
+            </div>
+        `;
+        
+        return html;
+    }
+
+    function formatNumber(num) {
+        return parseFloat(num || 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
     // Handle form submission
     document.getElementById('reportForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        // The actual form submission is handled by the generateReport function
-        generateReport('inventory');
+        generateReport(currentReportType);
     });
 
     // Handle PDF export
     document.getElementById('exportPdf').addEventListener('click', function() {
-        // In a real application, this would generate and download a PDF
-        alert('PDF export would be generated here in a real application.');
+        if (!currentReportData) {
+            alert('Please generate a report first');
+            return;
+        }
+        
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        
+        // In a real application, you would send this to a backend endpoint that generates a PDF
+        alert(`PDF export functionality:\n\nReport Type: ${currentReportType}\nDate Range: ${startDate} to ${endDate}\n\nThis would generate a downloadable PDF file in a production environment.`);
+        
+        // Uncomment this to implement actual PDF export via backend
+        // window.location.href = `<?= site_url('reports/exportPdf/') ?>${currentReportType}?start_date=${startDate}&end_date=${endDate}`;
     });
     </script>
 </body>
