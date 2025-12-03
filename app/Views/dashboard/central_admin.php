@@ -29,6 +29,7 @@ foreach ($ordersTrend as $trend) {
 <title>ChakaNoks Central Admin Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<?= view('templete/sidebar_styles') ?>
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -38,37 +39,6 @@ body {
     min-height: 100vh;
     color: #503e2cff;
 }
-
-/* --- Sidebar --- */
-.sidebar {
-    width: 220px;
-    background: #1a1a1a;
-    color: #b75a03ff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
-.sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; }
-.sidebar nav a {
-    color:#aaa;
-    text-decoration:none;
-    font-weight:500;
-    padding:0.6rem 1rem;
-    border-radius:6px;
-    transition:0.2s;
-}
-.sidebar nav a:hover { background:#2c2c2c; color:#fff; }
-.sidebar a.active, .sidebar a:hover {
-    background: #ff9320ff;
-    color: #fff;
-}
-.sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
 
 /* --- Main content --- */
 .main-content { margin-left: 220px; padding: 2rem; }
@@ -223,8 +193,7 @@ tbody tr:hover {
 
 @media (max-width:768px){ 
     .metrics-grid, .charts-grid{grid-template-columns:1fr} 
-    .main-content { margin-left: 0; padding:1rem; } 
-    .sidebar { width: 100%; height: auto; position: relative; }
+    .main-content { margin-left: 0; padding:1rem; }
 }
 </style>
 </head>

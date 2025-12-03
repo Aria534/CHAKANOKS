@@ -63,6 +63,13 @@ $active = $active ?? '';
             </a>
         <?php endif; ?>
 
+        <!-- Suppliers -->
+        <?php if (in_array($role, ['central_admin','system_admin'])): ?>
+            <a href="<?= site_url('suppliers') ?>" class="<?= $active==='suppliers'?'active':'' ?>">
+                Suppliers
+            </a>
+        <?php endif; ?>
+
         <!-- Orders -->
         <?php if (in_array($role, ['central_admin','system_admin', 'branch_manager', 'inventory_staff', 'logistics_coordinator'])): ?>
             <a href="<?= site_url('orders') ?>" class="<?= $active==='orders'?'active':'' ?>">

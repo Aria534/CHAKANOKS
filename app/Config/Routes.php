@@ -38,6 +38,12 @@ $routes->get('home', 'Home::index');
 
 $routes->get('/branches', 'BranchController::index');
 $routes->get('/products', 'ProductController::index');
+$routes->get('/suppliers', 'SupplierController::index');
+$routes->get('/suppliers/create', 'SupplierController::create');
+$routes->post('/suppliers/store', 'SupplierController::store');
+$routes->get('/suppliers/edit/(:num)', 'SupplierController::edit/$1');
+$routes->post('/suppliers/update/(:num)', 'SupplierController::update/$1');
+$routes->post('/suppliers/delete/(:num)', 'SupplierController::delete/$1');
 $routes->get('/orders', 'OrderController::index');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/inventory', 'InventoryController::index');
