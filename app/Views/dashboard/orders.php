@@ -7,35 +7,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <?= view('templete/sidebar_styles') ?>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            color: #503e2cff;
+            background: #f5f5f5;
         }
 
-        /* --- Main content --- */
-        .main-content { margin-left: 220px; padding: 2rem; }
-
-        .page-title { 
-            font-size:1.8rem; 
-            margin-bottom:1.5rem; 
-            font-weight:600; 
-            color:#fff;
-            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
+        .table-card { 
+            background:#fff; 
+            border-radius:14px; 
+            padding:1.25rem; 
+            box-shadow:0 2px 10px rgba(0,0,0,0.06); 
+            border:1px solid #e8e8e8; 
+        }
+        .table-card table { 
+            width:100%; 
+            border-collapse:collapse; 
+            font-size:14px; 
+        }
+        .table-card th { 
+            text-align:left; 
+            padding:.8rem; 
+            font-weight:700; 
+            color:#666; 
+            border-bottom:2px solid #f0f0f0; 
+            background-color: #fafafa;
+        }
+        .table-card td { 
+            padding:.8rem; 
+            border-bottom:1px solid #f7f7f7; 
+            color:#444; 
+        }
+        .table-card tbody tr:hover { 
+            background-color: #f9f9f9; 
         }
 
-        .table-card { background:#fff; border-radius:14px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,0,0,0.06); border:1px solid #e8e8e8; }
-        .table-card table { width:100%; border-collapse:collapse; font-size:14px; }
-        .table-card th { text-align:left; padding:.8rem; font-weight:700; color:#666; border-bottom:1px solid #f0f0f0; }
-        .table-card td { padding:.8rem; border-bottom:1px solid #f7f7f7; color:#444; }
-        .table-card tbody tr:hover { background-color: #f9f9f9; }
-
-        .action-buttons { margin-bottom: 1.5rem; }
+        .action-buttons { 
+            margin-bottom: 1.5rem; 
+        }
         .action-buttons .btn {
             margin-right: 0.5rem;
             background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
@@ -46,6 +53,8 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(183, 90, 3, 0.25);
+            text-decoration: none;
+            display: inline-block;
         }
         .action-buttons .btn:hover {
             transform: translateY(-2px);
@@ -56,7 +65,23 @@
             transform: translateY(0);
         }
 
-        @media (max-width:768px){ .main-content { margin-left: 0; padding:1rem; } }
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .alert {
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -65,10 +90,24 @@
 
     <div class="main-content">
         <div class="page-title">Purchase Orders</div>
+        
+        <?php if(session()->getFlashdata('success')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= esc(session()->getFlashdata('success')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+        <?php if(session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= esc(session()->getFlashdata('error')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+        
         <div class="action-buttons">
             <?php $role = (string)(session('role') ?? ''); ?>
             <?php if (in_array($role, ['branch_manager','central_admin','system_admin'])): ?>
-                <a class="btn" href="<?= site_url('/orders/create') ?>"><i class="bi bi-plus-circle me-2"></i>Create Purchase Request</a>
+                <a class="btn" href="<?= site_url('/orders/create') ?>">+ Create Purchase Request</a>
             <?php endif; ?>
         </div>
 

@@ -5,108 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Edit User - ChakaNoks Central Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?= view('templete/sidebar_styles') ?>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            color: #503e2cff;
+            background: #f5f5f5;
         }
-        .sidebar {
-            width: 220px;
-            background: #1a1a1a;
-            color: #b75a03ff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .form-container { 
+            background: #fff; 
+            padding: 2rem; 
+            border-radius: 14px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06); 
+            border: 1px solid #e8e8e8;
         }
-        .sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
-        .sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; }
-        .sidebar nav a {
-            color:#aaa;
-            text-decoration:none;
-            font-weight:500;
-            padding:0.6rem 1rem;
-            border-radius:6px;
-            transition:0.2s;
+        .form-label {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
         }
-        .sidebar nav a:hover { background:#2c2c2c; color:#fff; }
-        .sidebar a.active, .sidebar a:hover {
-            background: #ff9320ff;
+        .form-control, .form-select {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #b75a03ff;
+            box-shadow: 0 0 0 0.2rem rgba(183, 90, 3, 0.15);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(183, 90, 3, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(183, 90, 3, 0.35);
             color: #fff;
         }
-        .sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
-        .main-content { margin-left: 220px; padding: 2rem; }
-        .page-title {
-            font-size:1.8rem;
-            margin-bottom:1.5rem;
-            font-weight:600;
-            color:#fff;
-            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            color: #fff;
+            font-weight: 500;
         }
-        .form-container { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-        @media (max-width:768px){ .main-content { margin-left: 0; padding:1rem; } }
+        .btn-secondary:hover {
+            background: #5a6268;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-    <div class="logo">ChakaNoks</div>
-    <nav>
-        <a href="<?= site_url('dashboard') ?>">Dashboard</a>
-        <a href="<?= site_url('users') ?>" class="active">Manage Users</a>
-        <a href="<?= site_url('branches') ?>">Branches</a>
-        <a href="<?= site_url('products') ?>">Products</a>
-        <a href="<?= site_url('orders') ?>">Orders</a>
-        <a href="<?= site_url('inventory') ?>">Inventory</a>
-        <a href="<?= site_url('logout') ?>" class="logout">Logout</a>
-    </nav>
-</aside>
+    <?= view('templete/sidebar', ['active' => 'users']) ?>
 
-<!-- Main content -->
-<div class="main-content">
+    <div class="main-content">
     <div class="page-title">Edit User</div>
 
     <div class="form-container">
         <?php if (session()->has('errors')): ?>
             <div class="alert alert-danger">
-                <ul>
-                    <?php foreach (session('errors') as $error): ?>
-                        <li><?= esc($error) ?></li>
-                    <?php endforeach; ?>
+                <ul class="mb-0">
+                    <?php 
+                    $errors = session('errors');
+                    if (is_array($errors)) {
+                        foreach ($errors as $key => $error) {
+                            if (is_array($error)) {
+                                foreach ($error as $err) {
+                                    echo '<li>' . esc($err) . '</li>';
+                                }
+                            } else {
+                                echo '<li>' . esc($error) . '</li>';
+                            }
+                        }
+                    } else {
+                        echo '<li>' . esc($errors) . '</li>';
+                    }
+                    ?>
                 </ul>
             </div>
         <?php endif; ?>
 
-        <form action="<?= site_url('users/edit/' . $user['user_id']) ?>" method="post">
+        <form action="<?= site_url('users/edit/' . (is_array($user) ? $user['user_id'] : $user->user_id)) ?>" method="post">
+            <?= csrf_field() ?>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?= old('username', $user['username']) ?>" required>
+                    <input type="text" class="form-control" id="username" name="username" value="<?= old('username', is_array($user) ? $user['username'] : $user->username) ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?= old('email', $user['email']) ?>" required>
+                    <input type="email" class="form-control" id="email" name="email" value="<?= old('email', is_array($user) ? $user['email'] : $user->email) ?>" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="first_name" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?= old('first_name', $user['first_name']) ?>" required>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?= old('first_name', is_array($user) ? $user['first_name'] : $user->first_name) ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="last_name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?= old('last_name', $user['last_name']) ?>" required>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?= old('last_name', is_array($user) ? $user['last_name'] : $user->last_name) ?>" required>
                 </div>
             </div>
             <div class="row">
@@ -116,7 +117,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" value="<?= old('phone', $user['phone']) ?>">
+                    <input type="text" class="form-control" id="phone" name="phone" value="<?= old('phone', is_array($user) ? $user['phone'] : $user->phone) ?>">
                 </div>
             </div>
             <div class="row">
@@ -124,20 +125,22 @@
                     <label for="role" class="form-label">Role</label>
                     <select class="form-select" id="role" name="role" required>
                         <option value="">Select Role</option>
-                        <option value="central_admin" <?= old('role', $user['role']) == 'central_admin' ? 'selected' : '' ?>>Central Admin</option>
-                        <option value="branch_manager" <?= old('role', $user['role']) == 'branch_manager' ? 'selected' : '' ?>>Branch Manager</option>
-                        <option value="inventory_staff" <?= old('role', $user['role']) == 'inventory_staff' ? 'selected' : '' ?>>Inventory Staff</option>
-                        <option value="supplier" <?= old('role', $user['role']) == 'supplier' ? 'selected' : '' ?>>Supplier</option>
-                        <option value="logistics_coordinator" <?= old('role', $user['role']) == 'logistics_coordinator' ? 'selected' : '' ?>>Logistics Coordinator</option>
-                        <option value="franchise_manager" <?= old('role', $user['role']) == 'franchise_manager' ? 'selected' : '' ?>>Franchise Manager</option>
-                        <option value="system_admin" <?= old('role', $user['role']) == 'system_admin' ? 'selected' : '' ?>>System Admin</option>
+                        <?php $userRole = is_array($user) ? $user['role'] : $user->role; ?>
+                        <option value="central_admin" <?= old('role', $userRole) == 'central_admin' ? 'selected' : '' ?>>Central Admin</option>
+                        <option value="branch_manager" <?= old('role', $userRole) == 'branch_manager' ? 'selected' : '' ?>>Branch Manager</option>
+                        <option value="inventory_staff" <?= old('role', $userRole) == 'inventory_staff' ? 'selected' : '' ?>>Inventory Staff</option>
+                        <option value="supplier" <?= old('role', $userRole) == 'supplier' ? 'selected' : '' ?>>Supplier</option>
+                        <option value="logistics_coordinator" <?= old('role', $userRole) == 'logistics_coordinator' ? 'selected' : '' ?>>Logistics Coordinator</option>
+                        <option value="franchise_manager" <?= old('role', $userRole) == 'franchise_manager' ? 'selected' : '' ?>>Franchise Manager</option>
+                        <option value="system_admin" <?= old('role', $userRole) == 'system_admin' ? 'selected' : '' ?>>System Admin</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" name="status" required>
-                        <option value="active" <?= old('status', $user['status']) == 'active' ? 'selected' : '' ?>>Active</option>
-                        <option value="inactive" <?= old('status', $user['status']) == 'inactive' ? 'selected' : '' ?>>Inactive</option>
+                        <?php $userStatus = is_array($user) ? $user['status'] : $user->status; ?>
+                        <option value="active" <?= old('status', $userStatus) == 'active' ? 'selected' : '' ?>>Active</option>
+                        <option value="inactive" <?= old('status', $userStatus) == 'inactive' ? 'selected' : '' ?>>Inactive</option>
                     </select>
                 </div>
             </div>
@@ -145,7 +148,8 @@
             <a href="<?= site_url('users') ?>" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-</div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

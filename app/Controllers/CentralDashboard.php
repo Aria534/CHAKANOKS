@@ -28,6 +28,9 @@ class CentralDashboard extends BaseController {
         $categoryStats = [];
         $ordersTrend = [];
         $lowStockList = [];
+        $totalBranches = 0;
+        $totalUsers = 0;
+        $totalProducts = 0;
         
         try {
             // Total Stock Value
@@ -94,9 +97,9 @@ class CentralDashboard extends BaseController {
         try {
             // Orders trend per month (for Line Chart)
             $ordersTrend = $db->table('purchase_orders')
-                ->select("MONTH(created_at) as month, COUNT(*) as total")
-                ->where('YEAR(created_at)', date('Y'))
-                ->groupBy('MONTH(created_at)')
+                ->select("MONTH(COALESCE(created_at, requested_date)) as month, COUNT(*) as total")
+                ->where('YEAR(COALESCE(created_at, requested_date))', date('Y'))
+                ->groupBy('MONTH(COALESCE(created_at, requested_date))')
                 ->orderBy('month', 'ASC')
                 ->get()
                 ->getResultArray();
@@ -119,6 +122,28 @@ class CentralDashboard extends BaseController {
         } catch (\Exception $e) {
             log_message('error', 'Error fetching low stock list: ' . $e->getMessage());
         }
+
+        try {
+            // Total Branches
+            $totalBranches = $db->table('branches')->countAllResults();
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching total branches: ' . $e->getMessage());
+        }
+
+        try {
+            // Total Users
+            $totalUsers = $db->table('users')->countAllResults();
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching total users: ' . $e->getMessage());
+        }
+
+        try {
+            // Total Products
+            $totalProducts = $db->table('products')->countAllResults();
+        } catch (\Exception $e) {
+            log_message('error', 'Error fetching total products: ' . $e->getMessage());
+        }
+
         // Pass data to view
         return view('dashboard/central_admin', [
             'stockValue'    => $stockValue,
@@ -128,6 +153,9 @@ class CentralDashboard extends BaseController {
             'ordersTrend'   => $ordersTrend ?: [],
             'lowStockList'  => $lowStockList ?: [],
             'pendingOrdersList' => $pendingOrdersList ?: [],
+            'totalBranches' => $totalBranches,
+            'totalUsers'    => $totalUsers,
+            'totalProducts' => $totalProducts,
         ]);
     }
 
@@ -139,6 +167,22 @@ class CentralDashboard extends BaseController {
 
         $userModel = new UserModel();
         $users = $userModel->findAll();
+
+        // Ensure users is an array and convert to array format if needed
+        if (empty($users)) {
+            $users = [];
+        } else {
+            // Convert to array format if it's an object collection
+            $usersArray = [];
+            foreach ($users as $user) {
+                if (is_object($user)) {
+                    $usersArray[] = (array) $user;
+                } else {
+                    $usersArray[] = $user;
+                }
+            }
+            $users = $usersArray;
+        }
 
         return view('dashboard/manage_users', [
             'users' => $users
@@ -174,10 +218,19 @@ class CentralDashboard extends BaseController {
         return view('dashboard/create_user');
     }
 
-    public function editUser($userId) {
+    public function editUser($userId = null) {
         $role = (string) (session('role') ?? '');
         if (!in_array($role, ['central_admin','system_admin'])) {
             return redirect()->to(site_url('dashboard'));
+        }
+
+        // Get userId from route parameter or POST
+        if ($userId === null) {
+            $userId = $this->request->getUri()->getSegment(3);
+        }
+
+        if (empty($userId)) {
+            return redirect()->to(site_url('users'))->with('error', 'User ID is required.');
         }
 
         $userModel = new UserModel();
@@ -203,6 +256,24 @@ class CentralDashboard extends BaseController {
                 $data['password'] = password_hash($password, PASSWORD_DEFAULT);
             }
 
+            // Set validation rules - password is optional on update
+            $validationRules = [
+                'username' => 'required|max_length[50]|is_unique[users.username,user_id,' . $userId . ']',
+                'email' => 'required|valid_email|max_length[100]|is_unique[users.email,user_id,' . $userId . ']',
+                'first_name' => 'required|max_length[50]',
+                'last_name' => 'required|max_length[50]',
+                'phone' => 'permit_empty|max_length[20]',
+                'role' => 'required|in_list[central_admin,branch_manager,inventory_staff,supplier,logistics_coordinator,franchise_manager,system_admin]',
+                'status' => 'required|in_list[active,inactive]'
+            ];
+            
+            // Add password validation only if password is provided
+            if (!empty($password)) {
+                $validationRules['password'] = 'min_length[6]';
+            }
+            
+            $userModel->setValidationRules($validationRules);
+
             if ($userModel->update($userId, $data)) {
                 return redirect()->to(site_url('users'))->with('success', 'User updated successfully.');
             } else {
@@ -213,13 +284,29 @@ class CentralDashboard extends BaseController {
         return view('dashboard/edit_user', ['user' => $user]);
     }
 
-    public function deleteUser($userId) {
+    public function deleteUser($userId = null) {
         $role = (string) (session('role') ?? '');
         if (!in_array($role, ['central_admin','system_admin'])) {
             return redirect()->to(site_url('dashboard'));
         }
 
+        // Get userId from route parameter or POST
+        if ($userId === null) {
+            $userId = $this->request->getUri()->getSegment(3);
+        }
+
+        if (empty($userId)) {
+            return redirect()->to(site_url('users'))->with('error', 'User ID is required.');
+        }
+
         $userModel = new UserModel();
+        
+        // Check if user exists before deleting
+        $user = $userModel->find($userId);
+        if (!$user) {
+            return redirect()->to(site_url('users'))->with('error', 'User not found.');
+        }
+
         if ($userModel->delete($userId)) {
             return redirect()->to(site_url('users'))->with('success', 'User deleted successfully.');
         } else {

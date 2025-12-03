@@ -47,7 +47,7 @@ $routes->post('/inventory/scan', 'InventoryController::processScan');
 
 // Orders (use existing purchase_orders table for PR -> PO flow)
 $routes->get('/orders/create', 'OrderController::create');
-$routes->post('/orders', 'OrderController::store');
+$routes->post('/orders/store', 'OrderController::store');
 
 // Reports
 $routes->get('reports', 'ReportsController::index');
@@ -62,4 +62,4 @@ $routes->get('/users/create', 'CentralDashboard::createUser');
 $routes->post('/users/create', 'CentralDashboard::createUser');
 $routes->get('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
 $routes->post('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
-$routes->get('/users/delete/(:num)', 'CentralDashboard::deleteUser/$1');
+$routes->post('/users/delete/(:num)', 'CentralDashboard::deleteUser/$1');

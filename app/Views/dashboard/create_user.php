@@ -5,90 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Create User - ChakaNoks Central Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?= view('templete/sidebar_styles') ?>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            color: #503e2cff;
+            background: #f5f5f5;
         }
-        .sidebar {
-            width: 220px;
-            background: #1a1a1a;
-            color: #b75a03ff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .form-container { 
+            background: #fff; 
+            padding: 2rem; 
+            border-radius: 14px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06); 
+            border: 1px solid #e8e8e8;
         }
-        .sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
-        .sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; }
-        .sidebar nav a {
-            color:#aaa;
-            text-decoration:none;
-            font-weight:500;
-            padding:0.6rem 1rem;
-            border-radius:6px;
-            transition:0.2s;
+        .form-label {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
         }
-        .sidebar nav a:hover { background:#2c2c2c; color:#fff; }
-        .sidebar a.active, .sidebar a:hover {
-            background: #ff9320ff;
+        .form-control, .form-select {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #b75a03ff;
+            box-shadow: 0 0 0 0.2rem rgba(183, 90, 3, 0.15);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(183, 90, 3, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(183, 90, 3, 0.35);
             color: #fff;
         }
-        .sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
-        .main-content { margin-left: 220px; padding: 2rem; }
-        .page-title {
-            font-size:1.8rem;
-            margin-bottom:1.5rem;
-            font-weight:600;
-            color:#fff;
-            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            color: #fff;
+            font-weight: 500;
         }
-        .form-container { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-        @media (max-width:768px){ .main-content { margin-left: 0; padding:1rem; } }
+        .btn-secondary:hover {
+            background: #5a6268;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-    <div class="logo">ChakaNoks</div>
-    <nav>
-        <a href="<?= site_url('dashboard') ?>">Dashboard</a>
-        <a href="<?= site_url('users') ?>" class="active">Manage Users</a>
-        <a href="<?= site_url('branches') ?>">Branches</a>
-        <a href="<?= site_url('products') ?>">Products</a>
-        <a href="<?= site_url('orders') ?>">Orders</a>
-        <a href="<?= site_url('inventory') ?>">Inventory</a>
-        <a href="<?= site_url('logout') ?>" class="logout">Logout</a>
-    </nav>
-</aside>
+    <?= view('templete/sidebar', ['active' => 'users']) ?>
 
-<!-- Main content -->
-<div class="main-content">
+    <div class="main-content">
     <div class="page-title">Create New User</div>
 
     <div class="form-container">
         <?php if (session()->has('errors')): ?>
             <div class="alert alert-danger">
-                <ul>
-                    <?php foreach (session('errors') as $error): ?>
-                        <li><?= esc($error) ?></li>
-                    <?php endforeach; ?>
+                <ul class="mb-0">
+                    <?php 
+                    $errors = session('errors');
+                    if (is_array($errors)) {
+                        foreach ($errors as $key => $error) {
+                            if (is_array($error)) {
+                                foreach ($error as $err) {
+                                    echo '<li>' . esc($err) . '</li>';
+                                }
+                            } else {
+                                echo '<li>' . esc($error) . '</li>';
+                            }
+                        }
+                    } else {
+                        echo '<li>' . esc($errors) . '</li>';
+                    }
+                    ?>
                 </ul>
             </div>
         <?php endif; ?>
 
         <form action="<?= site_url('users/create') ?>" method="post">
+            <?= csrf_field() ?>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -145,7 +146,8 @@
             <a href="<?= site_url('users') ?>" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-</div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

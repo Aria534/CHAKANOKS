@@ -16,14 +16,29 @@
         top: 0;
         left: 0;
         bottom: 0;
+        height: 100vh;
         padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         z-index: 1000;
+        overflow-y: auto;
     }
-    .sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
-    .sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+    .sidebar .logo { 
+        font-size:1.5rem; 
+        font-weight:700; 
+        color:#b75a03ff; 
+        margin-bottom:2rem; 
+        flex-shrink: 0;
+    }
+    .sidebar nav { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.6rem; 
+        flex: 1; 
+        min-height: 0;
+        overflow-y: auto;
+    }
     .sidebar nav a {
         color:#aaa;
         text-decoration:none;
@@ -32,13 +47,18 @@
         border-radius:6px;
         transition:0.2s;
         display: block;
+        flex-shrink: 0;
     }
     .sidebar nav a:hover { background:#2c2c2c; color:#fff; }
     .sidebar a.active {
         background: #ff9320ff;
         color: #fff;
     }
-    .sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
+    .sidebar nav a.logout { 
+        color:#e74c3c !important; 
+        margin-top: auto; 
+        flex-shrink: 0;
+    }
 
     /* --- Main content --- */
     .main-content { margin-left: 220px; padding: 2rem; }

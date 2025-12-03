@@ -7,12 +7,15 @@ use CodeIgniter\Model;
 class SupplierModel extends Model
 {
     protected $table            = 'suppliers';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'supplier_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'supplier_name', 'contact_person', 'phone', 'email', 
+        'address', 'payment_terms', 'delivery_time', 'status'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

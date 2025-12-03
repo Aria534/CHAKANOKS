@@ -44,8 +44,21 @@ class OrderController extends BaseController
         }
 
         $db = db_connect();
-        $suppliers = $db->table('suppliers')->select('supplier_id, supplier_name as name')->orderBy('supplier_name')->get()->getResultArray();
-        $products = $db->table('products')->select('product_id, product_name, unit_price')->orderBy('product_name')->get()->getResultArray();
+        $suppliers = $db->table('suppliers')
+            ->select('supplier_id, supplier_name as name')
+            ->where('status', 'active')
+            ->orderBy('supplier_name')
+            ->get()
+            ->getResultArray();
+        
+        // Get all products with supplier info for filtering
+        $products = $db->table('products p')
+            ->select('p.product_id, p.product_name, p.unit_price, p.supplier_id, s.supplier_name')
+            ->join('suppliers s', 's.supplier_id = p.supplier_id', 'left')
+            ->where('p.status', 'active')
+            ->orderBy('p.product_name')
+            ->get()
+            ->getResultArray();
 
         $selectedBranchId = 0;
         if ($role === 'branch_manager') {
@@ -72,11 +85,14 @@ class OrderController extends BaseController
         $session = session();
         $role = (string) ($session->get('role') ?? '');
         $userId = (int) ($session->get('user_id') ?? 0);
+        
         if (!in_array($role, ['branch_manager','central_admin','system_admin'])) {
-            return redirect()->back()->with('error', 'Unauthorized');
+            return redirect()->back()->with('error', 'Unauthorized access.');
         }
+
         $db = db_connect();
 
+        // Get and validate branch
         $branchId = (int) $this->request->getPost('branch_id');
         if ($role === 'branch_manager') {
             // Force to manager's branch
@@ -87,64 +103,165 @@ class OrderController extends BaseController
                 ->get()->getRowArray();
             $branchId = (int)($branch['branch_id'] ?? 0);
         }
+        
+        // Get and validate supplier
         $supplierId = (int) $this->request->getPost('supplier_id');
-        $items = (array) $this->request->getPost('items'); // [ [product_id, qty] ... ]
-
-        if ($branchId <= 0 || $supplierId <= 0 || empty($items)) {
-            return redirect()->back()->with('error', 'Please select branch, supplier, and at least one item.');
+        
+        // Get items array - handle both array formats
+        $items = $this->request->getPost('items');
+        if (!is_array($items)) {
+            $items = [];
         }
 
-        // Generate PO number (simple scheme)
-        $poNumber = 'PO-' . date('Ymd-His');
+        // Debug logging
+        log_message('debug', 'Purchase Request - Branch ID: ' . $branchId);
+        log_message('debug', 'Purchase Request - Supplier ID: ' . $supplierId);
+        log_message('debug', 'Purchase Request - Items received: ' . json_encode($items));
+
+        // Validate required fields
+        if ($branchId <= 0) {
+            return redirect()->back()->with('error', 'Please select a branch.');
+        }
+        if ($supplierId <= 0) {
+            return redirect()->back()->with('error', 'Please select a supplier.');
+        }
+        
+        // Filter valid items (must have product_id and qty > 0)
+        $validItems = [];
+        foreach ($items as $it) {
+            if (!is_array($it)) {
+                continue;
+            }
+            $pid = (int)($it['product_id'] ?? 0);
+            $qty = (int)($it['qty'] ?? 0);
+            if ($pid > 0 && $qty > 0) {
+                $validItems[] = ['product_id' => $pid, 'qty' => $qty];
+            }
+        }
+
+        log_message('debug', 'Purchase Request - Valid items: ' . json_encode($validItems));
+
+        if (empty($validItems)) {
+            return redirect()->back()->with('error', 'Please select at least one product and enter a quantity greater than 0.');
+        }
+
+        // Generate PO number (unique scheme with timestamp and random)
+        $timestamp = date('YmdHis');
+        $random = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $poNumber = 'PO-' . $timestamp . '-' . $random;
+        
+        // Ensure uniqueness
+        $db = db_connect();
+        $exists = $db->table('purchase_orders')->where('po_number', $poNumber)->countAllResults();
+        if ($exists > 0) {
+            $poNumber = 'PO-' . $timestamp . '-' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);
+        }
+        
         $now = date('Y-m-d H:i:s');
+
+        // Get product prices
+        $productIds = array_column($validItems, 'product_id');
+        $productRows = $db->table('products')
+            ->whereIn('product_id', $productIds)
+            ->get()
+            ->getResultArray();
+        
+        $productPrices = [];
+        foreach ($productRows as $pr) {
+            $productPrices[(int)$pr['product_id']] = (float)$pr['unit_price'];
+        }
 
         // Compute total
         $total = 0.0;
-        $productPrices = [];
-        $productRows = $db->table('products')->whereIn('product_id', array_column($items, 'product_id'))->get()->getResultArray();
-        foreach ($productRows as $pr) { $productPrices[(int)$pr['product_id']] = (float)$pr['unit_price']; }
-        foreach ($items as $it) {
-            $pid = (int)($it['product_id'] ?? 0);
-            $qty = (int)($it['qty'] ?? 0);
-            if ($pid <= 0 || $qty <= 0) continue;
+        foreach ($validItems as $it) {
+            $pid = (int)$it['product_id'];
+            $qty = (int)$it['qty'];
             $up = $productPrices[$pid] ?? 0.0;
-            $total += ($up * $qty);
+            if ($up > 0) {
+                $total += ($up * $qty);
+            }
         }
 
-        // Insert purchase order (status pending = PR submitted)
-        $poModel = model('App\\Models\\PurchaseOrderModel');
-        $poId = $poModel->insert([
-            'po_number' => $poNumber,
-            'branch_id' => $branchId,
-            'supplier_id' => $supplierId,
-            'requested_by' => $userId,
-            'status' => 'pending',
-            'total_amount' => $total,
-            'requested_date' => $now,
-            'created_at' => $now,
-            'updated_at' => $now,
-        ], true);
-
-        // Insert items
-        $itemModel = model('App\\Models\\PurchaseOrderItemModel');
-        foreach ($items as $it) {
-            $pid = (int)($it['product_id'] ?? 0);
-            $qty = (int)($it['qty'] ?? 0);
-            if ($pid <= 0 || $qty <= 0) continue;
-            $up = $productPrices[$pid] ?? 0.0;
-            $itemModel->insert([
-                'purchase_order_id' => $poId,
-                'product_id' => $pid,
-                'quantity_requested' => $qty,
-                'quantity_delivered' => 0,
-                'unit_price' => $up,
-                'total_price' => $up * $qty,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]);
+        if ($total <= 0) {
+            return redirect()->back()->with('error', 'Invalid product prices. Please check your items.');
         }
 
-        return redirect()->to(site_url('/orders'))->with('success', 'Purchase Request submitted.');
+        try {
+            // Insert purchase order (status pending = PR submitted)
+            $poModel = model('App\\Models\\PurchaseOrderModel');
+            $poData = [
+                'po_number' => $poNumber,
+                'branch_id' => $branchId,
+                'supplier_id' => $supplierId,
+                'requested_by' => $userId,
+                'status' => 'pending',
+                'total_amount' => $total,
+                'requested_date' => $now,
+            ];
+            
+            // Model handles timestamps automatically, but set them explicitly if needed
+            if (!$poModel->insert($poData)) {
+                $errors = $poModel->errors();
+                log_message('error', 'Failed to insert purchase order. Data: ' . json_encode($poData));
+                log_message('error', 'Model errors: ' . json_encode($errors));
+                return redirect()->back()->with('error', 'Failed to create purchase order: ' . (is_array($errors) ? implode(', ', $errors) : 'Unknown error'));
+            }
+            
+            $poId = $poModel->getInsertID();
+            
+            if (!$poId || $poId <= 0) {
+                log_message('error', 'Purchase order insert returned invalid ID');
+                return redirect()->back()->with('error', 'Failed to create purchase order. Please try again.');
+            }
+            
+            log_message('info', 'Purchase order created successfully. PO ID: ' . $poId);
+
+            // Insert items
+            $itemModel = model('App\\Models\\PurchaseOrderItemModel');
+            $itemsInserted = 0;
+            foreach ($validItems as $it) {
+                $pid = (int)$it['product_id'];
+                $qty = (int)$it['qty'];
+                $up = $productPrices[$pid] ?? 0.0;
+                
+                if ($up <= 0) {
+                    log_message('warning', 'Skipping item with invalid price. Product ID: ' . $pid);
+                    continue; // Skip items with invalid prices
+                }
+
+                $itemData = [
+                    'purchase_order_id' => $poId,
+                    'product_id' => $pid,
+                    'quantity_requested' => $qty,
+                    'quantity_delivered' => 0,
+                    'unit_price' => $up,
+                    'total_price' => $up * $qty,
+                ];
+                
+                if (!$itemModel->insert($itemData)) {
+                    $itemErrors = $itemModel->errors();
+                    log_message('error', 'Failed to insert order item. Data: ' . json_encode($itemData));
+                    log_message('error', 'Item errors: ' . json_encode($itemErrors));
+                    // Continue with other items
+                } else {
+                    $itemsInserted++;
+                }
+            }
+            
+            if ($itemsInserted === 0) {
+                // Rollback: delete the purchase order if no items were inserted
+                $poModel->delete($poId);
+                return redirect()->back()->with('error', 'Failed to add items to purchase order. Please try again.');
+            }
+            
+            log_message('info', 'Purchase order created with ' . $itemsInserted . ' items. PO ID: ' . $poId);
+            return redirect()->to(site_url('/orders'))->with('success', 'Purchase Request submitted successfully.');
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Error creating purchase order: ' . $e->getMessage());
+            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
 
     public function approve($id)

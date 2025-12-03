@@ -5,85 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Manage Users - ChakaNoks Central Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?= view('templete/sidebar_styles') ?>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            color: #503e2cff;
+            background: #f5f5f5;
         }
-        .sidebar {
-            width: 220px;
-            background: #1a1a1a;
-            color: #b75a03ff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .table-card { 
+            background:#fff; 
+            border-radius:14px; 
+            padding:1.25rem; 
+            box-shadow:0 2px 10px rgba(0,0,0,0.06); 
+            border:1px solid #e8e8e8; 
+            margin-top: 1.5rem;
         }
-        .sidebar .logo { font-size:1.5rem; font-weight:700; color:#b75a03ff; margin-bottom:2rem; }
-        .sidebar nav { display: flex; flex-direction: column; gap: 0.6rem; }
-        .sidebar nav a {
-            color:#aaa;
-            text-decoration:none;
-            font-weight:500;
-            padding:0.6rem 1rem;
-            border-radius:6px;
-            transition:0.2s;
+        .table-card table { 
+            width:100%; 
+            border-collapse:collapse; 
+            font-size:14px; 
         }
-        .sidebar nav a:hover { background:#2c2c2c; color:#fff; }
-        .sidebar a.active, .sidebar a:hover {
-            background: #ff9320ff;
+        .table-card th { 
+            text-align:left; 
+            padding:.8rem; 
+            font-weight:700; 
+            color:#666; 
+            border-bottom:2px solid #f0f0f0; 
+            background-color: #fafafa;
+        }
+        .table-card td { 
+            padding:.8rem; 
+            border-bottom:1px solid #f7f7f7; 
+            color:#444; 
+        }
+        .table-card tbody tr:hover { 
+            background-color: #f9f9f9; 
+        }
+        .btn-add { 
+            margin-bottom: 1.5rem; 
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(183, 90, 3, 0.25);
+        }
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(183, 90, 3, 0.35);
             color: #fff;
         }
-        .sidebar nav a.logout { color:#e74c3c !important; margin-top:auto; }
-        .main-content { margin-left: 220px; padding: 2rem; }
-        .page-title {
-            font-size:1.8rem;
-            margin-bottom:1.5rem;
-            font-weight:600;
-            color:#fff;
-            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
-        }
-        .table-responsive { margin-top: 2rem; }
-        .btn-add { margin-bottom: 1rem; }
         .status-active { color: green; }
         .status-inactive { color: red; }
-        @media (max-width:768px){ .main-content { margin-left: 0; padding:1rem; } }
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-    <div class="logo">ChakaNoks</div>
-    <nav>
-        <a href="<?= site_url('dashboard') ?>">Dashboard</a>
-        <a href="<?= site_url('users') ?>" class="active">Manage Users</a>
-        <a href="<?= site_url('branches') ?>">Branches</a>
-        <a href="<?= site_url('products') ?>">Products</a>
-        <a href="<?= site_url('orders') ?>">Orders</a>
-        <a href="<?= site_url('inventory') ?>">Inventory</a>
-        <a href="<?= site_url('logout') ?>" class="logout">Logout</a>
-    </nav>
-</aside>
+    <?= view('templete/sidebar', ['active' => 'users']) ?>
 
-<!-- Main content -->
-<div class="main-content">
-    <div class="page-title">Manage Users</div>
+    <div class="main-content">
+        <div class="page-title">Manage Users</div>
 
-    <a href="<?= site_url('users/create') ?>" class="btn btn-primary btn-add">Add New User</a>
+        <?php if (session()->has('success')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= esc(session('success')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
+        <?php if (session()->has('error')): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= esc(session('error')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
+        <a href="<?= site_url('users/create') ?>" class="btn btn-primary btn-add">+ Add New User</a>
+
+        <div class="table-card">
+            <table>
             <thead>
                 <tr>
                     <th>Username</th>
@@ -99,21 +99,40 @@
             <tbody>
                 <?php if (!empty($users)): ?>
                     <?php foreach ($users as $user): ?>
+                        <?php 
+                        // Handle both array and object formats
+                        $isArray = is_array($user);
+                        $username = $isArray ? ($user['username'] ?? '') : ($user->username ?? '');
+                        $email = $isArray ? ($user['email'] ?? '') : ($user->email ?? '');
+                        $firstName = $isArray ? ($user['first_name'] ?? '') : ($user->first_name ?? '');
+                        $lastName = $isArray ? ($user['last_name'] ?? '') : ($user->last_name ?? '');
+                        $role = $isArray ? ($user['role'] ?? '') : ($user->role ?? '');
+                        $status = $isArray ? ($user['status'] ?? '') : ($user->status ?? '');
+                        $lastLogin = $isArray ? ($user['last_login'] ?? null) : ($user->last_login ?? null);
+                        $userId = $isArray ? ($user['user_id'] ?? null) : ($user->user_id ?? null);
+                        ?>
                         <tr>
-                            <td><?= esc($user['username']) ?></td>
-                            <td><?= esc($user['email']) ?></td>
-                            <td><?= esc($user['first_name']) ?></td>
-                            <td><?= esc($user['last_name']) ?></td>
-                            <td><?= esc($user['role']) ?></td>
+                            <td><?= esc($username) ?></td>
+                            <td><?= esc($email) ?></td>
+                            <td><?= esc($firstName) ?></td>
+                            <td><?= esc($lastName) ?></td>
+                            <td><?= esc($role) ?></td>
                             <td>
-                                <span class="status-<?= esc($user['status']) ?>">
-                                    <?= ucfirst(esc($user['status'])) ?>
+                                <span class="status-<?= esc($status) ?>">
+                                    <?= ucfirst(esc($status)) ?>
                                 </span>
                             </td>
-                            <td><?= esc($user['last_login'] ? date('Y-m-d H:i', strtotime($user['last_login'])) : 'Never') ?></td>
+                            <td><?= esc($lastLogin ? date('Y-m-d H:i', strtotime($lastLogin)) : 'Never') ?></td>
                             <td>
-                                <a href="<?= site_url('users/edit/' . $user['user_id']) ?>" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="<?= site_url('users/delete/' . $user['user_id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+                                <?php if (isset($userId) && !empty($userId)): ?>
+                                    <a href="<?= site_url('users/edit/' . $userId) ?>" class="btn btn-sm btn-warning" title="Edit User ID: <?= $userId ?>">Edit</a>
+                                    <form action="<?= site_url('users/delete/' . $userId) ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                        <?= csrf_field() ?>
+                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete User ID: <?= $userId ?>">Delete</button>
+                                    </form>
+                                <?php else: ?>
+                                    <span class="text-danger">Invalid User ID</span>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -124,8 +143,9 @@
                 <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </div>
-</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -42,6 +42,13 @@ $active = $active ?? '';
             </a>
         <?php endif; ?>
 
+        <!-- Manage Users (Central Admin & System Admin only) -->
+        <?php if (in_array($role, ['central_admin','system_admin'])): ?>
+            <a href="<?= site_url('users') ?>" class="<?= $active==='users'?'active':'' ?>">
+                Manage Users
+            </a>
+        <?php endif; ?>
+
         <!-- Branches -->
         <?php if (in_array($role, ['central_admin','system_admin', 'franchise_manager'])): ?>
             <a href="<?= site_url('branches') ?>" class="<?= $active==='branches'?'active':'' ?>">
@@ -92,7 +99,7 @@ $active = $active ?? '';
         <?php endif; ?>
 
         <!-- Logout -->
-        <a href="<?= site_url('logout') ?>" class="logout mt-auto">
+        <a href="<?= site_url('logout') ?>" class="logout">
             Logout
         </a>
     </nav>
