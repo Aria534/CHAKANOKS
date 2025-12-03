@@ -133,7 +133,7 @@
         <template id="rowTpl">
             <tr>
                 <td>
-                    <select name="items[][product_id]" class="form-select product-select" required>
+                    <select class="form-select product-select" required>
                         <option value="">— select product —</option>
                         <?php foreach(($products ?? []) as $p): ?>
                             <option value="<?= (int)$p['product_id'] ?>" 
@@ -142,14 +142,12 @@
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <div class="invalid-feedback"></div>
                 </td>
                 <td>
-                    <input type="number" min="1" step="1" name="items[][qty]" value="1" class="form-control text-end" required />
-                    <div class="invalid-feedback"></div>
+                    <input type="number" min="1" step="1" value="1" class="form-control text-end qty-input" required />
                 </td>
                 <td class="text-end">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="this.closest('tr').remove(); updateProductOptions();">Remove</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="removeRow(this)">Remove</button>
                 </td>
             </tr>
         </template>
@@ -221,8 +219,8 @@
         tbody.appendChild(newRow);
         updateProductOptions(); // Apply supplier filter to new row
         
-        // Add real-time validation to new quantity input
-        const qtyInput = tbody.lastElementChild.querySelector('input[name*="[qty]"]');
+        // Add real-time validation to new inputs
+        const qtyInput = tbody.lastElementChild.querySelector('.qty-input');
         if (qtyInput) {
           qtyInput.addEventListener('input', function() {
             const value = parseInt(this.value) || 0;
@@ -243,7 +241,7 @@
         }
         
         // Add validation to product select
-        const productSelect = tbody.lastElementChild.querySelector('select[name*="[product_id]"]');
+        const productSelect = tbody.lastElementChild.querySelector('.product-select');
         if (productSelect) {
           productSelect.addEventListener('change', function() {
             if (this.value) {
@@ -258,18 +256,6 @@
       
       // Initialize product options on page load (show all products initially)
       updateProductOptions();
-      
-      // Add real-time validation to existing quantity inputs
-      document.querySelectorAll('input[name*="[qty]"]').forEach(input => {
-        input.addEventListener('input', function() {
-          const value = parseInt(this.value) || 0;
-          if (value <= 0) {
-            this.classList.add('is-invalid');
-          } else {
-            this.classList.remove('is-invalid');
-          }
-        });
-      });
 
       // Update product options when supplier changes
       document.getElementById('supplierSelect')?.addEventListener('change', function() {
@@ -291,16 +277,18 @@
         updateProductOptions();
       });
 
-      // Form validation before submit
+      // Form validation and submission
       document.getElementById('purchaseRequestForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Always prevent default, we'll submit manually
+        
+        // Clear previous validation errors
+        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        
         // Get form values
         const branchId = document.querySelector('select[name="branch_id"]')?.value || 
                         document.querySelector('input[name="branch_id"]')?.value;
         const supplierId = document.querySelector('select[name="supplier_id"]')?.value;
         const itemRows = document.querySelectorAll('#itemsTable tbody tr');
-        
-        // Clear previous validation errors
-        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
         
         let isValid = true;
         let errorMessages = [];
@@ -309,9 +297,7 @@
         if (!branchId || branchId === '') {
           isValid = false;
           const branchSelect = document.querySelector('select[name="branch_id"]');
-          if (branchSelect) {
-            branchSelect.classList.add('is-invalid');
-          }
+          if (branchSelect) branchSelect.classList.add('is-invalid');
           errorMessages.push('Please select a branch.');
         }
         
@@ -319,77 +305,52 @@
         if (!supplierId || supplierId === '') {
           isValid = false;
           const supplierSelect = document.querySelector('select[name="supplier_id"]');
-          if (supplierSelect) {
-            supplierSelect.classList.add('is-invalid');
-          }
+          if (supplierSelect) supplierSelect.classList.add('is-invalid');
           errorMessages.push('Please select a supplier.');
         }
         
-        // Validate items - FIRST remove empty rows, THEN validate
-        const rowsToRemove = [];
-        itemRows.forEach((row) => {
-          const productSelect = row.querySelector('select[name*="[product_id]"]');
-          if (productSelect) {
-            const productId = productSelect.value.trim();
-            // Remove rows with no product selected (but keep at least one row)
-            if ((!productId || productId === '' || productId === '0') && itemRows.length > 1) {
-              rowsToRemove.push(row);
-            }
-          }
-        });
-        
-        // Remove empty rows BEFORE validation
-        rowsToRemove.forEach(row => row.remove());
-        
-        // Now validate remaining rows
-        const remainingRows = document.querySelectorAll('#itemsTable tbody tr');
+        // Collect and validate items
         const validItems = [];
+        let hasErrors = false;
         
-        remainingRows.forEach((row, index) => {
-          const productSelect = row.querySelector('select[name*="[product_id]"]');
-          const qtyInput = row.querySelector('input[name*="[qty]"]');
+        itemRows.forEach((row) => {
+          const productSelect = row.querySelector('.product-select');
+          const qtyInput = row.querySelector('.qty-input');
           
-          if (!productSelect || !qtyInput) {
-            return; // Skip invalid row structure
-          }
+          if (!productSelect || !qtyInput) return;
           
-          const productId = productSelect.value.trim();
-          const qty = qtyInput.value.trim();
-          const qtyNum = parseInt(qty);
+          const productId = productSelect.value;
+          const qty = parseInt(qtyInput.value) || 0;
           
-          // Validate product selection
-          if (!productId || productId === '' || productId === '0') {
-            productSelect.classList.add('is-invalid');
-            isValid = false;
-            if (!errorMessages.some(msg => msg.includes('product'))) {
-              errorMessages.push('Please select at least one product.');
+          // Only validate if either field has a value
+          if (productId || qty > 0) {
+            if (!productId) {
+              productSelect.classList.add('is-invalid');
+              hasErrors = true;
+              isValid = false;
             }
-          } 
-          // Validate quantity
-          else if (!qty || isNaN(qtyNum) || qtyNum <= 0) {
-            qtyInput.classList.add('is-invalid');
-            isValid = false;
-            const productName = productSelect.options[productSelect.selectedIndex]?.text?.split('(')[0]?.trim() || 'Product';
-            errorMessages.push(`${productName}: Please enter a valid quantity (must be greater than 0).`);
-          } 
-          // Valid item
-          else {
-            validItems.push({ productId, qty: qtyNum });
+            
+            if (qty <= 0) {
+              qtyInput.classList.add('is-invalid');
+              hasErrors = true;
+              isValid = false;
+            }
+            
+            if (productId && qty > 0) {
+              validItems.push({ product_id: productId, qty: qty });
+            }
           }
         });
         
-        // Final check - must have at least one valid item
+        // Must have at least one valid item
         if (validItems.length === 0) {
           isValid = false;
-          if (!errorMessages.some(msg => msg.includes('product') || msg.includes('quantity'))) {
-            errorMessages.push('Please select at least one product and enter a quantity greater than 0.');
-          }
+          errorMessages.push('Please add at least one product with quantity greater than 0.');
         }
         
-        // Show errors or allow submit
+        // Show errors if invalid
         if (!isValid) {
-          e.preventDefault();
-          const errorMsg = errorMessages.length > 0 ? errorMessages.join('\n') : 'Please fill in all required fields correctly.';
+          const errorMsg = errorMessages.join('\n');
           alert(errorMsg);
           
           // Scroll to first error
@@ -402,22 +363,38 @@
           return false;
         }
         
-        // Debug: Log form data before submission
+        // Remove all existing hidden item inputs
+        document.querySelectorAll('input[name^="items["]').forEach(el => el.remove());
+        
+        // Create hidden inputs for valid items
+        validItems.forEach((item, index) => {
+          const productInput = document.createElement('input');
+          productInput.type = 'hidden';
+          productInput.name = `items[${index}][product_id]`;
+          productInput.value = item.product_id;
+          this.appendChild(productInput);
+          
+          const qtyInput = document.createElement('input');
+          qtyInput.type = 'hidden';
+          qtyInput.name = `items[${index}][qty]`;
+          qtyInput.value = item.qty;
+          this.appendChild(qtyInput);
+        });
+        
         console.log('✓ Form validation passed');
         console.log('Branch ID:', branchId);
         console.log('Supplier ID:', supplierId);
-        console.log('Valid Items Count:', validItems.length);
         console.log('Valid Items:', validItems);
         
         // Show loading state
         const submitBtn = this.querySelector('button[type="submit"]');
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = 'Submitting...';
+          submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
         }
         
-        // Form is valid - allow submission
-        return true;
+        // Submit the form
+        this.submit();
       });
     </script>
     </div>

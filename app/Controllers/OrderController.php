@@ -264,6 +264,64 @@ class OrderController extends BaseController
         }
     }
 
+    public function view($id)
+    {
+        $session = session();
+        $role = (string) ($session->get('role') ?? '');
+        $userId = (int) ($session->get('user_id') ?? 0);
+        
+        // Check authorization
+        if (!in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager'])) {
+            return redirect()->to(site_url('/orders'))->with('error', 'Unauthorized access');
+        }
+        
+        $db = db_connect();
+        
+        // Get purchase order details with related data
+        $po = $db->table('purchase_orders po')
+            ->select('po.*, b.branch_name, s.supplier_name, s.contact_person, s.phone, s.email,
+                     u1.username as requested_by_name, u2.username as approved_by_name')
+            ->join('branches b', 'b.branch_id = po.branch_id', 'left')
+            ->join('suppliers s', 's.supplier_id = po.supplier_id', 'left')
+            ->join('users u1', 'u1.user_id = po.requested_by', 'left')
+            ->join('users u2', 'u2.user_id = po.approved_by', 'left')
+            ->where('po.purchase_order_id', $id)
+            ->get()
+            ->getRowArray();
+        
+        if (!$po) {
+            return redirect()->to(site_url('/orders'))->with('error', 'Purchase order not found');
+        }
+        
+        // For branch staff, verify they have access to this PO's branch
+        if (in_array($role, ['inventory_staff', 'branch_manager'])) {
+            $branch = $db->table('user_branches')
+                ->select('branch_id')
+                ->where('user_id', $userId)
+                ->orderBy('user_branch_id', 'ASC')
+                ->get()->getRowArray();
+            $myBranchId = (int)($branch['branch_id'] ?? 0);
+            if ($myBranchId <= 0 || (int)$po['branch_id'] !== $myBranchId) {
+                return redirect()->to(site_url('/orders'))->with('error', 'You do not have access to this purchase order');
+            }
+        }
+        
+        // Get purchase order items with product details
+        $items = $db->table('purchase_order_items poi')
+            ->select('poi.*, p.product_name, p.product_code')
+            ->join('products p', 'p.product_id = poi.product_id', 'left')
+            ->where('poi.purchase_order_id', $id)
+            ->orderBy('p.product_name', 'ASC')
+            ->get()
+            ->getResultArray();
+        
+        return view('dashboard/order_view', [
+            'po' => $po,
+            'items' => $items,
+            'userRole' => $role
+        ]);
+    }
+
     public function approve($id)
     {
         $session = session();

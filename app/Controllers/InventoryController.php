@@ -246,19 +246,49 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         // Default query builder for inventory listing
         try {
             $builder = $db->table('inventory i')
-                ->select('i.*, b.branch_name, p.product_name, p.unit_price, p.minimum_stock, 
+                ->select('i.*, b.branch_name, p.product_id, p.product_name, p.unit_price, p.minimum_stock, 
                          (i.available_stock * p.unit_price) as stock_value')
                 ->join('branches b', 'b.branch_id = i.branch_id', 'left')
                 ->join('products p', 'p.product_id = i.product_id', 'left')
-                ->where('i.available_stock >', 0);
+                ->where('i.available_stock >=', 0);
                 
             // Apply branch filter if specified
+            $branchFilter = null;
             if ($requestedBranchId > 0) {
                 $builder->where('i.branch_id', $requestedBranchId);
+                $branchFilter = $requestedBranchId;
             }
             
             // Get inventory data with error handling
             $inventory = $builder->get()->getResultArray();
+            
+            // If filtering by specific branch, ensure all products are shown
+            if ($branchFilter) {
+                $existingProductIds = array_column($inventory, 'product_id');
+                $allProducts = $db->table('products')
+                    ->select('product_id, product_name, unit_price, minimum_stock')
+                    ->where('status', 'active')
+                    ->whereNotIn('product_id', $existingProductIds ?: [0])
+                    ->get()
+                    ->getResultArray();
+                
+                // Add missing products with zero stock
+                foreach ($allProducts as $product) {
+                    $inventory[] = [
+                        'inventory_id' => 0,
+                        'product_id' => $product['product_id'],
+                        'product_name' => $product['product_name'],
+                        'unit_price' => $product['unit_price'],
+                        'minimum_stock' => $product['minimum_stock'],
+                        'branch_id' => $branchFilter,
+                        'branch_name' => '',
+                        'current_stock' => 0,
+                        'available_stock' => 0,
+                        'reserved_stock' => 0,
+                        'stock_value' => 0
+                    ];
+                }
+            }
             
         } catch (\Exception $e) {
             log_message('error', 'Error fetching inventory: ' . $e->getMessage());
@@ -338,7 +368,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
 
                     // Aggregated branchInventory by product across all branches
                     $branchInventory = $db->table('inventory i')
-                        ->select('p.product_name, SUM(i.current_stock) as current_stock, SUM(i.available_stock) as available_stock, p.unit_price, SUM(i.current_stock * p.unit_price) as stock_value, p.minimum_stock')
+                        ->select('p.product_id, p.product_name, SUM(i.current_stock) as current_stock, SUM(i.available_stock) as available_stock, p.unit_price, SUM(i.current_stock * p.unit_price) as stock_value, p.minimum_stock')
                         ->join('products p', 'p.product_id = i.product_id', 'left')
                         ->groupBy('p.product_id')
                         ->orderBy('p.product_name', 'ASC')
@@ -364,14 +394,35 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 }
 
                 // Default consolidated table view (central/system or unresolved)
-                $inventory = $builder->orderBy('b.branch_name', 'ASC')
-                                      ->orderBy('p.product_name', 'ASC')
-                                      ->get()
-                                      ->getResultArray();
+                // Use LEFT JOIN to show all products even with zero stock
+                $inventory = $db->table('products p')
+                    ->select('p.product_id, p.product_name, p.unit_price, p.minimum_stock,
+                             b.branch_id, b.branch_name,
+                             COALESCE(i.inventory_id, 0) as inventory_id,
+                             COALESCE(i.current_stock, 0) as current_stock,
+                             COALESCE(i.available_stock, 0) as available_stock,
+                             COALESCE(i.reserved_stock, 0) as reserved_stock,
+                             (COALESCE(i.available_stock, 0) * p.unit_price) as stock_value')
+                    ->join('inventory i', 'i.product_id = p.product_id', 'left')
+                    ->join('branches b', 'b.branch_id = i.branch_id', 'left')
+                    ->where('p.status', 'active')
+                    ->orderBy('b.branch_name', 'ASC')
+                    ->orderBy('p.product_name', 'ASC')
+                    ->get()
+                    ->getResultArray();
+                
+                // Get all products for the adjustment form
+                $products = $db->table('products')
+                    ->select('product_id, product_name, unit_price, minimum_stock')
+                    ->where('status', 'active')
+                    ->orderBy('product_name', 'ASC')
+                    ->get()
+                    ->getResultArray();
                     
                 return view('dashboard/inventory', [
                     'inventory' => $inventory,
-                    'branches' => $allBranches
+                    'branches' => $allBranches,
+                    'products' => $products
                 ]);
             }
 
@@ -413,8 +464,9 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
 
             // My branch inventory (real-time view) – show ALL products, including zero stock
             $branchInventory = $db->table('products p')
-                ->select('p.product_name, COALESCE(i.current_stock,0) as current_stock, COALESCE(i.available_stock,0) as available_stock, p.unit_price, (COALESCE(i.current_stock,0) * p.unit_price) as stock_value, p.minimum_stock')
+                ->select('p.product_id, p.product_name, COALESCE(i.current_stock,0) as current_stock, COALESCE(i.available_stock,0) as available_stock, p.unit_price, (COALESCE(i.current_stock,0) * p.unit_price) as stock_value, p.minimum_stock')
                 ->join('inventory i', 'i.product_id = p.product_id AND i.branch_id = '.(int)$branchId, 'left')
+                ->where('p.status', 'active')
                 ->orderBy('p.product_name', 'ASC')
                 ->get()->getResultArray();
 
@@ -422,6 +474,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             if (empty($branchInventory) && !empty($products)) {
                 $branchInventory = array_map(static function($p) {
                     return [
+                        'product_id'      => $p['product_id'],
                         'product_name'    => $p['product_name'],
                         'current_stock'   => 0,
                         'available_stock' => 0,
@@ -457,8 +510,36 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         }
 
         // Default: central/system/others see consolidated inventory list
-        $inventory = $builder->orderBy('b.branch_name', 'ASC')->get()->getResultArray();
-        return view('dashboard/inventory', ['inventory' => $inventory]);
+        // Show all products with their inventory across all branches
+        $inventory = $db->table('products p')
+            ->select('p.product_id, p.product_name, p.unit_price, p.minimum_stock,
+                     b.branch_id, b.branch_name,
+                     COALESCE(i.inventory_id, 0) as inventory_id,
+                     COALESCE(i.current_stock, 0) as current_stock,
+                     COALESCE(i.available_stock, 0) as available_stock,
+                     COALESCE(i.reserved_stock, 0) as reserved_stock,
+                     (COALESCE(i.available_stock, 0) * p.unit_price) as stock_value')
+            ->join('inventory i', 'i.product_id = p.product_id', 'left')
+            ->join('branches b', 'b.branch_id = i.branch_id', 'left')
+            ->where('p.status', 'active')
+            ->orderBy('p.product_name', 'ASC')
+            ->orderBy('b.branch_name', 'ASC')
+            ->get()
+            ->getResultArray();
+        
+        // Get all products for the adjustment form
+        $products = $db->table('products')
+            ->select('product_id, product_name, unit_price, minimum_stock')
+            ->where('status', 'active')
+            ->orderBy('product_name', 'ASC')
+            ->get()
+            ->getResultArray();
+            
+        return view('dashboard/inventory', [
+            'inventory' => $inventory,
+            'branches' => $allBranches,
+            'products' => $products
+        ]);
     }
 
     public function adjust()
@@ -467,12 +548,30 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         $role = (string) ($session->get('role') ?? '');
         $userId = (int) ($session->get('user_id') ?? 0);
         if (!in_array($role, ['inventory_staff','branch_manager','central_admin','system_admin'])) {
-            return redirect()->back()->with('error', 'Unauthorized');
+            return redirect()->back()->with('error', 'Unauthorized access.');
         }
 
         $db = db_connect();
+        
+        // Get form data
+        $productId = (int) $this->request->getPost('product_id');
+        $qty = (int) $this->request->getPost('qty'); // negative to reduce
+        $reason = trim((string) $this->request->getPost('reason'));
+        $mode = trim((string) $this->request->getPost('mode')); // 'add' or 'adjust'
+        
+        // Set default reason if empty
+        if (empty($reason)) {
+            if ($mode === 'add') {
+                $reason = 'Stock addition';
+            } else {
+                $reason = $qty > 0 ? 'Stock increase' : 'Stock reduction';
+            }
+        }
+        
         // Determine staff branch (central/system may optionally post branch_id)
         $branchId = (int) ($this->request->getPost('branch_id') ?? 0);
+        
+        // If no branch_id provided, try to get from user's assignment
         if ($branchId === 0) {
             $branch = $db->table('user_branches')
                 ->select('branch_id')
@@ -482,12 +581,37 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             $branchId = (int)($branch['branch_id'] ?? 0);
         }
 
-        $productId = (int) $this->request->getPost('product_id');
-        $qty = (int) $this->request->getPost('qty'); // negative to reduce
-        $reason = trim((string) $this->request->getPost('reason'));
-
-        if ($branchId <= 0 || $productId <= 0 || $qty === 0) {
-            return redirect()->back()->with('error', 'Provide product, non-zero quantity, and valid branch.');
+        // Build redirect URL for errors
+        $redirectUrl = site_url('inventory');
+        if ($branchId > 0) {
+            $redirectUrl .= '?branch_id=' . $branchId;
+        }
+        if ($mode) {
+            $redirectUrl .= ($branchId > 0 ? '&' : '?') . 'mode=' . $mode;
+        }
+        
+        // Validation
+        if ($productId <= 0) {
+            return redirect()->to($redirectUrl)->with('error', 'Please select a valid product.');
+        }
+        
+        if ($qty === 0) {
+            return redirect()->to($redirectUrl)->with('error', 'Quantity cannot be zero.');
+        }
+        
+        // If in "add" mode, ensure quantity is positive
+        if ($mode === 'add' && $qty < 0) {
+            return redirect()->to($redirectUrl)->with('error', 'Add Stock mode requires positive quantity. Use Adjust Stock for deductions.');
+        }
+        
+        if ($branchId <= 0) {
+            return redirect()->to($redirectUrl)->with('error', 'Please select a valid branch.');
+        }
+        
+        // Verify product exists
+        $product = $db->table('products')->where('product_id', $productId)->get()->getRowArray();
+        if (!$product) {
+            return redirect()->to($redirectUrl)->with('error', 'Product not found.');
         }
 
         $now = date('Y-m-d H:i:s');
@@ -520,24 +644,42 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
 
         // Movement log
         $movementType = 'adjustment';
-        // Fetch unit price for value estimate
-        $priceRow = $db->table('products')->select('unit_price')->where('product_id', $productId)->get()->getRowArray();
-        $unitPrice = (float)($priceRow['unit_price'] ?? 0);
-        $db->table('stock_movements')->insert([
-            'product_id' => $productId,
-            'branch_id' => $branchId,
-            'movement_type' => $movementType,
-            'quantity' => $qty,
-            'reference_type' => 'adjustment',
-            'reference_id' => null,
-            'unit_price' => $unitPrice,
-            'total_value' => $unitPrice * $qty,
-            'notes' => $reason,
-            'created_by' => $userId,
-            'created_at' => $now,
-        ]);
+        $unitPrice = (float)($product['unit_price'] ?? 0);
+        
+        try {
+            $db->table('stock_movements')->insert([
+                'product_id' => $productId,
+                'branch_id' => $branchId,
+                'movement_type' => $movementType,
+                'quantity' => $qty,
+                'reference_type' => 'adjustment',
+                'reference_id' => null,
+                'unit_price' => $unitPrice,
+                'total_value' => $unitPrice * abs($qty),
+                'notes' => $reason ?: 'Manual adjustment',
+                'created_by' => $userId,
+                'created_at' => $now,
+            ]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error logging stock movement: ' . $e->getMessage());
+        }
 
-        return redirect()->back()->with('success', 'Stock adjusted.');
+        // Determine success message based on mode and quantity
+        $productName = $product['product_name'] ?? 'Product';
+        if ($mode === 'add') {
+            $message = "Stock added successfully! {$productName}: +{$qty} units.";
+        } else {
+            $actionText = $qty > 0 ? 'added' : 'reduced';
+            $message = "Stock {$actionText} successfully! {$productName}: " . ($qty > 0 ? '+' : '') . $qty . " units.";
+        }
+        
+        // Redirect back to inventory page (without mode parameter to show clean table)
+        $successUrl = site_url('inventory');
+        if ($branchId > 0) {
+            $successUrl .= '?branch_id=' . $branchId;
+        }
+        
+        return redirect()->to($successUrl)->with('success', $message);
     }
 
     public function scan()

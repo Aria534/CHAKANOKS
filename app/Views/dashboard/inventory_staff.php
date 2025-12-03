@@ -41,8 +41,21 @@
         .form-control, .form-select { border:1px solid #e8e8e8; border-radius:8px; }
         .form-control:focus, .form-select:focus { border-color:#b75a03ff; box-shadow:0 0 0 0.2rem rgba(183,90,3,0.15); }
 
-        .btn-primary { background:#b75a03ff; border-color:#b75a03ff; }
+        .btn-primary { background:#b75a03ff; border-color:#b75a03ff; cursor: pointer !important; }
         .btn-primary:hover { background:#ff9320ff; border-color:#ff9320ff; }
+        
+        .btn-success { cursor: pointer !important; }
+        .btn-outline-primary { cursor: pointer !important; }
+        
+        a.btn { 
+            pointer-events: auto !important; 
+            cursor: pointer !important; 
+            text-decoration: none !important;
+        }
+        
+        a.btn:hover {
+            text-decoration: none !important;
+        }
 
         .alert { border-radius:8px; border:1px solid #e8e8e8; }
 
@@ -96,9 +109,16 @@
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Current Inventory</h5>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adjustStockModal">
-                            <i class="fas fa-plus"></i> Add/Adjust Stock
-                        </button>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <a href="<?= site_url('inventory?mode=add' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                               class="btn btn-success btn-sm">
+                                <i class="fas fa-plus"></i> Add Stock
+                            </a>
+                            <a href="<?= site_url('inventory?mode=adjust' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                               class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Adjust Stock
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -135,11 +155,10 @@
                                                 <td class="text-end">₱<?= number_format(($item['unit_price'] ?? 0), 2) ?></td>
                                                 <td class="text-end">₱<?= number_format(($item['stock_value'] ?? 0), 2) ?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-sm btn-outline-primary adjust-stock" 
-                                                            data-product-id="<?= $item['product_id'] ?? '' ?>"
-                                                            data-product-name="<?= esc($item['product_name'] ?? '') ?>">
+                                                    <a href="<?= site_url('inventory?mode=adjust&product_id=' . ($item['product_id'] ?? '') . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                                                       class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-edit"></i> Adjust
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -204,45 +223,119 @@
         </div>
         <?php endif; ?>
 
+        <?php 
+        $request = \Config\Services::request();
+        $mode = $request->getGet('mode') ?? ''; 
+        $showForm = in_array($mode, ['add', 'adjust']);
+        $isAddMode = $mode === 'add';
+        ?>
+        
+        <?php if ($showForm): ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h5>Adjust Stock</h5>
-                <?php if (session()->getFlashdata('error')): ?>
-                    <div class="alert alert-danger"><?= esc(session()->getFlashdata('error')) ?></div>
-                <?php endif; ?>
-                <?php if (session()->getFlashdata('success')): ?>
-                    <div class="alert alert-success"><?= esc(session()->getFlashdata('success')) ?></div>
-                <?php endif; ?>
-                <form method="post" action="<?= site_url('/inventory/adjust') ?>">
+                    <h5><?= $isAddMode ? 'Add Stock' : 'Adjust Stock' ?></h5>
+                <form method="post" action="<?= site_url('inventory/adjust') ?>">
                     <?= csrf_field() ?>
                     <?php if (!empty($selectedBranchId)): ?>
                         <input type="hidden" name="branch_id" value="<?= (int)$selectedBranchId ?>">
                     <?php endif; ?>
+                    <input type="hidden" name="mode" value="<?= esc($mode) ?>">
                     <div class="mb-2">
                         <label class="form-label">Product</label>
+                        <?php $selectedProductId = (int)($request->getGet('product_id') ?? 0); ?>
                         <select name="product_id" class="form-select" required>
                             <option value="">— select product —</option>
                             <?php foreach(($products ?? []) as $p): ?>
-                                <option value="<?= (int)$p['product_id'] ?>"><?= esc($p['product_name']) ?></option>
+                                <option value="<?= (int)$p['product_id'] ?>" <?= $selectedProductId === (int)$p['product_id'] ? 'selected' : '' ?>>
+                                    <?= esc($p['product_name']) ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-2">
-                        <label class="form-label">Quantity (use negative to deduct)</label>
-                        <input type="number" class="form-control" name="qty" placeholder="e.g., 5 or -2" required>
+                        <label class="form-label">Quantity <?= $isAddMode ? '' : '(use negative to deduct)' ?></label>
+                        <input type="number" 
+                               class="form-control" 
+                               name="qty" 
+                               placeholder="<?= $isAddMode ? 'e.g., 100' : 'e.g., 5 or -2' ?>" 
+                               <?= $isAddMode ? 'min="1"' : '' ?>
+                               required>
+                        <?php if ($isAddMode): ?>
+                            <small class="text-muted">Enter the quantity to add to inventory</small>
+                        <?php endif; ?>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Reason</label>
-                        <input type="text" class="form-control" name="reason" placeholder="e.g., Adjustment, Damaged, Expired" required>
+                        <label class="form-label">Reason <span class="text-muted">(Optional)</span></label>
+                        <select name="reason" class="form-select">
+                            <option value="">— select reason —</option>
+                            <?php if ($isAddMode): ?>
+                                <option value="New stock delivery">New stock delivery</option>
+                                <option value="Restocking">Restocking</option>
+                                <option value="Transfer from another branch">Transfer from another branch</option>
+                                <option value="Return from customer">Return from customer</option>
+                                <option value="Initial stock">Initial stock</option>
+                            <?php else: ?>
+                                <option value="Manual adjustment">Manual adjustment</option>
+                                <option value="Stock count correction">Stock count correction</option>
+                                <option value="Damaged goods">Damaged goods</option>
+                                <option value="Expired products">Expired products</option>
+                                <option value="Spoilage">Spoilage</option>
+                                <option value="Theft/Loss">Theft/Loss</option>
+                                <option value="Transfer to another branch">Transfer to another branch</option>
+                                <option value="Customer return">Customer return</option>
+                                <option value="Quality control rejection">Quality control rejection</option>
+                            <?php endif; ?>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Apply Adjustment</button>
+                    <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">
+                            <?= $isAddMode ? 'Add Stock' : 'Apply Adjustment' ?>
+                        </button>
+                        <a href="<?= site_url('inventory' . (isset($_GET['branch_id']) ? '?branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                           class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
                 </form>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // If product is pre-selected, scroll to the adjustment form and focus quantity field
+            const productSelect = document.querySelector('select[name="product_id"]');
+            const qtyInput = document.querySelector('input[name="qty"]');
+            
+            if (productSelect && productSelect.value) {
+                // Scroll to the adjustment form
+                const adjustForm = productSelect.closest('form');
+                if (adjustForm) {
+                    adjustForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Focus the quantity input for immediate entry
+                if (qtyInput) {
+                    setTimeout(() => {
+                        qtyInput.focus();
+                    }, 500);
+                }
+            }
+            
+            // Auto-dismiss alerts after 5 seconds
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                setTimeout(function() {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
