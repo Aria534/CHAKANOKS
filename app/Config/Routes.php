@@ -61,6 +61,13 @@ $routes->get('/purchase-orders/view/(:num)', 'OrderController::view/$1'); // Ali
 $routes->get('reports', 'ReportsController::index');
 $routes->get('reports/generate/(:any)', 'ReportsController::generate/$1');
 $routes->get('reports/exportPdf/(:any)', 'ReportsController::exportPdf/$1');
+
+// Accounts Payable
+$routes->get('accounts-payable', 'AccountsPayableController::index');
+$routes->get('accounts-payable/view/(:num)', 'AccountsPayableController::view/$1');
+$routes->post('accounts-payable/mark-paid/(:num)', 'AccountsPayableController::markAsPaid/$1');
+$routes->post('accounts-payable/update-due-date/(:num)', 'AccountsPayableController::updateDueDate/$1');
+
 $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');

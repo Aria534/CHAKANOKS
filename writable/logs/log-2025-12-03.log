@@ -424,3 +424,169 @@ DEBUG - 2025-12-03 16:58:44 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2025-12-03 16:58:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-12-03 16:58:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-12-03 16:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:10:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:10:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-03 17:10:44 --> mysqli_sql_exception: Unknown column 'po.payment_status' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`pu...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\AccountsPayableController.php(50): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\AccountsPayableController->index()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AccountsPayableController))
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-03 17:10:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.payment_status' in 'field list'
+[Method: GET, Route: accounts-payable]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`payment_due_date` ASC', [...], false)
+ 2 APPPATH\Controllers\AccountsPayableController.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AccountsPayableController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AccountsPayableController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-03 17:10:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'po.payment_status' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'delivered\'
+ORDER BY `po`.`payment_due_date` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'delivered\'
+ORDER BY `po`.`payment_due_date` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`payment_due_date` ASC', [...], false)
+ 4 APPPATH\Controllers\AccountsPayableController.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AccountsPayableController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AccountsPayableController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-03 17:10:44 --> [Caused by] mysqli_sql_exception: Unknown column 'po.payment_status' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'delivered\'
+ORDER BY `po`.`payment_due_date` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'delivered\'
+ORDER BY `po`.`payment_due_date` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = \'delivered\'
+ORDER BY `po`.`payment_due_date` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `po`.`purchase_order_id`, `po`.`po_number`, `po`.`total_amount`, `po`.`requested_date`, `po`.`actual_delivery_date`, `po`.`payment_status`, `po`.`payment_date`, `po`.`payment_due_date`, `b`.`branch_name`, `s`.`supplier_name`, `s`.`contact_person`, `s`.`phone`, DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue
+FROM `purchase_orders` `po`
+LEFT JOIN `branches` `b` ON `b`.`branch_id` = `po`.`branch_id`
+LEFT JOIN `suppliers` `s` ON `s`.`supplier_id` = `po`.`supplier_id`
+WHERE `po`.`status` = :po.status:
+ORDER BY `po`.`payment_due_date` ASC', [...], false)
+ 5 APPPATH\Controllers\AccountsPayableController.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AccountsPayableController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AccountsPayableController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-03 17:12:04 --> mysqli_sql_exception: Invalid default value for 'created_at' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\Chakanoks\app\Database\Migrations\2025-12-04-000001_AddAccountsPayableFields.php(112): CodeIgniter\Database\Forge->createTable('payment_logs', true)
+#5 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(876): App\Database\Migrations\AddAccountsPayableFields->up()
+#6 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-03 17:14:54 --> mysqli_sql_exception: Duplicate column name 'payment_status' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('ALTER TABLE `pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `pu...')
+#4 C:\xampp\htdocs\Chakanoks\app\Database\Migrations\2025-12-04-000001_AddAccountsPayableFields.php(54): CodeIgniter\Database\Forge->addColumn('purchase_orders', Array)
+#5 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(876): App\Database\Migrations\AddAccountsPayableFields->up()
+#6 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+DEBUG - 2025-12-03 17:15:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-03 17:21:00 --> mysqli_sql_exception: Duplicate column name 'payment_status' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('ALTER TABLE `pu...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `pu...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `pu...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `pu...')
+#4 C:\xampp\htdocs\Chakanoks\app\Database\Migrations\2025-12-04-000001_AddAccountsPayableFields.php(54): CodeIgniter\Database\Forge->addColumn('purchase_orders', Array)
+#5 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(876): App\Database\Migrations\AddAccountsPayableFields->up()
+#6 C:\xampp\htdocs\Chakanoks\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\Chakanoks\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\Chakanoks\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\Chakanoks\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\Chakanoks\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\Chakanoks\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+DEBUG - 2025-12-03 17:22:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:22:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-03 17:23:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

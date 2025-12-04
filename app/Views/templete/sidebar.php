@@ -84,6 +84,13 @@ $active = $active ?? '';
             </a>
         <?php endif; ?>
 
+        <!-- Accounts Payable -->
+        <?php if (in_array($role, ['central_admin','system_admin'])): ?>
+            <a href="<?= site_url('accounts-payable') ?>" class="<?= $active==='accounts_payable'?'active':'' ?>">
+                Accounts Payable
+            </a>
+        <?php endif; ?>
+
         <!-- Shipments -->
         <?php if ($role === 'logistics_coordinator'): ?>
             <a href="<?= site_url('shipments') ?>" class="<?= $active==='shipments'?'active':'' ?>">
