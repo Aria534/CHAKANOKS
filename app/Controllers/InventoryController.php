@@ -210,9 +210,9 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         $userRole = $session->get('role');
         $userId = $session->get('user_id');
         
-        // Only inventory_staff should access this dashboard
+        // For non-inventory staff, redirect to the main inventory page
         if ($userRole !== 'inventory_staff') {
-            return redirect()->to(site_url('dashboard'));
+            return redirect()->to(site_url('inventory'));
         }
         
         try {
