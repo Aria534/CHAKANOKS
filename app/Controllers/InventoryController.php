@@ -13,7 +13,7 @@ class InventoryController extends BaseController
      * @param int $userId Current user ID
      * @return string Rendered view
      */
-private function getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId)
+private function getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId, $activeState = 'inventory')
     {
         // Validate database connection
         if (!is_object($db)) {
@@ -134,6 +134,7 @@ private function getBranchInventoryView($db, $branchId, $allBranches, $userRole,
             'branches' => $allBranches,
             'selectedBranchId' => $branchId,
             'canSwitchBranches' => $canSwitch && count($allBranches) > 1,
+            'active' => $activeState,
         ]);
     }
 
@@ -145,7 +146,7 @@ private function getBranchInventoryView($db, $branchId, $allBranches, $userRole,
      * @param bool $isStaffView Whether this is for staff view
      * @return string Rendered view
      */
-private function getAggregatedInventoryView($db, $allBranches, $isStaffView = false)
+private function getAggregatedInventoryView($db, $allBranches, $isStaffView = false, $activeState = 'inventory')
     {
         // Make sure we have a valid database connection
         if (!is_object($db)) {
@@ -194,7 +195,114 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             'branches' => $allBranches,
             'selectedBranchId' => 0,
             'canSwitchBranches' => true,
+            'active' => $activeState,
         ]);
+    }
+
+    public function dashboard()
+    {
+        // Dashboard view for inventory_staff - shows summary and overview
+        $session = session();
+        if (!$session->has('role') || !$session->has('user_id')) {
+            return redirect()->to(site_url('login'))->with('error', 'Please login first');
+        }
+        
+        $userRole = $session->get('role');
+        $userId = $session->get('user_id');
+        
+        // Only inventory_staff should access this dashboard
+        if ($userRole !== 'inventory_staff') {
+            return redirect()->to(site_url('dashboard'));
+        }
+        
+        try {
+            $db = \Config\Database::connect();
+            
+            // Get user's assigned branch
+            $branch = $db->table('user_branches ub')
+                ->select('b.branch_id, b.branch_name')
+                ->join('branches b', 'b.branch_id = ub.branch_id')
+                ->where('ub.user_id', $userId)
+                ->orderBy('ub.user_branch_id', 'ASC')
+                ->get()
+                ->getRowArray();
+            
+            $branchId = $branch['branch_id'] ?? 0;
+            $branchName = $branch['branch_name'] ?? 'Not Assigned';
+            
+            if ($branchId === 0) {
+                return view('dashboard/inventory_staff_dashboard', [
+                    'branchName' => $branchName,
+                    'summary' => ['stock_value' => 0, 'low_stock_items' => 0, 'total_products' => 0],
+                    'pendingReceives' => 0,
+                    'lowStockItems' => [],
+                    'recentMovements' => [],
+                    'error' => 'No branch assigned to this user'
+                ]);
+            }
+            
+            // Get inventory summary
+            $summary = $db->table('inventory i')
+                ->select('SUM(i.current_stock * p.unit_price) as stock_value, COUNT(DISTINCT CASE WHEN i.available_stock <= p.minimum_stock THEN i.product_id END) as low_stock_items, COUNT(DISTINCT i.product_id) as total_products')
+                ->join('products p', 'p.product_id = i.product_id')
+                ->where('i.branch_id', $branchId)
+                ->get()
+                ->getRowArray();
+            
+            $summary = [
+                'stock_value' => (float)($summary['stock_value'] ?? 0),
+                'low_stock_items' => (int)($summary['low_stock_items'] ?? 0),
+                'total_products' => (int)($summary['total_products'] ?? 0)
+            ];
+            
+            // Pending receives (approved/ordered POs)
+            $pendingReceives = $db->table('purchase_orders')
+                ->where('branch_id', $branchId)
+                ->whereIn('status', ['approved', 'ordered'])
+                ->countAllResults();
+            
+            // Low stock items
+            $lowStockItems = $db->table('inventory i')
+                ->select('p.product_name, i.available_stock, p.minimum_stock')
+                ->join('products p', 'p.product_id = i.product_id')
+                ->where('i.branch_id', $branchId)
+                ->where('i.available_stock <= p.minimum_stock')
+                ->where('p.status', 'active')
+                ->orderBy('p.product_name', 'ASC')
+                ->limit(10)
+                ->get()
+                ->getResultArray();
+            
+            // Recent stock movements
+            $recentMovements = $db->table('stock_movements sm')
+                ->select('sm.created_at, sm.movement_type, p.product_name, sm.quantity, sm.notes')
+                ->join('products p', 'p.product_id = sm.product_id')
+                ->where('sm.branch_id', $branchId)
+                ->orderBy('sm.created_at', 'DESC')
+                ->limit(10)
+                ->get()
+                ->getResultArray();
+            
+            return view('dashboard/inventory_staff_dashboard', [
+                'branchName' => $branchName,
+                'summary' => $summary,
+                'pendingReceives' => $pendingReceives,
+                'lowStockItems' => $lowStockItems,
+                'recentMovements' => $recentMovements,
+                'error' => null
+            ]);
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Inventory Dashboard Error: ' . $e->getMessage());
+            return view('dashboard/inventory_staff_dashboard', [
+                'branchName' => 'Error',
+                'summary' => ['stock_value' => 0, 'low_stock_items' => 0, 'total_products' => 0],
+                'pendingReceives' => 0,
+                'lowStockItems' => [],
+                'recentMovements' => [],
+                'error' => 'Error loading dashboard data'
+            ]);
+        }
     }
 
     public function index()
@@ -215,6 +323,9 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         if (!in_array($userRole, ['inventory_staff', 'central_admin', 'system_admin', 'branch_manager', 'franchise_manager'])) {
             return redirect()->back()->with('error', 'You do not have permission to access this page');
         }
+        
+        // For inventory_staff, this is always the inventory page (not dashboard)
+        $activeState = 'inventory';
         $requestedBranchRaw = $this->request->getGet('branch_id');
         $requestedBranchId = is_numeric($requestedBranchRaw) ? (int) $requestedBranchRaw : 0;
         $requestedAll = (is_string($requestedBranchRaw) && strtolower($requestedBranchRaw) === 'all');
@@ -318,7 +429,8 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                             'products' => [],
                             'branchName' => 'Unknown Branch',
                             'branches' => $allBranches,
-                            'canSwitchBranches' => false
+                            'canSwitchBranches' => false,
+                            'active' => $activeState,
                         ]);
                     }
                     $branchId = (int)$branch['branch_id'];
@@ -330,7 +442,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 
                 // If 'all' is selected, show aggregated view for inventory_staff
                 if ($requestedAll && $userRole === 'inventory_staff') {
-                    return $this->getAggregatedInventoryView($db, $allBranches, true);
+                    return $this->getAggregatedInventoryView($db, $allBranches, true, $activeState);
                 }
             }
 
@@ -343,7 +455,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                     if ($branchId <= 0 && !empty($allBranches)) {
                         $branchId = (int)$allBranches[0]['branch_id'];
                     }
-                    return $this->getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId);
+                    return $this->getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId, $activeState);
                 }
                 
                 // For central admin, system admin, franchise manager or when viewing all branches
@@ -390,7 +502,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                         'branches' => $allBranches,
                         'selectedBranchId' => 0,
                         'canSwitchBranches' => $canSwitch,
-                        'active' => 'inventory',
+                        'active' => $activeState,
                     ]);
                 }
 
@@ -424,7 +536,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                     'inventory' => $inventory,
                     'branches' => $allBranches,
                     'products' => $products,
-                    'active' => 'inventory'
+                    'active' => $activeState
                 ]);
             }
 
@@ -508,7 +620,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'branches' => $allBranches,
                 'selectedBranchId' => $branchId,
                 'canSwitchBranches' => $canSwitch,
-                'active' => 'inventory',
+                'active' => $activeState,
             ]);
         }
 
@@ -542,7 +654,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             'inventory' => $inventory,
             'branches' => $allBranches,
             'products' => $products,
-            'active' => 'inventory'
+            'active' => $activeState
         ]);
     }
 

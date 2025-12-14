@@ -21,7 +21,7 @@ $routes->get('dashboard', 'Dashboard::index');
 $routes->get('dashboard/central', 'CentralDashboard::index');
 $routes->get('dashboard/branch-manager', 'BranchController::dashboard');
 $routes->get('dashboard/franchise', 'FranchiseDashboard::index');
-$routes->get('dashboard/inventory', 'InventoryController::index');
+$routes->get('dashboard/inventory', 'InventoryController::dashboard');
 $routes->get('dashboard/logistics', 'LogisticsDashboard::index');
 
 // Logistics Dashboard Routes

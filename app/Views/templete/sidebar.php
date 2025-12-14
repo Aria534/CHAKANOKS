@@ -18,7 +18,7 @@ $active = $active ?? '';
                 Dashboard
             </a>
         <?php elseif ($role === 'inventory_staff'): ?>
-            <a href="<?= site_url('dashboard/inventory') ?>" class="<?= $active==='inventory'?'active':'' ?>">
+            <a href="<?= site_url('dashboard/inventory') ?>" class="<?= $active==='dashboard'?'active':'' ?>">
                 Dashboard
             </a>
         <?php elseif ($role === 'logistics_coordinator'): ?>
@@ -79,7 +79,7 @@ $active = $active ?? '';
 
         <!-- Inventory -->
         <?php if (in_array($role, ['central_admin','system_admin', 'branch_manager', 'inventory_staff', 'franchise_manager'])): ?>
-            <a href="<?= site_url('dashboard/inventory') ?>" class="<?= $active==='inventory'?'active':'' ?>">
+            <a href="<?= $role === 'inventory_staff' ? site_url('inventory') : site_url('dashboard/inventory') ?>" class="<?= $active==='inventory'?'active':'' ?>">
                 Inventory
             </a>
         <?php endif; ?>
