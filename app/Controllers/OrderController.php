@@ -271,7 +271,7 @@ class OrderController extends BaseController
         $userId = (int) ($session->get('user_id') ?? 0);
         
         // Check authorization
-        if (!in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager'])) {
+        if (!in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager','logistics_coordinator'])) {
             return redirect()->to(site_url('/orders'))->with('error', 'Unauthorized access');
         }
         

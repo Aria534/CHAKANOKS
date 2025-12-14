@@ -1,496 +1,375 @@
-<?php /** Delivery Routes */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?= $title ?? 'Delivery Routes' ?> - ChakaNoks</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <?= view('templete/sidebar_styles') ?>
     <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            background-color: #f5f5f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            color: #503e2cff;
         }
-        .sidebar {
-            background-color: #1a1a1a;
-            color: #fff;
-            width: 220px;
-            position: fixed;
-            height: 100%;
-            padding: 20px 0;
-        }
-        .sidebar .logo {
-            color: #ff6b00;
-            font-size: 1.5rem;
-            font-weight: bold;
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
-        .sidebar nav a {
-            display: block;
-            color: #ccc;
-            padding: 10px 20px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .sidebar nav a:hover {
-            background-color: #333;
-            color: #fff;
-        }
-        .sidebar nav a.active {
-            background-color: #ff6b00;
-            color: white;
-        }
-        .main-content {
-            margin-left: 220px;
-            padding: 0;
-        }
-        .page-header {
-            background-color: #ff6b00;
-            color: white;
-            padding: 20px 30px;
+
+        .main-content { margin-left: 220px; padding: 2rem; }
+
+        .page-title { 
+            font-size:1.8rem; 
+            margin-bottom:1.5rem; 
+            font-weight:600; 
+            color:#fff;
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(183, 90, 3, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        .content-wrapper {
-            padding: 25px 30px;
-        }
-        .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .card-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            font-weight: 600;
-            background-color: #f9f9f9;
-        }
-        .card-body {
-            padding: 20px;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        .status-active {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .status-pending {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        .status-completed {
-            background-color: #e2e3e5;
-            color: #383d41;
-        }
-        .btn {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-        .btn-primary {
-            background-color: #ff6b00;
-            color: white;
-            border: 1px solid #e05d00;
-        }
-        .btn-primary:hover {
-            background-color: #e05d00;
-        }
-        .btn-sm {
-            padding: 4px 10px;
-            font-size: 0.85rem;
-        }
-        .action-btn {
-            color: #666;
-            margin: 0 5px;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-        .action-btn:hover {
-            color: #ff6b00;
-        }
-        #map {
-            height: 100%;
-            min-height: 400px;
-            border-radius: 8px;
-            z-index: 1;
-        }
+
         .route-card {
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: all 0.3s;
-            cursor: pointer;
+            background:#fff; 
+            border-radius:14px; 
+            box-shadow:0 2px 10px rgba(0,0,0,0.06); 
+            border:1px solid #e8e8e8;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .route-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .route-card.active {
-            border-color: #ff6b00;
-            background-color: #fff8f2;
+
+        .route-header {
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            color: white;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .route-header h5 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+
+        .route-info {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .route-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .route-body {
+            padding: 1.5rem;
+        }
+
+        .branch-details {
+            background: #fff3cd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #e0e7ff;
+            transition: all 0.2s;
+        }
+
+        .order-item:hover {
+            border-left-color: #3730a3;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .badge {
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-approved { background: #dbeafe; color: #1e40af; }
+        .badge-ordered { background: #e0e7ff; color: #3730a3; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(183, 90, 3, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(183, 90, 3, 0.35);
+        }
+
+        .btn-outline-primary {
+            background: #fff;
+            border: 1px solid #b75a03ff;
+            color: #b75a03ff;
+        }
+        .btn-outline-primary:hover {
+            background: #b75a03ff;
+            color: #fff;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-light {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-light:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-group-sm .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #999;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+
+        @media (max-width:768px) { 
+            .main-content { margin-left: 0; padding:1rem; }
+            .route-info { flex-direction: column; gap: 0.5rem; }
+            .page-title { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
     <?= view('templete/sidebar', ['active' => 'routes']) ?>
-    
+
     <div class="main-content">
-        <div class="page-header">
-            <h1 class="page-title">Delivery Routes</h1>
-            <div class="user-info flex items-center">
-                <span class="mr-4">Welcome, <?= session('username') ?? 'User' ?></span>
-                <a href="<?= site_url('logout') ?>" class="text-white hover:underline">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
+        <div class="page-title">
+            <span>🚛 Delivery Routes</span>
+            <span class="badge badge-warning">
+                <i class="fas fa-map-marked-alt me-1"></i>
+                <?= count($routes ?? []) ?> Active Routes
+            </span>
         </div>
 
-        <div class="content-wrapper">
-            <!-- Filters and Actions -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <input type="text" placeholder="Search routes..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                    </div>
-                    <select class="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>Planned</option>
-                        <option>Completed</option>
-                    </select>
-                    <select class="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                        <option>Today</option>
-                        <option>This Week</option>
-                        <option>This Month</option>
-                        <option>Custom Range</option>
-                    </select>
-                </div>
-                <a href="/routes/create" class="btn btn-primary">
-                    <i class="fas fa-plus mr-2"></i> New Route
-                </a>
+        <?php if(session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger alert-dismissible fade show">
+                <?= esc(session()->getFlashdata('error')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
+        <?php endif; ?>
+        
+        <?php if(session()->getFlashdata('success')): ?>
+            <div class="alert alert-success alert-dismissible fade show">
+                <?= esc(session()->getFlashdata('success')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Routes List -->
-                <div class="lg:col-span-1 space-y-4">
-                    <!-- Route Card 1 -->
-                    <div class="route-card active p-4 bg-white rounded-lg shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-semibold text-lg">Downtown Delivery</h3>
-                                <p class="text-sm text-gray-500">5 stops • 12.5 km • 45 min</p>
-                            </div>
-                            <span class="status-badge status-active">Active</span>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100">
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-user text-gray-400 w-5 mr-2"></i>
-                                <span>Driver: John D.</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-truck text-gray-400 w-5 mr-2"></i>
-                                <span>Vehicle: Truck #A-1234</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <i class="far fa-clock text-gray-400 w-5 mr-2"></i>
-                                <span>ETA: Today, 3:00 PM</span>
-                            </div>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between">
-                            <button class="text-xs text-orange-600 hover:text-orange-800">
-                                <i class="fas fa-map-marker-alt mr-1"></i> Track
-                            </button>
-                            <button class="text-xs text-blue-600 hover:text-blue-800">
-                                <i class="fas fa-route mr-1"></i> Optimize
-                            </button>
-                            <button class="text-xs text-green-600 hover:text-green-800">
-                                <i class="fas fa-edit mr-1"></i> Edit
-                            </button>
-                            <button class="text-xs text-red-600 hover:text-red-800">
-                                <i class="fas fa-stop-circle mr-1"></i> End
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Route Card 2 -->
-                    <div class="route-card p-4 bg-white rounded-lg shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-semibold text-lg">Uptown Delivery</h3>
-                                <p class="text-sm text-gray-500">3 stops • 8.2 km • 30 min</p>
-                            </div>
-                            <span class="status-badge status-pending">Planned</span>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100">
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-user text-gray-400 w-5 mr-2"></i>
-                                <span>Driver: Sarah M.</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-truck text-gray-400 w-5 mr-2"></i>
-                                <span>Vehicle: Van #B-5678</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <i class="far fa-calendar-alt text-gray-400 w-5 mr-2"></i>
-                                <span>Scheduled: Tomorrow, 9:00 AM</span>
-                            </div>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between">
-                            <button class="text-xs text-blue-600 hover:text-blue-800">
-                                <i class="fas fa-route mr-1"></i> Optimize
-                            </button>
-                            <button class="text-xs text-green-600 hover:text-green-800">
-                                <i class="fas fa-edit mr-1"></i> Edit
-                            </button>
-                            <button class="text-xs text-red-600 hover:text-red-800">
-                                <i class="fas fa-trash-alt mr-1"></i> Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Route Card 3 -->
-                    <div class="route-card p-4 bg-white rounded-lg shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-semibold text-lg">Westside Delivery</h3>
-                                <p class="text-sm text-gray-500">7 stops • 15.8 km • 1h 15min</p>
-                            </div>
-                            <span class="status-badge status-completed">Completed</span>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100">
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-user text-gray-400 w-5 mr-2"></i>
-                                <span>Driver: Mike R.</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600 mb-1">
-                                <i class="fas fa-truck text-gray-400 w-5 mr-2"></i>
-                                <span>Vehicle: Truck #C-9012</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <i class="far fa-check-circle text-green-500 w-5 mr-2"></i>
-                                <span>Completed: Today, 2:15 PM</span>
-                            </div>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between">
-                            <button class="text-xs text-blue-600 hover:text-blue-800">
-                                <i class="fas fa-redo mr-1"></i> Reuse
-                            </button>
-                            <button class="text-xs text-gray-600 hover:text-gray-800">
-                                <i class="fas fa-file-export mr-1"></i> Export
-                            </button>
-                            <button class="text-xs text-gray-600 hover:text-gray-800">
-                                <i class="fas fa-print mr-1"></i> Print
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Map View -->
-                <div class="lg:col-span-2">
-                    <div class="card h-full">
-                        <div class="card-header flex justify-between items-center">
-                            <h3>Route Map</h3>
-                            <div class="flex space-x-2">
-                                <button class="px-3 py-1 text-sm border rounded hover:bg-gray-50">
-                                    <i class="fas fa-layer-group mr-1"></i> Layers
-                                </button>
-                                <button class="px-3 py-1 text-sm border rounded hover:bg-gray-50">
-                                    <i class="fas fa-directions mr-1"></i> Directions
-                                </button>
-                                <button class="px-3 py-1 text-sm border rounded bg-orange-100 text-orange-600">
-                                    <i class="fas fa-sync-alt mr-1"></i> Live Update
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div id="map" class="rounded-lg"></div>
-                            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="bg-gray-50 p-3 rounded-lg">
-                                    <div class="text-sm text-gray-500">Total Distance</div>
-                                    <div class="font-semibold">12.5 km</div>
-                                </div>
-                                <div class="bg-gray-50 p-3 rounded-lg">
-                                    <div class="text-sm text-gray-500">Estimated Time</div>
-                                    <div class="font-semibold">45 min</div>
-                                </div>
-                                <div class="bg-gray-50 p-3 rounded-lg">
-                                    <div class="text-sm text-gray-500">Stops</div>
-                                    <div class="font-semibold">5/5 completed</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <?php if (empty($routes)): ?>
+            <div class="route-card">
+                <div class="empty-state">
+                    <i class="fas fa-route"></i>
+                    <h4>No Active Delivery Routes</h4>
+                    <p style="color:#888;">All deliveries have been completed or there are no pending orders.</p>
+                    <a href="<?= site_url('orders') ?>" class="btn btn-primary mt-3">
+                        <i class="fas fa-box me-2"></i>View All Orders
+                    </a>
                 </div>
             </div>
-
-            <!-- Stops List -->
-            <div class="card mt-6">
-                <div class="card-header">
-                    <h3>Stops List</h3>
+        <?php else: ?>
+            <?php foreach($routes as $route): ?>
+            <div class="route-card">
+                <div class="route-header" onclick="toggleRoute(<?= $route['branch_id'] ?>)">
+                    <div>
+                        <h5><i class="fas fa-building me-2"></i><?= esc($route['branch_name']) ?></h5>
+                        <div class="route-info">
+                            <div class="route-info-item">
+                                <i class="fas fa-box"></i>
+                                <span><?= $route['pending_orders'] ?> Pending Order<?= $route['pending_orders'] > 1 ? 's' : '' ?></span>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Earliest: <?= !empty($route['earliest_delivery']) ? date('M d, Y', strtotime($route['earliest_delivery'])) : 'Not set' ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-light btn-sm">
+                        <i class="fas fa-chevron-down" id="icon-<?= $route['branch_id'] ?>"></i>
+                    </button>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Main Warehouse</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1234 Logistics Way, City</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">(555) 123-4567</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Completed
+                <div class="route-body" id="route-<?= $route['branch_id'] ?>">
+                    <!-- Branch Contact Info -->
+                    <div class="branch-details">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong><i class="fas fa-map-marker-alt me-2"></i>Address:</strong>
+                                <p class="mb-0 ms-4"><?= esc($route['address']) ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong><i class="fas fa-phone me-2"></i>Contact:</strong>
+                                <p class="mb-0 ms-4"><?= esc($route['phone']) ?></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders for this route -->
+                    <h6 class="mb-3"><i class="fas fa-list-ul me-2"></i>Orders to Deliver:</h6>
+                    <?php if (!empty($route['orders'])): ?>
+                        <?php foreach($route['orders'] as $order): ?>
+                        <div class="order-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <div>
+                                    <strong><?= esc($order['po_number']) ?></strong>
+                                    <span class="badge badge-<?= esc($order['status']) ?> ms-2">
+                                        <?php
+                                        $statusLabels = [
+                                            'approved' => 'Approved',
+                                            'ordered' => 'In Transit'
+                                        ];
+                                        echo $statusLabels[$order['status']] ?? ucfirst($order['status']);
+                                        ?>
                                     </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                    <a href="#" class="text-green-600 hover:text-green-900">Call</a>
-                                </td>
-                            </tr>
-                            <!-- More stop rows... -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize map
-            const map = L.map('map').setView([51.505, -0.09], 13);
-            
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            // Add a marker
-            L.marker([51.5, -0.09]).addTo(map)
-                .bindPopup('Sample Location')
-                .openPopup();
-
-            // Add route line (sample data)
-            const route = L.polyline([
-                [51.5, -0.09],
-                [51.51, -0.1],
-                [51.52, -0.08]
-            ]).addTo(map);
-
-            // Fit bounds to show the entire route
-            map.fitBounds(route.getBounds());
-
-            // Handle route card clicks
-            document.querySelectorAll('.route-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    // Remove active class from all cards
-                    document.querySelectorAll('.route-card').forEach(c => {
-                        c.classList.remove('active');
-                    });
-                    // Add active class to clicked card
-                    this.classList.add('active');
-                    
-                    // Here you would update the map based on the selected route
-                    console.log('Selected route:', this.querySelector('h3').textContent);
-                });
-            });
-
-            console.log('Routes page initialized');
-        });
-    </script>
-</body>
-</html>
-            
-            <!-- Map View -->
-            <div class="lg:col-span-2">
-                <div class="bg-white rounded-lg shadow overflow-hidden">
-                    <div id="map" class="h-96 w-full"></div>
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-2">Route Details</h3>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex items-center">
-                                <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                                <span>Main Warehouse</span>
+                                </div>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="<?= site_url('logistics/track/' . $order['purchase_order_id']) ?>" 
+                                       class="btn btn-outline-primary" title="Track on Map">
+                                        <i class="fas fa-map-marked-alt"></i> Track on Map
+                                    </a>
+                                    <button class="btn btn-success" 
+                                            onclick="markDelivered(<?= $order['purchase_order_id'] ?>)"
+                                            title="Mark as Delivered">
+                                        <i class="fas fa-check"></i> Delivered
+                                    </button>
+                                </div>
                             </div>
-                            <div class="flex items-center ml-4">
-                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                                <span>1. Downtown Branch (2:00 PM)</span>
-                            </div>
-                            <div class="flex items-center ml-4">
-                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                                <span>2. Westside Branch (2:30 PM)</span>
-                            </div>
-                            <div class="flex items-center ml-4">
-                                <div class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
-                                <span>3. Uptown Branch (3:00 PM)</span>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <small style="color:#888;"><i class="fas fa-store me-1"></i>Supplier:</small>
+                                    <div><?= esc($order['supplier_name'] ?? 'N/A') ?></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <small style="color:#888;"><i class="fas fa-calendar me-1"></i>Expected Delivery:</small>
+                                    <div>
+                                        <?php if (!empty($order['expected_delivery_date'])): ?>
+                                            <?= date('M d, Y', strtotime($order['expected_delivery_date'])) ?>
+                                            <?php
+                                            $today = strtotime('today');
+                                            $expDate = strtotime($order['expected_delivery_date']);
+                                            if ($expDate < $today) {
+                                                echo '<span class="badge badge-danger ms-2">Overdue</span>';
+                                            }
+                                            ?>
+                                        <?php else: ?>
+                                            <span style="color:#999;">Not set</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <small style="color:#888;"><i class="fas fa-money-bill-wave me-1"></i>Amount:</small>
+                                    <div><strong>₱<?= number_format((float)$order['total_amount'], 2) ?></strong></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-center" style="color:#999; padding: 1.5rem;">No orders for this route</p>
+                    <?php endif; ?>
                 </div>
             </div>
-        </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Initialize map
-        const map = L.map('map').setView([14.5995, 120.9842], 13); // Default to Manila coordinates
-        
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        
-        // Sample route points (replace with actual coordinates)
-        const routePoints = [
-            [14.5995, 120.9842], // Start point
-            [14.6042, 120.9932], // Point 1
-            [14.6100, 120.9800], // Point 2
-            [14.6050, 120.9700]  // End point
-        ];
-        
-        // Draw the route line
-        L.polyline(routePoints, {color: 'blue'}).addTo(map);
-        
-        // Add markers for each point
-        routePoints.forEach((point, index) => {
-            L.marker(point).addTo(map)
-                .bindPopup(`Stop ${index + 1}`)
-                .openPopup();
-        });
-        
-        // Fit map to route bounds
-        map.fitBounds(L.latLngBounds(routePoints));
+        function toggleRoute(branchId) {
+            const routeBody = document.getElementById(`route-${branchId}`);
+            const icon = document.getElementById(`icon-${branchId}`);
+            
+            if (routeBody.style.display === 'none') {
+                routeBody.style.display = 'block';
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                routeBody.style.display = 'none';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-right');
+            }
+        }
+
+        function markDelivered(orderId) {
+            if (!confirm('Mark this order as delivered?')) return;
+
+            fetch(`<?= site_url('logistics/update-status/') ?>${orderId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: `status=delivered&actual_delivery_date=${new Date().toISOString().split('T')[0]}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the status');
+            });
+        }
     </script>
 </body>
 </html>

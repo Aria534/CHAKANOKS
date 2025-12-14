@@ -1,0 +1,1203 @@
+DEBUG - 2025-12-14 06:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:36:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:36:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:36:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:36:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:56:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 06:56:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 06:58:12 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'chakanoks_scms' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'chakanoks_scms', 3306, '', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\Chakanoks\app\Controllers\Auth.php(27): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\Auth->attemptLogin()
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'chakanoks_scms' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Chakanoks\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Chakanoks\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\Auth.php(27): CodeIgniter\BaseModel->first()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\Auth->attemptLogin()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-12-14 06:58:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'chakanoks_scms'
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(715): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\Auth.php(27): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->attemptLogin()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 06:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:07:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:12:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:13:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:13:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:14:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:18:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:34 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:35 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:35 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:35 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:36 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:36 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:36 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:36 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:36 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:36 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:37 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:37 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:37 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:37 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:38 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:38 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:38 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:38 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:39 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:39 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:39 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:39 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:41 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:41 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:43 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:43 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:46 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:46 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:47 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:47 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:47 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:47 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:49 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:49 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:50 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:50 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:50 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:50 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:18:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:18:52 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:18:52 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:02 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:03 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:03 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:03 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:03 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:03 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:04 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:04 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:04 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:04 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:04 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:04 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:05 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:05 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:05 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:05 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:06 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:06 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:08 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:08 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:09 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:09 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:10 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:10 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:11 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:11 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:12 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:12 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:13 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:13 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:15 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:15 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:17 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:17 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:18 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:18 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:19 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:19 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:19:21 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:19:21 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:19:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:20:28 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:20:28 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:20:30 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:20:30 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:20:49 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:20:49 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:20:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:21:26 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:21:26 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:21:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-14 07:21:30 --> mysqli_sql_exception: Unknown column 'p.unit' in 'field list' in C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Chakanoks\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `p`.`pro...', 0)
+#1 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `p`.`pro...')
+#2 C:\xampp\htdocs\Chakanoks\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `p`.`pro...')
+#3 C:\xampp\htdocs\Chakanoks\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `p`.`pro...', Array, false)
+#4 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(138): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Chakanoks\app\Controllers\FranchiseDashboard.php(35): App\Controllers\FranchiseDashboard->getLowStockItems()
+#6 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(933): App\Controllers\FranchiseDashboard->index()
+#7 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FranchiseDashboard))
+#8 C:\xampp\htdocs\Chakanoks\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Chakanoks\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Chakanoks\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Chakanoks\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-12-14 07:21:30 --> Franchise Dashboard Error: Unknown column 'p.unit' in 'field list'
+DEBUG - 2025-12-14 07:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:22:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:28:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:28:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:28:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:35:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 07:35:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:01:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:01:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:09:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:13:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:13:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:13:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:13:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:13:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:42:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:43:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:45:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:46:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:48:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:49:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:49:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:56:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:58:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 08:59:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:03:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 09:06:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -212,7 +212,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         $userId = $session->get('user_id');
         
         // Check if user has access to inventory
-        if (!in_array($userRole, ['inventory_staff', 'central_admin', 'system_admin', 'branch_manager'])) {
+        if (!in_array($userRole, ['inventory_staff', 'central_admin', 'system_admin', 'branch_manager', 'franchise_manager'])) {
             return redirect()->back()->with('error', 'You do not have permission to access this page');
         }
         $requestedBranchRaw = $this->request->getGet('branch_id');
@@ -296,7 +296,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         }
 
         // Filter inventory based on user role
-        if (in_array($userRole, ['inventory_staff', 'branch_manager', 'central_admin', 'system_admin']) || $requestedBranchId > 0 || $requestedAll) {
+        if (in_array($userRole, ['inventory_staff', 'branch_manager', 'central_admin', 'system_admin', 'franchise_manager']) || $requestedBranchId > 0 || $requestedAll) {
             // Resolve effective branch ID
             $branchId = 0;
             
@@ -324,8 +324,8 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                     $branchId = (int)$branch['branch_id'];
                 }
             }
-            // Allow switching via URL for central/system and inventory_staff
-            if (in_array($userRole, ['central_admin','system_admin','inventory_staff']) && ($requestedBranchId > 0 || $requestedAll)) {
+            // Allow switching via URL for central/system, inventory_staff, and franchise_manager
+            if (in_array($userRole, ['central_admin','system_admin','inventory_staff','franchise_manager']) && ($requestedBranchId > 0 || $requestedAll)) {
                 $branchId = $requestedBranchId;
                 
                 // If 'all' is selected, show aggregated view for inventory_staff
@@ -335,7 +335,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             }
 
             if ($branchId <= 0 || $requestedAll) {
-                $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff']);
+                $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff','franchise_manager']);
                 
                 // If no specific branch and not requesting all, show inventory staff their branch or central view
                 if ($userRole === 'inventory_staff' && !$requestedAll) {
@@ -346,8 +346,8 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                     return $this->getBranchInventoryView($db, $branchId, $allBranches, $userRole, $userId);
                 }
                 
-                // For central admin or when viewing all branches
-                if ($requestedAll || $userRole === 'central_admin' || $userRole === 'system_admin') {
+                // For central admin, system admin, franchise manager or when viewing all branches
+                if ($requestedAll || $userRole === 'central_admin' || $userRole === 'system_admin' || $userRole === 'franchise_manager') {
                     // Aggregated view for staff across all branches, but keep the same dashboard UI
                     $lowStockItems = $db->table('inventory i')
                         ->select('b.branch_name, p.product_name, i.available_stock, p.minimum_stock')
@@ -390,6 +390,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                         'branches' => $allBranches,
                         'selectedBranchId' => 0,
                         'canSwitchBranches' => $canSwitch,
+                        'active' => 'inventory',
                     ]);
                 }
 
@@ -422,13 +423,14 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 return view('dashboard/inventory', [
                     'inventory' => $inventory,
                     'branches' => $allBranches,
-                    'products' => $products
+                    'products' => $products,
+                    'active' => 'inventory'
                 ]);
             }
 
             $builder->where('i.branch_id', $branchId);
             $branchMeta = $db->table('branches')->select('branch_name')->where('branch_id', $branchId)->get()->getRowArray();
-            $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff']);
+            $canSwitch = in_array($userRole, ['central_admin','system_admin','inventory_staff','franchise_manager']);
             $allBranches = $canSwitch
                 ? $db->table('branches')->select('branch_id, branch_name')->orderBy('branch_name','ASC')->get()->getResultArray()
                 : [];
@@ -506,6 +508,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'branches' => $allBranches,
                 'selectedBranchId' => $branchId,
                 'canSwitchBranches' => $canSwitch,
+                'active' => 'inventory',
             ]);
         }
 
@@ -538,7 +541,8 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         return view('dashboard/inventory', [
             'inventory' => $inventory,
             'branches' => $allBranches,
-            'products' => $products
+            'products' => $products,
+            'active' => 'inventory'
         ]);
     }
 
@@ -547,7 +551,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         $session = session();
         $role = (string) ($session->get('role') ?? '');
         $userId = (int) ($session->get('user_id') ?? 0);
-        if (!in_array($role, ['inventory_staff','branch_manager','central_admin','system_admin'])) {
+        if (!in_array($role, ['inventory_staff','branch_manager','central_admin','system_admin','franchise_manager'])) {
             return redirect()->back()->with('error', 'Unauthorized access.');
         }
 

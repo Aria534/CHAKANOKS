@@ -28,6 +28,8 @@ $routes->get('dashboard/logistics', 'LogisticsDashboard::index');
 $routes->get('logistics', 'LogisticsDashboard::index');
 $routes->get('shipments', 'LogisticsDashboard::shipments');
 $routes->get('routes', 'LogisticsDashboard::routes');
+$routes->get('logistics/track/(:num)', 'LogisticsDashboard::trackShipment/$1');
+$routes->post('logistics/update-status/(:num)', 'LogisticsDashboard::updateDeliveryStatus/$1');
 
 
 $routes->get('franchise', 'FranchiseDashboard::index');

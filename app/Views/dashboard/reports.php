@@ -205,6 +205,32 @@
     <div class="main-content">
         <div class="page-title">Reports Dashboard</div>
 
+        <?php 
+        $role = (string)(session('role') ?? '');
+        $userId = (int)(session('user_id') ?? 0);
+        $branchName = null;
+        
+        // Get branch name for branch managers
+        if ($role === 'branch_manager') {
+            $db = \Config\Database::connect();
+            $branch = $db->table('user_branches ub')
+                ->select('b.branch_name')
+                ->join('branches b', 'b.branch_id = ub.branch_id')
+                ->where('ub.user_id', $userId)
+                ->orderBy('ub.user_branch_id', 'ASC')
+                ->get()
+                ->getRowArray();
+            $branchName = $branch['branch_name'] ?? 'Unknown Branch';
+        }
+        ?>
+
+        <?php if ($role === 'branch_manager' && $branchName): ?>
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>Branch Report:</strong> You are viewing reports for <strong><?= esc($branchName) ?></strong> only.
+            </div>
+        <?php endif; ?>
+
         <!-- Date Range Selector -->
         <div class="form-card">
             <h3 class="chart-title">Select Date Range</h3>
@@ -358,10 +384,15 @@
         const summary = report.summary || {};
         const data = report.data || [];
         
+        // Get branch name if exists (will be same for all items for branch managers)
+        const branchInfo = data.length > 0 && data[0].branch_name ? 
+            `<p class="text-muted"><strong>Branch:</strong> ${data[0].branch_name}</p>` : '';
+        
         let html = `
             <div class="mb-4">
                 <h4>${report.title}</h4>
                 <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+                ${branchInfo}
             </div>
             
             <!-- Summary Cards -->
@@ -407,7 +438,7 @@
                         <tr>
                             <th>Product</th>
                             <th>SKU</th>
-                            <th>Branch</th>
+                            ${!report.branch_filtered ? '<th>Branch</th>' : ''}
                             <th class="text-end">Current Stock</th>
                             <th class="text-end">Min Level</th>
                             <th class="text-end">Unit Price</th>
@@ -418,8 +449,10 @@
                     <tbody>
         `;
         
+        const colspan = report.branch_filtered ? '7' : '8';
+        
         if (data.length === 0) {
-            html += '<tr><td colspan="8" class="text-center text-muted">No inventory data available</td></tr>';
+            html += `<tr><td colspan="${colspan}" class="text-center text-muted">No inventory data available</td></tr>`;
         } else {
             data.forEach(item => {
                 const statusClass = item.status === 'Out of Stock' ? 'danger' : 
@@ -428,7 +461,7 @@
                     <tr>
                         <td>${item.product_name || 'N/A'}</td>
                         <td>${item.product_code || 'N/A'}</td>
-                        <td>${item.branch_name || 'N/A'}</td>
+                        ${!report.branch_filtered ? `<td>${item.branch_name || 'N/A'}</td>` : ''}
                         <td class="text-end">${item.current_stock || 0}</td>
                         <td class="text-end">${item.minimum_stock || 0}</td>
                         <td class="text-end">₱${formatNumber(item.unit_price || 0)}</td>
@@ -455,10 +488,15 @@
         const summary = report.summary || {};
         const data = report.data || [];
         
+        // Get branch name if exists (will be same for all items for branch managers)
+        const branchInfo = data.length > 0 && data[0].branch_name ? 
+            `<p class="text-muted"><strong>Branch:</strong> ${data[0].branch_name}</p>` : '';
+        
         let html = `
             <div class="mb-4">
                 <h4>${report.title}</h4>
                 <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+                ${branchInfo}
             </div>
             
             <!-- Summary Cards -->
@@ -497,7 +535,7 @@
                             <th>Date</th>
                             <th>Order ID</th>
                             <th>Product</th>
-                            <th>Branch</th>
+                            ${!report.branch_filtered ? '<th>Branch</th>' : ''}
                             <th class="text-end">Quantity</th>
                             <th class="text-end">Amount</th>
                         </tr>
@@ -505,8 +543,10 @@
                     <tbody>
         `;
         
+        const colspan = report.branch_filtered ? '5' : '6';
+        
         if (data.length === 0) {
-            html += '<tr><td colspan="6" class="text-center text-muted">No sales data available for this period</td></tr>';
+            html += `<tr><td colspan="${colspan}" class="text-center text-muted">No sales data available for this period</td></tr>`;
         } else {
             data.forEach(item => {
                 html += `
@@ -514,7 +554,7 @@
                         <td>${formatDate(item.date)}</td>
                         <td>${item.order_id || 'N/A'}</td>
                         <td>${item.product_name || 'N/A'}</td>
-                        <td>${item.branch_name || 'N/A'}</td>
+                        ${!report.branch_filtered ? `<td>${item.branch_name || 'N/A'}</td>` : ''}
                         <td class="text-end">${item.quantity || 0}</td>
                         <td class="text-end">₱${formatNumber(item.total_value || 0)}</td>
                     </tr>
@@ -539,10 +579,15 @@
         const data = report.data || [];
         const statusBreakdown = summary.status_breakdown || {};
         
+        // Get branch name if exists (will be same for all items for branch managers)
+        const branchInfo = data.length > 0 && data[0].branch_name ? 
+            `<p class="text-muted"><strong>Branch:</strong> ${data[0].branch_name}</p>` : '';
+        
         let html = `
             <div class="mb-4">
                 <h4>${report.title}</h4>
                 <p class="text-muted">${report.start_date} to ${report.end_date}</p>
+                ${branchInfo}
             </div>
             
             <!-- Summary Cards -->
@@ -603,7 +648,7 @@
                     <thead>
                         <tr>
                             <th>PO Number</th>
-                            <th>Branch</th>
+                            ${!report.branch_filtered ? '<th>Branch</th>' : ''}
                             <th>Supplier</th>
                             <th>Requested Date</th>
                             <th>Requested By</th>
@@ -614,8 +659,10 @@
                     <tbody>
         `;
         
+        const colspan = report.branch_filtered ? '6' : '7';
+        
         if (data.length === 0) {
-            html += '<tr><td colspan="7" class="text-center text-muted">No orders data available for this period</td></tr>';
+            html += `<tr><td colspan="${colspan}" class="text-center text-muted">No orders data available for this period</td></tr>`;
         } else {
             data.forEach(item => {
                 const status = item.status || 'pending';
@@ -630,7 +677,7 @@
                 html += `
                     <tr>
                         <td><strong>${item.po_number || 'N/A'}</strong></td>
-                        <td>${item.branch_name || 'N/A'}</td>
+                        ${!report.branch_filtered ? `<td>${item.branch_name || 'N/A'}</td>` : ''}
                         <td>${item.supplier_name || 'N/A'}</td>
                         <td>${formatDate(item.requested_date)}</td>
                         <td>${item.requested_by || 'N/A'}</td>

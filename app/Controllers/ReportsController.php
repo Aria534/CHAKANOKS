@@ -36,6 +36,26 @@ class ReportsController extends BaseController
         $endDate = $this->request->getGet('end_date') ?? date('Y-m-t');
         
         $db = \Config\Database::connect();
+        
+        // Get branch ID for branch managers
+        $branchId = null;
+        if ($role === 'branch_manager') {
+            $branch = $db->table('user_branches')
+                ->select('branch_id')
+                ->where('user_id', $userId)
+                ->orderBy('user_branch_id', 'ASC')
+                ->get()
+                ->getRowArray();
+            $branchId = (int)($branch['branch_id'] ?? 0);
+            
+            if ($branchId <= 0) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'error' => 'No branch assigned to this manager'
+                ]);
+            }
+        }
+        
         $reportData = [
             'type' => $type,
             'start_date' => $startDate,
@@ -48,15 +68,15 @@ class ReportsController extends BaseController
         try {
             switch ($type) {
                 case 'inventory':
-                    $reportData = $this->generateInventoryReport($db, $startDate, $endDate);
+                    $reportData = $this->generateInventoryReport($db, $startDate, $endDate, $branchId);
                     break;
                     
                 case 'sales':
-                    $reportData = $this->generateSalesReport($db, $startDate, $endDate);
+                    $reportData = $this->generateSalesReport($db, $startDate, $endDate, $branchId);
                     break;
                     
                 case 'orders':
-                    $reportData = $this->generateOrdersReport($db, $startDate, $endDate);
+                    $reportData = $this->generateOrdersReport($db, $startDate, $endDate, $branchId);
                     break;
                     
                 default:
@@ -75,10 +95,10 @@ class ReportsController extends BaseController
         return $this->response->setJSON($reportData);
     }
 
-    private function generateInventoryReport($db, $startDate, $endDate)
+    private function generateInventoryReport($db, $startDate, $endDate, $branchId = null)
     {
         // Get inventory data with product details
-        $inventory = $db->table('products p')
+        $builder = $db->table('products p')
             ->select('p.product_id, p.product_name, p.product_code, p.unit_price, p.minimum_stock,
                      b.branch_name,
                      COALESCE(i.current_stock, 0) as current_stock,
@@ -86,7 +106,14 @@ class ReportsController extends BaseController
                      (COALESCE(i.current_stock, 0) * p.unit_price) as stock_value')
             ->join('inventory i', 'i.product_id = p.product_id', 'left')
             ->join('branches b', 'b.branch_id = i.branch_id', 'left')
-            ->where('p.status', 'active')
+            ->where('p.status', 'active');
+        
+        // Filter by branch for branch managers
+        if ($branchId) {
+            $builder->where('i.branch_id', $branchId);
+        }
+        
+        $inventory = $builder
             ->orderBy('b.branch_name', 'ASC')
             ->orderBy('p.product_name', 'ASC')
             ->get()
@@ -112,12 +139,18 @@ class ReportsController extends BaseController
             }
         }
 
+        $branchName = '';
+        if ($branchId && !empty($inventory)) {
+            $branchName = $inventory[0]['branch_name'] ?? '';
+        }
+
         return [
             'type' => 'inventory',
-            'title' => 'Inventory Report',
+            'title' => $branchName ? "Inventory Report - $branchName" : 'Inventory Report',
             'start_date' => $startDate,
             'end_date' => $endDate,
             'generated_at' => date('Y-m-d H:i:s'),
+            'branch_filtered' => $branchId ? true : false,
             'data' => $inventory,
             'summary' => [
                 'total_products' => count($inventory),
@@ -128,10 +161,10 @@ class ReportsController extends BaseController
         ];
     }
 
-    private function generateSalesReport($db, $startDate, $endDate)
+    private function generateSalesReport($db, $startDate, $endDate, $branchId = null)
     {
         // Get stock movements (outgoing) within date range
-        $sales = $db->table('stock_movements sm')
+        $builder = $db->table('stock_movements sm')
             ->select('sm.created_at as date, sm.reference_id as order_id, 
                      p.product_name, sm.quantity, sm.total_value,
                      b.branch_name')
@@ -139,7 +172,14 @@ class ReportsController extends BaseController
             ->join('branches b', 'b.branch_id = sm.branch_id', 'left')
             ->where('sm.movement_type', 'out')
             ->where('DATE(sm.created_at) >=', $startDate)
-            ->where('DATE(sm.created_at) <=', $endDate)
+            ->where('DATE(sm.created_at) <=', $endDate);
+        
+        // Filter by branch for branch managers
+        if ($branchId) {
+            $builder->where('sm.branch_id', $branchId);
+        }
+        
+        $sales = $builder
             ->orderBy('sm.created_at', 'DESC')
             ->get()
             ->getResultArray();
@@ -153,12 +193,18 @@ class ReportsController extends BaseController
             $totalQuantity += (int)$sale['quantity'];
         }
 
+        $branchName = '';
+        if ($branchId && !empty($sales)) {
+            $branchName = $sales[0]['branch_name'] ?? '';
+        }
+
         return [
             'type' => 'sales',
-            'title' => 'Sales Report',
+            'title' => $branchName ? "Sales Report - $branchName" : 'Sales Report',
             'start_date' => $startDate,
             'end_date' => $endDate,
             'generated_at' => date('Y-m-d H:i:s'),
+            'branch_filtered' => $branchId ? true : false,
             'data' => $sales,
             'summary' => [
                 'total_transactions' => count($sales),
@@ -168,10 +214,10 @@ class ReportsController extends BaseController
         ];
     }
 
-    private function generateOrdersReport($db, $startDate, $endDate)
+    private function generateOrdersReport($db, $startDate, $endDate, $branchId = null)
     {
         // Get purchase orders within date range
-        $orders = $db->table('purchase_orders po')
+        $builder = $db->table('purchase_orders po')
             ->select('po.po_number, po.status, po.requested_date, po.approved_date, 
                      po.actual_delivery_date, po.total_amount,
                      b.branch_name, s.supplier_name,
@@ -180,7 +226,14 @@ class ReportsController extends BaseController
             ->join('suppliers s', 's.supplier_id = po.supplier_id', 'left')
             ->join('users u', 'u.user_id = po.requested_by', 'left')
             ->where('DATE(po.requested_date) >=', $startDate)
-            ->where('DATE(po.requested_date) <=', $endDate)
+            ->where('DATE(po.requested_date) <=', $endDate);
+        
+        // Filter by branch for branch managers
+        if ($branchId) {
+            $builder->where('po.branch_id', $branchId);
+        }
+        
+        $orders = $builder
             ->orderBy('po.requested_date', 'DESC')
             ->get()
             ->getResultArray();
@@ -203,12 +256,18 @@ class ReportsController extends BaseController
             $totalAmount += (float)$order['total_amount'];
         }
 
+        $branchName = '';
+        if ($branchId && !empty($orders)) {
+            $branchName = $orders[0]['branch_name'] ?? '';
+        }
+
         return [
             'type' => 'orders',
-            'title' => 'Purchase Orders Report',
+            'title' => $branchName ? "Purchase Orders Report - $branchName" : 'Purchase Orders Report',
             'start_date' => $startDate,
             'end_date' => $endDate,
             'generated_at' => date('Y-m-d H:i:s'),
+            'branch_filtered' => $branchId ? true : false,
             'data' => $orders,
             'summary' => [
                 'total_orders' => count($orders),

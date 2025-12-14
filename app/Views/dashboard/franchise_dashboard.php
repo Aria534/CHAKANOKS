@@ -218,12 +218,17 @@
         <div class="row g-4 mb-4">
             <div class="col-12 col-lg-6">
                 <div class="card h-100 fade-in" style="animation-delay: 0.2s">
-                    <div class="card-header">
-                        <h5><i class="fas fa-chart-pie me-2"></i>Category Distribution</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="categoryChart"></canvas>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Category Distribution</h5>
+                                <div class="chart-legend"></div>
+                            </div>
+                            <div class="card-body p-3">
+                                <div style="position: relative; height: 250px;">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -280,16 +285,50 @@
         const branchData = <?= json_encode($branchPerformance ?? []) ?>;
 
         const categoryCtx = document.getElementById('categoryChart').getContext('2d');
-        new Chart(categoryCtx, {
-            type: 'pie',
+        const categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
             data: {
                 labels: categoryData.map(d => d.category_name),
                 datasets: [{
                     data: categoryData.map(d => d.qty),
-                    backgroundColor: ['#9C27B0', '#2196F3', '#4CAF50', '#FF9800', '#F44336']
+                    backgroundColor: ['#9C27B0', '#2196F3', '#4CAF50', '#FF9800', '#F44336', '#00BCD4', '#FFC107', '#8BC34A', '#607D8B'],
+                    borderWidth: 1,
+                    weight: 1
                 }]
             },
-            options: { responsive: true, maintainAspectRatio: true }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            font: {
+                                size: 11
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: 10
+                }
+            }
         });
 
         const perfCtx = document.getElementById('performanceChart').getContext('2d');
