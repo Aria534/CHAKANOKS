@@ -201,7 +201,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
 
     public function dashboard()
     {
-        // Dashboard view for inventory_staff - shows summary and overview
+        // Dashboard view for inventory_staff - shows summary and overview for ALL BRANCHES
         $session = session();
         if (!$session->has('role') || !$session->has('user_id')) {
             return redirect()->to(site_url('login'))->with('error', 'Please login first');
@@ -218,34 +218,18 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         try {
             $db = \Config\Database::connect();
             
-            // Get user's assigned branch
-            $branch = $db->table('user_branches ub')
-                ->select('b.branch_id, b.branch_name')
-                ->join('branches b', 'b.branch_id = ub.branch_id')
-                ->where('ub.user_id', $userId)
-                ->orderBy('ub.user_branch_id', 'ASC')
+            // Get all branches for inventory staff
+            $allBranches = $db->table('branches')
+                ->select('branch_id, branch_name')
+                ->where('status', 'active')
+                ->orderBy('branch_name', 'ASC')
                 ->get()
-                ->getRowArray();
+                ->getResultArray();
             
-            $branchId = $branch['branch_id'] ?? 0;
-            $branchName = $branch['branch_name'] ?? 'Not Assigned';
-            
-            if ($branchId === 0) {
-                return view('dashboard/inventory_staff_dashboard', [
-                    'branchName' => $branchName,
-                    'summary' => ['stock_value' => 0, 'low_stock_items' => 0, 'total_products' => 0],
-                    'pendingReceives' => 0,
-                    'lowStockItems' => [],
-                    'recentMovements' => [],
-                    'error' => 'No branch assigned to this user'
-                ]);
-            }
-            
-            // Get inventory summary
+            // Get inventory summary for ALL BRANCHES
             $summary = $db->table('inventory i')
                 ->select('SUM(i.current_stock * p.unit_price) as stock_value, COUNT(DISTINCT CASE WHEN i.available_stock <= p.minimum_stock THEN i.product_id END) as low_stock_items, COUNT(DISTINCT i.product_id) as total_products')
                 ->join('products p', 'p.product_id = i.product_id')
-                ->where('i.branch_id', $branchId)
                 ->get()
                 ->getRowArray();
             
@@ -255,40 +239,41 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'total_products' => (int)($summary['total_products'] ?? 0)
             ];
             
-            // Pending receives (approved/ordered POs)
+            // Pending receives (approved/ordered POs) for ALL BRANCHES
             $pendingReceives = $db->table('purchase_orders')
-                ->where('branch_id', $branchId)
                 ->whereIn('status', ['approved', 'ordered'])
                 ->countAllResults();
             
-            // Low stock items
+            // Low stock items from ALL BRANCHES
             $lowStockItems = $db->table('inventory i')
-                ->select('p.product_name, i.available_stock, p.minimum_stock')
+                ->select('b.branch_name, p.product_name, i.available_stock, p.minimum_stock')
                 ->join('products p', 'p.product_id = i.product_id')
-                ->where('i.branch_id', $branchId)
+                ->join('branches b', 'b.branch_id = i.branch_id', 'left')
                 ->where('i.available_stock <= p.minimum_stock')
                 ->where('p.status', 'active')
+                ->orderBy('b.branch_name', 'ASC')
                 ->orderBy('p.product_name', 'ASC')
                 ->limit(10)
                 ->get()
                 ->getResultArray();
             
-            // Recent stock movements
+            // Recent stock movements from ALL BRANCHES
             $recentMovements = $db->table('stock_movements sm')
-                ->select('sm.created_at, sm.movement_type, p.product_name, sm.quantity, sm.notes')
+                ->select('sm.created_at, sm.movement_type, p.product_name, sm.quantity, sm.notes, b.branch_name')
                 ->join('products p', 'p.product_id = sm.product_id')
-                ->where('sm.branch_id', $branchId)
+                ->join('branches b', 'b.branch_id = sm.branch_id', 'left')
                 ->orderBy('sm.created_at', 'DESC')
                 ->limit(10)
                 ->get()
                 ->getResultArray();
             
             return view('dashboard/inventory_staff_dashboard', [
-                'branchName' => $branchName,
+                'branchName' => 'All Branches',
                 'summary' => $summary,
                 'pendingReceives' => $pendingReceives,
                 'lowStockItems' => $lowStockItems,
                 'recentMovements' => $recentMovements,
+                'allBranches' => $allBranches,
                 'error' => null
             ]);
             
@@ -300,6 +285,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'pendingReceives' => 0,
                 'lowStockItems' => [],
                 'recentMovements' => [],
+                'allBranches' => [],
                 'error' => 'Error loading dashboard data'
             ]);
         }

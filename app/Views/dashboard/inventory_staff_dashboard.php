@@ -254,9 +254,6 @@
                 <a href="<?= site_url('inventory?mode=add') ?>" class="btn-primary">
                     <i class="fas fa-plus me-1"></i> Add Stock
                 </a>
-                <a href="<?= site_url('inventory/scan') ?>" class="btn-primary">
-                    <i class="fas fa-barcode me-1"></i> Scan Barcode
-                </a>
             </div>
         </div>
 
@@ -272,6 +269,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Branch</th>
                             <th>Product</th>
                             <th>Available</th>
                             <th>Min Level</th>
@@ -281,6 +279,7 @@
                     <tbody>
                         <?php foreach($lowStockItems as $item): ?>
                         <tr>
+                            <td><strong><?= esc($item['branch_name'] ?? 'N/A') ?></strong></td>
                             <td><?= esc($item['product_name']) ?></td>
                             <td><?= esc($item['available_stock']) ?></td>
                             <td><?= esc($item['minimum_stock']) ?></td>
@@ -309,6 +308,7 @@
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Branch</th>
                             <th>Product</th>
                             <th>Type</th>
                             <th>Quantity</th>
@@ -319,6 +319,7 @@
                         <?php foreach($recentMovements as $movement): ?>
                         <tr>
                             <td><?= date('M d, Y H:i', strtotime($movement['created_at'])) ?></td>
+                            <td><strong><?= esc($movement['branch_name'] ?? 'N/A') ?></strong></td>
                             <td><?= esc($movement['product_name']) ?></td>
                             <td>
                                 <?php 
