@@ -115,10 +115,6 @@
                                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#createProductModal">
                                     <i class="fas fa-plus-circle"></i> Create Product
                                 </button>
-                                <a href="<?= site_url('inventory?mode=add' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
-                                   class="btn btn-info btn-sm">
-                                    <i class="fas fa-plus"></i> Add Stock
-                                </a>
                             <?php endif; ?>
                             <a href="<?= site_url('inventory?mode=adjust' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
                                class="btn btn-primary btn-sm">
@@ -274,36 +270,36 @@
                             </div>
                             
                             <!-- Product Details Display -->
-                            <div class="row mb-3" id="productDetails" style="display: none;">
+                            <div class="row mb-4 g-2" id="productDetails" style="display: none;">
                                 <div class="col-md-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
+                                    <div class="card bg-light" style="padding: 0;">
+                                        <div class="card-body" style="padding: 0.75rem;">
                                             <small class="text-muted">Product Code</small>
-                                            <p class="mb-0 fw-bold" id="productCode">-</p>
+                                            <p class="mb-0 fw-bold" id="productCode" style="font-size: 0.9rem;">-</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
+                                    <div class="card bg-light" style="padding: 0;">
+                                        <div class="card-body" style="padding: 0.75rem;">
                                             <small class="text-muted">Category</small>
-                                            <p class="mb-0 fw-bold" id="productCategory">-</p>
+                                            <p class="mb-0 fw-bold" id="productCategory" style="font-size: 0.9rem;">-</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
+                                    <div class="card bg-light" style="padding: 0;">
+                                        <div class="card-body" style="padding: 0.75rem;">
                                             <small class="text-muted">Supplier</small>
-                                            <p class="mb-0 fw-bold" id="productSupplier">-</p>
+                                            <p class="mb-0 fw-bold" id="productSupplier" style="font-size: 0.9rem;">-</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
+                                    <div class="card bg-light" style="padding: 0;">
+                                        <div class="card-body" style="padding: 0.75rem;">
                                             <small class="text-muted">Unit Price</small>
-                                            <p class="mb-0 fw-bold" id="productPrice">-</p>
+                                            <p class="mb-0 fw-bold" id="productPrice" style="font-size: 0.9rem;">-</p>
                                         </div>
                                     </div>
                                 </div>
@@ -624,4 +620,5 @@
     </script>
 </body>
 </html>
+
 

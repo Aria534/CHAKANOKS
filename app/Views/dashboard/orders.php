@@ -162,7 +162,7 @@
                                         <button class="btn btn-sm btn-warning">Send</button>
                                       </form>
                                     <?php endif; ?>
-                                    <?php if (in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager']) && in_array($o['status'], ['ordered','approved','pending','delivered'])): ?>
+                                    <?php if (in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager']) && $o['status'] === 'delivered'): ?>
                                       <?php 
                                         // Check if this order has already been received (has quantity_delivered)
                                         $hasBeenReceived = false;

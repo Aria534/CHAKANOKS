@@ -250,6 +250,33 @@
             <!-- Charts Section -->
             <div class="chart-card">
                 <div class="chart-title">📊 Shipment Status Distribution</div>
+                <!-- Status Cards -->
+                <div class="row g-2 mb-4" style="margin-bottom: 1.5rem;">
+                    <div class="col-md-4">
+                        <div class="status-card">
+                            <div class="status-count" style="color:#FF9800;"><?= $statusCounts['approved'] ?? 0 ?></div>
+                            <div class="status-label">
+                                <i class="fas fa-clock"></i> Approved
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="status-card">
+                            <div class="status-count" style="color:#0ea5e9;"><?= $statusCounts['ordered'] ?? 0 ?></div>
+                            <div class="status-label">
+                                <i class="fas fa-truck"></i> In Transit
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="status-card">
+                            <div class="status-count" style="color:#10b981;"><?= $statusCounts['delivered'] ?? 0 ?></div>
+                            <div class="status-label">
+                                <i class="fas fa-check-circle"></i> Delivered
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <canvas id="statusChart"></canvas>
             </div>
             <div class="chart-card">
@@ -433,3 +460,7 @@
     </script>
 </body>
 </html>
+
+
+
+

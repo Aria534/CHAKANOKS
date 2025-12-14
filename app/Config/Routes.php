@@ -77,6 +77,11 @@ $routes->post('/orders/(:num)/approve', 'OrderController::approve/$1');
 $routes->post('/orders/(:num)/send', 'OrderController::send/$1');
 $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');
 
+// Deliveries
+$routes->get('/deliveries', 'DeliveryController::index');
+$routes->get('/deliveries/view/(:num)', 'DeliveryController::view/$1');
+$routes->post('/deliveries/update-status', 'DeliveryController::updateStatus');
+
 // Manage Users
 $routes->get('/users', 'CentralDashboard::manageUsers');
 $routes->get('/users/create', 'CentralDashboard::createUser');

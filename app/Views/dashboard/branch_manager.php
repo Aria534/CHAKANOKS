@@ -520,8 +520,8 @@
                 labels: ['Pending', 'Approved', 'Delivered'],
                 datasets: [{
                     data: [poData.pending, poData.approved, poData.delivered],
-                    backgroundColor: ['#fef3c7', '#dbeafe', '#d1fae5'],
-                    borderColor: ['#92400e', '#1e40af', '#065f46'],
+                    backgroundColor: ['#FF9800', '#0ea5e9', '#10b981'],
+                    borderColor: ['#fff', '#fff', '#fff'],
                     borderWidth: 2
                 }]
             },
@@ -534,11 +534,17 @@
                         labels: {
                             padding: 15,
                             font: {
-                                size: 12
-                            }
+                                size: 12,
+                                weight: '600'
+                            },
+                            color: '#2c3e50'
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        titleFont: { size: 13, weight: 'bold' },
+                        bodyFont: { size: 12 },
                         callbacks: {
                             label: function(context) {
                                 const label = context.label || '';
@@ -555,3 +561,4 @@
     </script>
 </body>
 </html>
+

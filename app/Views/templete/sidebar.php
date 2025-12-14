@@ -77,6 +77,13 @@ $active = $active ?? '';
             </a>
         <?php endif; ?>
 
+        <!-- Deliveries (Branch Manager) -->
+        <?php if ($role === 'branch_manager'): ?>
+            <a href="<?= site_url('deliveries') ?>" class="<?= $active==='deliveries'?'active':'' ?>">
+                Deliveries
+            </a>
+        <?php endif; ?>
+
         <!-- Inventory -->
         <?php if (in_array($role, ['central_admin','system_admin', 'branch_manager', 'inventory_staff', 'franchise_manager'])): ?>
             <a href="<?= $role === 'inventory_staff' ? site_url('inventory') : site_url('dashboard/inventory') ?>" class="<?= $active==='inventory'?'active':'' ?>">
