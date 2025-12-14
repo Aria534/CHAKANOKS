@@ -110,10 +110,16 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Current Inventory</h5>
                         <div style="display: flex; gap: 0.5rem;">
-                            <a href="<?= site_url('inventory?mode=add' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
-                               class="btn btn-success btn-sm">
-                                <i class="fas fa-plus"></i> Add Stock
-                            </a>
+                            <?php $role = (string)(session('role') ?? ''); ?>
+                            <?php if (in_array($role, ['inventory_staff','central_admin','system_admin'])): ?>
+                                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#createProductModal">
+                                    <i class="fas fa-plus-circle"></i> Create Product
+                                </button>
+                                <a href="<?= site_url('inventory?mode=add' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                                   class="btn btn-info btn-sm">
+                                    <i class="fas fa-plus"></i> Add Stock
+                                </a>
+                            <?php endif; ?>
                             <a href="<?= site_url('inventory?mode=adjust' . (isset($_GET['branch_id']) ? '&branch_id=' . $_GET['branch_id'] : '')) ?>" 
                                class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i> Adjust Stock
@@ -143,14 +149,17 @@
                                     <?php if (!empty($branchInventory)): ?>
                                         <?php foreach($branchInventory as $item): ?>
                                             <?php 
+                                                $isOutOfStock = isset($item['available_stock']) && $item['available_stock'] == 0;
                                                 $isLowStock = isset($item['available_stock']) && 
                                                             isset($item['minimum_stock']) && 
-                                                            $item['available_stock'] <= $item['minimum_stock'];
+                                                            $item['available_stock'] <= $item['minimum_stock'] &&
+                                                            $item['available_stock'] > 0;
+                                                $rowClass = $isOutOfStock ? 'table-danger' : ($isLowStock ? 'table-warning' : '');
                                             ?>
-                                            <tr class="<?= $isLowStock ? 'table-warning' : '' ?>">
-                                                <td><?= esc($item['product_name'] ?? 'N/A') ?></td>
+                                            <tr class="<?= $rowClass ?>">
+                                                <td><?= esc($item['product_name'] ?? 'N/A') ?><?php if ($isOutOfStock): ?> <span class="badge bg-danger">Out of Stock</span><?php endif; ?></td>
                                                 <td class="text-end"><?= $item['current_stock'] ?? 0 ?></td>
-                                                <td class="text-end"><?= $item['available_stock'] ?? 0 ?></td>
+                                                <td class="text-end" style="<?= $isOutOfStock ? 'color: #dc3545; font-weight: bold;' : '' ?>"><?= $item['available_stock'] ?? 0 ?></td>
                                                 <td class="text-end"><?= $item['minimum_stock'] ?? 0 ?></td>
                                                 <td class="text-end">₱<?= number_format(($item['unit_price'] ?? 0), 2) ?></td>
                                                 <td class="text-end">₱<?= number_format(($item['stock_value'] ?? 0), 2) ?></td>
@@ -234,71 +243,130 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h5><?= $isAddMode ? 'Add Stock' : 'Adjust Stock' ?></h5>
-                <form method="post" action="<?= site_url('inventory/adjust') ?>">
-                    <?= csrf_field() ?>
-                    <?php if (!empty($selectedBranchId)): ?>
-                        <input type="hidden" name="branch_id" value="<?= (int)$selectedBranchId ?>">
-                    <?php endif; ?>
-                    <input type="hidden" name="mode" value="<?= esc($mode) ?>">
-                    <div class="mb-2">
-                        <label class="form-label">Product</label>
-                        <?php $selectedProductId = (int)($request->getGet('product_id') ?? 0); ?>
-                        <select name="product_id" class="form-select" required>
-                            <option value="">— select product —</option>
-                            <?php foreach(($products ?? []) as $p): ?>
-                                <option value="<?= (int)$p['product_id'] ?>" <?= $selectedProductId === (int)$p['product_id'] ? 'selected' : '' ?>>
-                                    <?= esc($p['product_name']) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="card-header">
+                        <h5 class="mb-0"><?= $isAddMode ? 'Add Stock' : 'Adjust Stock' ?></h5>
                     </div>
-                    <div class="mb-2">
-                        <label class="form-label">Quantity <?= $isAddMode ? '' : '(use negative to deduct)' ?></label>
-                        <input type="number" 
-                               class="form-control" 
-                               name="qty" 
-                               placeholder="<?= $isAddMode ? 'e.g., 100' : 'e.g., 5 or -2' ?>" 
-                               <?= $isAddMode ? 'min="1"' : '' ?>
-                               required>
-                        <?php if ($isAddMode): ?>
-                            <small class="text-muted">Enter the quantity to add to inventory</small>
-                        <?php endif; ?>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Reason <span class="text-muted">(Optional)</span></label>
-                        <select name="reason" class="form-select">
-                            <option value="">— select reason —</option>
-                            <?php if ($isAddMode): ?>
-                                <option value="New stock delivery">New stock delivery</option>
-                                <option value="Restocking">Restocking</option>
-                                <option value="Transfer from another branch">Transfer from another branch</option>
-                                <option value="Return from customer">Return from customer</option>
-                                <option value="Initial stock">Initial stock</option>
-                            <?php else: ?>
-                                <option value="Manual adjustment">Manual adjustment</option>
-                                <option value="Stock count correction">Stock count correction</option>
-                                <option value="Damaged goods">Damaged goods</option>
-                                <option value="Expired products">Expired products</option>
-                                <option value="Spoilage">Spoilage</option>
-                                <option value="Theft/Loss">Theft/Loss</option>
-                                <option value="Transfer to another branch">Transfer to another branch</option>
-                                <option value="Customer return">Customer return</option>
-                                <option value="Quality control rejection">Quality control rejection</option>
+                    <div class="card-body">
+                        <form method="post" action="<?= site_url('inventory/adjust') ?>">
+                            <?= csrf_field() ?>
+                            <?php if (!empty($selectedBranchId)): ?>
+                                <input type="hidden" name="branch_id" value="<?= (int)$selectedBranchId ?>">
                             <?php endif; ?>
-                            <option value="Other">Other</option>
-                        </select>
+                            <input type="hidden" name="mode" value="<?= esc($mode) ?>">
+                            
+                            <!-- Product Selection -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Product <span class="text-danger">*</span></label>
+                                <?php $selectedProductId = (int)($request->getGet('product_id') ?? 0); ?>
+                                <select name="product_id" class="form-select" required id="productSelect">
+                                    <option value="">— select product —</option>
+                                    <?php foreach(($products ?? []) as $p): ?>
+                                        <option value="<?= (int)$p['product_id'] ?>" 
+                                                data-category="<?= esc($p['category_name'] ?? 'N/A') ?>"
+                                                data-supplier="<?= esc($p['supplier_name'] ?? 'N/A') ?>"
+                                                data-price="<?= (float)($p['unit_price'] ?? 0) ?>"
+                                                data-code="<?= esc($p['product_code'] ?? '') ?>"
+                                                <?= $selectedProductId === (int)$p['product_id'] ? 'selected' : '' ?>>
+                                            <?= esc($p['product_name']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            
+                            <!-- Product Details Display -->
+                            <div class="row mb-3" id="productDetails" style="display: none;">
+                                <div class="col-md-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <small class="text-muted">Product Code</small>
+                                            <p class="mb-0 fw-bold" id="productCode">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <small class="text-muted">Category</small>
+                                            <p class="mb-0 fw-bold" id="productCategory">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <small class="text-muted">Supplier</small>
+                                            <p class="mb-0 fw-bold" id="productSupplier">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <small class="text-muted">Unit Price</small>
+                                            <p class="mb-0 fw-bold" id="productPrice">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Quantity Input -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Quantity <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" 
+                                           class="form-control" 
+                                           name="qty" 
+                                           id="qtyInput"
+                                           placeholder="<?= $isAddMode ? 'e.g., 100' : 'e.g., 5 or -2' ?>" 
+                                           <?= $isAddMode ? 'min="1"' : '' ?>
+                                           required>
+                                    <span class="input-group-text" id="totalValue">₱0.00</span>
+                                </div>
+                                <?php if ($isAddMode): ?>
+                                    <small class="text-muted">Enter the quantity to add to inventory</small>
+                                <?php else: ?>
+                                    <small class="text-muted">Use negative numbers to deduct stock</small>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <!-- Reason -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Reason <span class="text-muted">(Optional)</span></label>
+                                <select name="reason" class="form-select">
+                                    <option value="">— select reason —</option>
+                                    <?php if ($isAddMode): ?>
+                                        <option value="New stock delivery">New stock delivery</option>
+                                        <option value="Restocking">Restocking</option>
+                                        <option value="Transfer from another branch">Transfer from another branch</option>
+                                        <option value="Return from customer">Return from customer</option>
+                                        <option value="Initial stock">Initial stock</option>
+                                    <?php else: ?>
+                                        <option value="Manual adjustment">Manual adjustment</option>
+                                        <option value="Stock count correction">Stock count correction</option>
+                                        <option value="Damaged goods">Damaged goods</option>
+                                        <option value="Expired products">Expired products</option>
+                                        <option value="Spoilage">Spoilage</option>
+                                        <option value="Theft/Loss">Theft/Loss</option>
+                                        <option value="Transfer to another branch">Transfer to another branch</option>
+                                        <option value="Customer return">Customer return</option>
+                                        <option value="Quality control rejection">Quality control rejection</option>
+                                    <?php endif; ?>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+                                <button type="submit" class="btn btn-success" style="flex: 1;">
+                                    <i class="fas fa-check"></i> <?= $isAddMode ? 'Add Stock' : 'Apply Adjustment' ?>
+                                </button>
+                                <a href="<?= site_url('inventory' . (isset($_GET['branch_id']) ? '?branch_id=' . $_GET['branch_id'] : '')) ?>" 
+                                   class="btn btn-secondary">
+                                    <i class="fas fa-times"></i> Cancel
+                                </a>
+                            </div>
+                        </form>
                     </div>
-                    <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
-                        <button type="submit" class="btn btn-primary" style="flex: 1;">
-                            <?= $isAddMode ? 'Add Stock' : 'Apply Adjustment' ?>
-                        </button>
-                        <a href="<?= site_url('inventory' . (isset($_GET['branch_id']) ? '?branch_id=' . $_GET['branch_id'] : '')) ?>" 
-                           class="btn btn-secondary">
-                            Cancel
-                        </a>
-                    </div>
-                </form>
                 </div>
             </div>
         </div>
@@ -308,10 +376,69 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // If product is pre-selected, scroll to the adjustment form and focus quantity field
             const productSelect = document.querySelector('select[name="product_id"]');
             const qtyInput = document.querySelector('input[name="qty"]');
+            const productDetails = document.querySelector('#productDetails');
+            const productCode = document.querySelector('#productCode');
+            const productCategory = document.querySelector('#productCategory');
+            const productSupplier = document.querySelector('#productSupplier');
+            const productPrice = document.querySelector('#productPrice');
+            const totalValue = document.querySelector('#totalValue');
             
+            // Update product details when product is selected
+            if (productSelect) {
+                productSelect.addEventListener('change', function() {
+                    const selectedOption = this.options[this.selectedIndex];
+                    if (this.value) {
+                        const code = selectedOption.getAttribute('data-code');
+                        const category = selectedOption.getAttribute('data-category');
+                        const supplier = selectedOption.getAttribute('data-supplier');
+                        const price = parseFloat(selectedOption.getAttribute('data-price'));
+                        
+                        productCode.textContent = code || '-';
+                        productCategory.textContent = category || '-';
+                        productSupplier.textContent = supplier || '-';
+                        productPrice.textContent = '₱' + price.toFixed(2);
+                        
+                        if (productDetails) {
+                            productDetails.style.display = 'flex';
+                        }
+                        
+                        // Update total value when quantity changes
+                        if (qtyInput) {
+                            updateTotalValue(price);
+                        }
+                    } else {
+                        if (productDetails) {
+                            productDetails.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Trigger change event if product is pre-selected
+                if (productSelect.value) {
+                    productSelect.dispatchEvent(new Event('change'));
+                }
+            }
+            
+            // Update total value on quantity input
+            if (qtyInput && productSelect) {
+                qtyInput.addEventListener('input', function() {
+                    const selectedOption = productSelect.options[productSelect.selectedIndex];
+                    const price = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                    updateTotalValue(price);
+                });
+            }
+            
+            function updateTotalValue(unitPrice) {
+                if (qtyInput && totalValue) {
+                    const qty = parseInt(qtyInput.value) || 0;
+                    const total = qty * unitPrice;
+                    totalValue.textContent = '₱' + total.toFixed(2);
+                }
+            }
+            
+            // If product is pre-selected, scroll to the adjustment form and focus quantity field
             if (productSelect && productSelect.value) {
                 // Scroll to the adjustment form
                 const adjustForm = productSelect.closest('form');
@@ -337,5 +464,164 @@
             });
         });
     </script>
+
+    <!-- Create Product Modal -->
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%); color: white;">
+                    <h5 class="modal-title" id="createProductLabel"><i class="fas fa-plus-circle"></i> Create New Product</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <form method="post" action="<?= site_url('product/store') ?>" id="createProductForm">
+                        <?= csrf_field() ?>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Product Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="product_name" placeholder="e.g., Fresh Tomatoes" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Product Code</label>
+                                <input type="text" class="form-control" name="product_code" placeholder="e.g., PROD-001">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Unit Price (₱) <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="unit_price" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Description</label>
+                            <textarea class="form-control" name="description" rows="2" placeholder="Product description..."></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Category <span class="text-danger">*</span></label>
+                                <select class="form-select" name="category_id" required>
+                                    <option value="">— select category —</option>
+                                    <?php if (!empty($products)): ?>
+                                        <?php $db = db_connect(); $categories = $db->table('categories')->where('status', 'active')->get()->getResultArray(); ?>
+                                        <?php foreach($categories as $cat): ?>
+                                            <option value="<?= $cat['category_id'] ?>"><?= esc($cat['category_name']) ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Supplier <span class="text-danger">*</span></label>
+                                <select class="form-select" name="supplier_id" required>
+                                    <option value="">— select supplier —</option>
+                                    <?php if (!empty($products)): ?>
+                                        <?php $suppliers = $db->table('suppliers')->where('status', 'active')->get()->getResultArray(); ?>
+                                        <?php foreach($suppliers as $sup): ?>
+                                            <option value="<?= $sup['supplier_id'] ?>"><?= esc($sup['supplier_name']) ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Branch <span class="text-danger">*</span></label>
+                                <select class="form-select" name="branch_id" required>
+                                    <option value="">— select branch —</option>
+                                    <?php if (!empty($branches)): ?>
+                                        <?php foreach($branches as $branch): ?>
+                                            <?php if (strpos(strtolower($branch['branch_name']), 'central office') === false): ?>
+                                                <option value="<?= $branch['branch_id'] ?>"><?= esc($branch['branch_name']) ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Minimum Stock Level</label>
+                                <input type="number" class="form-control" name="minimum_stock" placeholder="10" min="0" value="10">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Initial Stock Quantity</label>
+                            <input type="number" class="form-control" name="initial_stock" placeholder="0" min="0" value="0">
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="is_perishable" id="isPerishableModal" value="1">
+                                <label class="form-check-label" for="isPerishableModal">This is a perishable product</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3" id="shelfLifeDivModal" style="display: none;">
+                            <label class="form-label fw-bold">Shelf Life (Days)</label>
+                            <input type="number" class="form-control" name="shelf_life_days" placeholder="e.g., 7" min="0">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="createProductForm" class="btn btn-success">
+                        <i class="fas fa-save"></i> Create Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const isPerishableCheckbox = document.getElementById('isPerishableModal');
+            const shelfLifeDiv = document.getElementById('shelfLifeDivModal');
+            const productNameInput = document.querySelector('input[name=product_name]');
+            const productCodeInput = document.querySelector('input[name=product_code]');
+            const categorySelect = document.querySelector('select[name=category_id]');
+            const supplierSelect = document.querySelector('select[name=supplier_id]');
+
+            // Category to Supplier mapping
+            const categorySupplierMap = {
+                '1': '1',  // Vegetables -> Fresh Produce Supply Co.
+                '2': '2',  // Beverages -> Beverage Solutions Inc.
+                '3': '3',  // Condiments -> Kitchen Essentials Supply
+                '4': '4',  // Spices -> Kitchen Essentials Supply
+                '5': '5',  // Dairy -> Dairy & Frozen Foods Co.
+                '6': '5',  // Frozen Foods -> Dairy & Frozen Foods Co.
+                '7': '2',  // Meat & Poultry -> Meat & Poultry Distributors
+            };
+
+            // Auto-generate product code based on category
+            if (categorySelect && productCodeInput) {
+                categorySelect.addEventListener('change', function() {
+                    const categoryId = this.value;
+                    const categoryName = this.options[this.selectedIndex].text;
+                    
+                    if (categoryId) {
+                        // Get current count of products in this category
+                        const categoryPrefix = categoryName.substring(0, 3).toUpperCase();
+                        const timestamp = Date.now().toString().slice(-4);
+                        const autoCode = categoryPrefix + '-' + timestamp;
+                        productCodeInput.value = autoCode;
+                        
+                        // Auto-select supplier based on category
+                        if (categorySupplierMap[categoryId]) {
+                            supplierSelect.value = categorySupplierMap[categoryId];
+                        }
+                    }
+                });
+            }
+
+            // Perishable checkbox handler
+            if (isPerishableCheckbox) {
+                isPerishableCheckbox.addEventListener('change', function() {
+                    shelfLifeDiv.style.display = this.checked ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+

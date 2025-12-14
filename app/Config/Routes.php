@@ -41,6 +41,8 @@ $routes->get('home', 'Home::index');
 
 $routes->get('/branches', 'BranchController::index');
 $routes->get('/products', 'ProductController::index');
+$routes->get('/product/create', 'ProductController::create');
+$routes->post('/product/store', 'ProductController::store');
 $routes->get('/suppliers', 'SupplierController::index');
 $routes->get('/suppliers/create', 'SupplierController::create');
 $routes->post('/suppliers/store', 'SupplierController::store');

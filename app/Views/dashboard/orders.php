@@ -117,6 +117,7 @@
                     <tr>
                         <th>ID</th>
                         <th>PO Number</th>
+                        <th>Products</th>
                         <th>Branch</th>
                         <th>Status</th>
                         <th>Total</th>
@@ -131,6 +132,7 @@
                         <tr>
                             <td><?= esc($o['purchase_order_id']) ?></td>
                             <td><?= esc($o['po_number']) ?></td>
+                            <td><?= esc($o['product_names'] ?? 'N/A') ?></td>
                             <td><?= esc($o['branch_name']) ?></td>
                             <td>
                               <?php
@@ -160,11 +162,30 @@
                                         <button class="btn btn-sm btn-warning">Send</button>
                                       </form>
                                     <?php endif; ?>
-                                    <?php if (in_array($role, ['central_admin','system_admin','inventory_staff']) && in_array($o['status'], ['ordered','approved','pending'])): ?>
-                                      <form method="post" action="<?= site_url('/orders/'.$o['purchase_order_id'].'/receive') ?>" onsubmit="return confirm('Receive and update inventory?')" style="display:inline;">
-                                        <?= csrf_field() ?>
-                                        <button class="btn btn-sm btn-primary">Receive</button>
-                                      </form>
+                                    <?php if (in_array($role, ['central_admin','system_admin','inventory_staff','branch_manager']) && in_array($o['status'], ['ordered','approved','pending','delivered'])): ?>
+                                      <?php 
+                                        // Check if this order has already been received (has quantity_delivered)
+                                        $hasBeenReceived = false;
+                                        if (!empty($o['purchase_order_id'])) {
+                                          $db = db_connect();
+                                          $receivedItems = $db->table('purchase_order_items')
+                                            ->where('purchase_order_id', $o['purchase_order_id'])
+                                            ->where('quantity_delivered > 0', null, false)
+                                            ->countAllResults();
+                                          $totalItems = $db->table('purchase_order_items')
+                                            ->where('purchase_order_id', $o['purchase_order_id'])
+                                            ->countAllResults();
+                                          $hasBeenReceived = ($receivedItems > 0 && $receivedItems === $totalItems);
+                                        }
+                                      ?>
+                                      <?php if (!$hasBeenReceived): ?>
+                                        <form method="post" action="<?= site_url('/orders/'.$o['purchase_order_id'].'/receive') ?>" onsubmit="return confirm('Receive and update inventory?')" style="display:inline;">
+                                          <?= csrf_field() ?>
+                                          <button class="btn btn-sm btn-primary">Receive</button>
+                                        </form>
+                                      <?php else: ?>
+                                        <span class="badge bg-success">Received</span>
+                                      <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                             </td>
@@ -172,7 +193,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="8" class="text-center text-muted">No orders found.</td>
+                            <td colspan="9" class="text-center text-muted">No orders found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProductSeeder');
         $this->call('UserBranchSeeder');
         $this->call('InventorySeeder');
+        $this->call('OutOfStockSeeder');
         $this->call('PurchaseOrderSeeder');
         $this->call('PurchaseOrderItemSeeder');
         $this->call('StockMovementSeeder');

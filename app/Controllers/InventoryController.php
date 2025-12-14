@@ -250,6 +250,20 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 ->join('products p', 'p.product_id = i.product_id')
                 ->join('branches b', 'b.branch_id = i.branch_id', 'left')
                 ->where('i.available_stock <= p.minimum_stock')
+                ->where('i.available_stock > 0')
+                ->where('p.status', 'active')
+                ->orderBy('b.branch_name', 'ASC')
+                ->orderBy('p.product_name', 'ASC')
+                ->limit(10)
+                ->get()
+                ->getResultArray();
+            
+            // Out of stock items from ALL BRANCHES
+            $outOfStockItems = $db->table('inventory i')
+                ->select('b.branch_name, p.product_name, i.available_stock, p.minimum_stock')
+                ->join('products p', 'p.product_id = i.product_id')
+                ->join('branches b', 'b.branch_id = i.branch_id', 'left')
+                ->where('i.available_stock', 0)
                 ->where('p.status', 'active')
                 ->orderBy('b.branch_name', 'ASC')
                 ->orderBy('p.product_name', 'ASC')
@@ -272,6 +286,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'summary' => $summary,
                 'pendingReceives' => $pendingReceives,
                 'lowStockItems' => $lowStockItems,
+                'outOfStockItems' => $outOfStockItems,
                 'recentMovements' => $recentMovements,
                 'allBranches' => $allBranches,
                 'error' => null
@@ -284,6 +299,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 'summary' => ['stock_value' => 0, 'low_stock_items' => 0, 'total_products' => 0],
                 'pendingReceives' => 0,
                 'lowStockItems' => [],
+                'outOfStockItems' => [],
                 'recentMovements' => [],
                 'allBranches' => [],
                 'error' => 'Error loading dashboard data'
@@ -649,7 +665,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         $session = session();
         $role = (string) ($session->get('role') ?? '');
         $userId = (int) ($session->get('user_id') ?? 0);
-        if (!in_array($role, ['inventory_staff','branch_manager','central_admin','system_admin','franchise_manager'])) {
+        if (!in_array($role, ['inventory_staff','branch_manager','central_admin','system_admin'])) {
             return redirect()->back()->with('error', 'Unauthorized access.');
         }
 
@@ -704,6 +720,11 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
         // If in "add" mode, ensure quantity is positive
         if ($mode === 'add' && $qty < 0) {
             return redirect()->to($redirectUrl)->with('error', 'Add Stock mode requires positive quantity. Use Adjust Stock for deductions.');
+        }
+        
+        // Only inventory_staff and central_admin can add new stock
+        if ($mode === 'add' && !in_array($role, ['inventory_staff','central_admin','system_admin'])) {
+            return redirect()->to($redirectUrl)->with('error', 'Only inventory staff and central admin can add new stock.');
         }
         
         if ($branchId <= 0) {

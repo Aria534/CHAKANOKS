@@ -295,6 +295,44 @@
             <?php endif; ?>
         </div>
 
+        <!-- Out of Stock Items -->
+        <div class="card">
+            <h5><i class="fas fa-ban me-2"></i>Out of Stock Items</h5>
+            <?php if (empty($outOfStockItems)): ?>
+                <div class="empty-state">
+                    <i class="fas fa-check-circle"></i>
+                    <p>No out of stock items</p>
+                </div>
+            <?php else: ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Product</th>
+                            <th>Available</th>
+                            <th>Min Level</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($outOfStockItems as $item): ?>
+                        <tr>
+                            <td><strong><?= esc($item['branch_name'] ?? 'N/A') ?></strong></td>
+                            <td><?= esc($item['product_name']) ?></td>
+                            <td><?= esc($item['available_stock']) ?></td>
+                            <td><?= esc($item['minimum_stock']) ?></td>
+                            <td>
+                                <span style="color: #DC3545; font-weight: 600;">
+                                    <i class="fas fa-times-circle"></i> Out of Stock
+                                </span>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+
         <!-- Recent Stock Movements -->
         <div class="card">
             <h5><i class="fas fa-history me-2"></i>Recent Stock Movements</h5>

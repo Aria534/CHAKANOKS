@@ -30,6 +30,19 @@ class OrderController extends BaseController
 
         $orders = $builder->orderBy('po.created_at', 'DESC')->get()->getResultArray();
 
+        // Add product names for each purchase order
+        foreach ($orders as &$order) {
+            $items = $db->table('purchase_order_items poi')
+                ->select('p.product_name')
+                ->join('products p', 'p.product_id = poi.product_id', 'left')
+                ->where('poi.purchase_order_id', $order['purchase_order_id'])
+                ->get()
+                ->getResultArray();
+            
+            $productNames = array_column($items, 'product_name');
+            $order['product_names'] = !empty($productNames) ? implode(', ', $productNames) : 'N/A';
+        }
+
         return view('dashboard/orders', ['orders' => $orders]);
     }
 
@@ -377,7 +390,7 @@ class OrderController extends BaseController
 
         $po = $poModel->find($id);
         if (!$po) return redirect()->back()->with('error', 'Order not found');
-        if (!in_array($po['status'], ['ordered','approved','pending'])) return redirect()->back()->with('error', 'Order is not in receivable state');
+        if (!in_array($po['status'], ['ordered','approved','pending','delivered'])) return redirect()->back()->with('error', 'Order is not in receivable state');
 
         // For branch_manager or inventory_staff, ensure the PO belongs to their branch
         if (in_array($role, ['branch_manager','inventory_staff'])) {
@@ -451,11 +464,14 @@ class OrderController extends BaseController
             ]);
         }
 
-        $poModel->update($id, [
-            'status' => 'delivered',
-            'actual_delivery_date' => date('Y-m-d'),
-            'updated_at' => $now,
-        ]);
+        // Only update status to delivered if not already delivered
+        if ($po['status'] !== 'delivered') {
+            $poModel->update($id, [
+                'status' => 'delivered',
+                'actual_delivery_date' => date('Y-m-d'),
+                'updated_at' => $now,
+            ]);
+        }
 
         return redirect()->to(site_url('/orders'))->with('success', 'Order received and inventory updated');
     }
