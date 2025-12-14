@@ -33,6 +33,7 @@ $routes->post('logistics/update-status/(:num)', 'LogisticsDashboard::updateDeliv
 
 
 $routes->get('franchise', 'FranchiseDashboard::index');
+$routes->get('franchise/export-branch-performance', 'FranchiseDashboard::exportBranchPerformance');
 
 
 // Optional Home

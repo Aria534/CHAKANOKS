@@ -250,7 +250,7 @@
         <div class="card fade-in" style="animation-delay: 0.4s">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5><i class="fas fa-table me-2"></i>Branch Performance Details</h5>
-                <button class="btn btn-sm btn-outline-primary">
+                <button class="btn btn-sm btn-outline-primary" id="exportBranchPerformance">
                     <i class="fas fa-download me-1"></i> Export
                 </button>
             </div>
@@ -344,6 +344,42 @@
             },
             options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } }
         });
+    </script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const exportBtn = document.getElementById('exportBranchPerformance');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', async function() {
+                const originalHtml = this.innerHTML;
+                this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Exporting...';
+                this.disabled = true;
+                
+                try {
+                    // Create a hidden iframe for the download
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    
+                    // Set iframe src to trigger the download
+                    iframe.src = '<?= site_url('franchise/export-branch-performance') ?>';
+                    
+                    // Remove the iframe after a delay
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        this.innerHTML = originalHtml;
+                        this.disabled = false;
+                    }, 3000);
+                    
+                } catch (error) {
+                    console.error('Export error:', error);
+                    alert('Error exporting data. Please try again.');
+                    this.innerHTML = originalHtml;
+                    this.disabled = false;
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>

@@ -1663,3 +1663,258 @@ DEBUG - 2025-12-14 11:45:26 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2025-12-14 11:45:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-12-14 11:45:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-12-14 11:45:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:11:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:14:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:15:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:15:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:15:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:16:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:16:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:20:18 --> Error: Class "TCPDF" not found
+[Method: GET, Route: reports/exportPdf/sales]
+in APPPATH\Libraries\PdfGenerator.php on line 23.
+ 1 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Sales Report', [...], [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('sales')
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:20:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:20:24 --> Error: Class "TCPDF" not found
+[Method: GET, Route: reports/exportPdf/inventory]
+in APPPATH\Libraries\PdfGenerator.php on line 23.
+ 1 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:20:28 --> Error: Class "TCPDF" not found
+[Method: GET, Route: reports/exportPdf/inventory]
+in APPPATH\Libraries\PdfGenerator.php on line 23.
+ 1 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:21:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:21:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:21:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:21:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:21:46 --> Error: Class "TCPDF" not found
+[Method: GET, Route: reports/exportPdf/sales]
+in APPPATH\Libraries\PdfGenerator.php on line 23.
+ 1 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Sales Report', [...], [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('sales')
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:21:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:24:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:24:02 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: reports/exportPdf/sales]
+in APPPATH\Libraries\PdfHandler.php on line 18.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Sales Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('sales')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:24:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:24:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-12-14 12:24:19 --> [DEPRECATED] Creation of dynamic property App\Libraries\PdfHandler::$config is deprecated in APPPATH\Libraries\PdfHandler.php on line 14.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Sales Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('sales')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-14 12:24:19 --> Error: Class "Dompdf\Options" not found
+[Method: GET, Route: reports/exportPdf/sales]
+in APPPATH\Libraries\PdfHandler.php on line 17.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Sales Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('sales')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:25:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:25:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-12-14 12:25:25 --> [DEPRECATED] Creation of dynamic property App\Libraries\PdfHandler::$config is deprecated in APPPATH\Libraries\PdfHandler.php on line 14.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-14 12:25:25 --> Error: Class "Dompdf\Options" not found
+[Method: GET, Route: reports/exportPdf/inventory]
+in APPPATH\Libraries\PdfHandler.php on line 17.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:25:58 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: reports/exportPdf/inventory]
+in APPPATH\Libraries\PdfHandler.php on line 18.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:25:58 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: reports/exportPdf/inventory]
+in APPPATH\Libraries\PdfHandler.php on line 18.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Inventory Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('inventory')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:26:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:26:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:26:03 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: reports/exportPdf/orders]
+in APPPATH\Libraries\PdfHandler.php on line 18.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Purchase Orders Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('orders')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:28:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-14 12:28:25 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: reports/exportPdf/orders]
+in APPPATH\Libraries\PdfHandler.php on line 18.
+ 1 APPPATH\Config\Services.php(36): App\Libraries\PdfHandler->__construct(Object(Config\Pdf))
+ 2 SYSTEMPATH\Config\BaseService.php(251): Config\Services::pdf(Object(Config\Pdf), false)
+ 3 APPPATH\Config\Services.php(32): CodeIgniter\Config\BaseService::getSharedInstance('pdf', null)
+ 4 SYSTEMPATH\Config\BaseService.php(321): Config\Services::pdf()
+ 5 SYSTEMPATH\Config\BaseService.php(202): CodeIgniter\Config\BaseService::__callStatic('pdf', [])
+ 6 SYSTEMPATH\Common.php(995): CodeIgniter\Config\BaseService::get('pdf')
+ 7 APPPATH\Libraries\PdfGenerator.php(24): service('pdf')
+ 8 APPPATH\Controllers\ReportsController.php(381): App\Libraries\PdfGenerator->__construct('Purchase Orders Report', [...], [...], [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReportsController->exportPdf('orders')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReportsController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-14 12:28:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:28:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:34:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:34:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-14 12:36:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
