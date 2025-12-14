@@ -305,6 +305,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
     let currentReportType = 'inventory';
     let currentReportData = null;
@@ -726,12 +727,23 @@
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
         
-        // In a real application, you would send this to a backend endpoint that generates a PDF
-        alert(`PDF export functionality:\n\nReport Type: ${currentReportType}\nDate Range: ${startDate} to ${endDate}\n\nThis would generate a downloadable PDF file in a production environment.`);
+        // Create a container for the PDF content
+        const element = document.getElementById('reportContent');
+        const filename = `${currentReportType}_report_${startDate}_to_${endDate}.pdf`;
         
-        // Uncomment this to implement actual PDF export via backend
-        // window.location.href = `<?= site_url('reports/exportPdf/') ?>${currentReportType}?start_date=${startDate}&end_date=${endDate}`;
+        // Configure html2pdf options
+        const opt = {
+            margin: 10,
+            filename: filename,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+        };
+        
+        // Generate and download PDF
+        html2pdf().set(opt).from(element).save();
     });
     </script>
 </body>
 </html>
+
