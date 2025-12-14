@@ -411,6 +411,58 @@ class ProductSeeder extends Seeder
                 'status' => 'active',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
+            ],
+            // Soft Drinks - Beverages Solutions Inc.
+            [
+                'product_name' => 'Coca Cola 1.5L',
+                'product_code' => 'BS005',
+                'barcode' => '423456789005',
+                'category_id' => $categories['Beverages'] ?? 1,
+                'supplier_id' => $suppliers['Beverage Solutions Inc.'] ?? 3,
+                'unit_of_measure' => 'bottles',
+                'unit_price' => 65.00,
+                'minimum_stock' => 50,
+                'maximum_stock' => 500,
+                'is_perishable' => false,
+                'shelf_life_days' => 365,
+                'description' => 'Coca Cola carbonated soft drink 1.5 liter bottle',
+                'status' => 'active',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'product_name' => 'Sprite 1.5L',
+                'product_code' => 'BS006',
+                'barcode' => '423456789006',
+                'category_id' => $categories['Beverages'] ?? 1,
+                'supplier_id' => $suppliers['Beverage Solutions Inc.'] ?? 3,
+                'unit_of_measure' => 'bottles',
+                'unit_price' => 65.00,
+                'minimum_stock' => 50,
+                'maximum_stock' => 500,
+                'is_perishable' => false,
+                'shelf_life_days' => 365,
+                'description' => 'Sprite lemon-lime flavored soft drink 1.5 liter bottle',
+                'status' => 'active',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'product_name' => 'Royal Orange 1.5L',
+                'product_code' => 'BS007',
+                'barcode' => '423456789007',
+                'category_id' => $categories['Beverages'] ?? 1,
+                'supplier_id' => $suppliers['Beverage Solutions Inc.'] ?? 3,
+                'unit_of_measure' => 'bottles',
+                'unit_price' => 60.00,
+                'minimum_stock' => 50,
+                'maximum_stock' => 500,
+                'is_perishable' => false,
+                'shelf_life_days' => 365,
+                'description' => 'Royal orange flavored soft drink 1.5 liter bottle',
+                'status' => 'active',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
 
@@ -429,3 +481,4 @@ class ProductSeeder extends Seeder
         }
     }
 }
+

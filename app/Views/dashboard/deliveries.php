@@ -6,6 +6,7 @@
     <title>Deliveries - ChakaNoks</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <?php echo view('templete/sidebar_styles'); ?>
     <style>
         .main-content { margin-left: 220px; padding: 2rem; }
@@ -119,9 +120,9 @@
                                                 <a href="<?php echo site_url('deliveries/view/' . $delivery['purchase_order_id']); ?>" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-eye"></i> View
                                                 </a>
-                                                <?php if ($delivery['status'] !== 'delivered'): ?>
-                                                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#updateStatusModal" data-id="<?php echo $delivery['purchase_order_id']; ?>" data-status="<?php echo $delivery['status']; ?>">
-                                                        <i class="fas fa-edit"></i> Update
+                                                <?php if (in_array($delivery['status'], ['ordered', 'in_transit'])): ?>
+                                                    <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#trackModal" data-id="<?php echo $delivery['purchase_order_id']; ?>">
+                                                        <i class="fas fa-map-location-dot"></i> Track
                                                     </button>
                                                 <?php endif; ?>
                                             </div>
@@ -142,44 +143,48 @@
         </div>
     </div>
 
-    <!-- Update Status Modal -->
-    <div class="modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Track Modal with Map -->
+    <div class="modal fade" id="trackModal" tabindex="-1" aria-labelledby="trackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background: linear-gradient(135deg, #b75a03ff 0%, #ff9320ff 100%); color: white;">
-                    <h5 class="modal-title" id="updateStatusLabel">Update Delivery Status</h5>
+                    <h5 class="modal-title" id="trackModalLabel">Track Delivery</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?php echo site_url('deliveries/update-status'); ?>" id="updateStatusForm">
-                        <?php echo csrf_field(); ?>
-                        <input type="hidden" name="purchase_order_id" id="updateId">
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">New Status <span class="text-danger">*</span></label>
-                            <select class="form-select" name="status" id="statusSelect" required>
-                                <option value="">— select status —</option>
-                                <option value="in_transit">In Transit</option>
-                                <option value="delivered">Delivered</option>
-                            </select>
+                    <div style="margin-bottom: 1rem;">
+                        <h6 style="margin: 0; color: #2c3e50;"><i class="fas fa-map-location-dot"></i> Delivery Tracking Map</h6>
+                    </div>
+                    <div id="trackingMap" style="width: 100%; height: 450px; border-radius: 8px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <div class="text-center">
+                            <i class="fas fa-map" style="font-size: 3rem; color: #b75a03ff; margin-bottom: 1rem;"></i>
+                            <p class="text-muted">Loading map...</p>
                         </div>
-
-                        <div class="mb-3" id="dateDiv" style="display: none;">
-                            <label class="form-label fw-bold">Delivery Date</label>
-                            <input type="date" class="form-control" name="delivery_date" id="deliveryDate">
+                    </div>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #666;">
+                        <i class="fas fa-info-circle" style="color: #b75a03ff; margin-right: 0.5rem;"></i>
+                        <span>Map shows the route from supplier to destination branch. <span style="color: #0066cc;">?</span> Supplier Location <span style="color: #cc0000;">?</span> Branch Destination</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <h6 class="mb-3" style="color: #2c3e50;">Delivery Information</h6>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8e8e8;">
+                                <span class="fw-bold">Status:</span>
+                                <span id="trackStatus">-</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8e8e8;">
+                                <span class="fw-bold">Expected Delivery:</span>
+                                <span id="trackExpectedDate">-</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span class="fw-bold">Current Location:</span>
+                                <span id="trackLocation">In Transit</span>
+                            </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Notes</label>
-                            <textarea class="form-control" name="notes" rows="3" placeholder="Add delivery notes..."></textarea>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" form="updateStatusForm" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Update Status
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -187,33 +192,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const updateStatusModal = document.getElementById('updateStatusModal');
-            const statusSelect = document.getElementById('statusSelect');
-            const dateDiv = document.getElementById('dateDiv');
-
-            if (updateStatusModal) {
-                updateStatusModal.addEventListener('show.bs.modal', function(event) {
-                    const button = event.relatedTarget;
-                    const id = button.getAttribute('data-id');
-                    const currentStatus = button.getAttribute('data-status');
-                    document.getElementById('updateId').value = id;
-                    statusSelect.value = '';
-                });
-            }
-
-            if (statusSelect) {
-                statusSelect.addEventListener('change', function() {
-                    dateDiv.style.display = this.value === 'delivered' ? 'block' : 'none';
-                    if (this.value === 'delivered') {
-                        document.getElementById('deliveryDate').required = true;
-                    } else {
-                        document.getElementById('deliveryDate').required = false;
-                    }
-                });
-            }
-
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {
                 setTimeout(function() {
@@ -221,7 +202,117 @@
                     bsAlert.close();
                 }, 5000);
             });
+
+            // Track Modal Handler
+            const trackModal = document.getElementById('trackModal');
+            if (trackModal) {
+                trackModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const orderId = button.getAttribute('data-id');
+                    
+                    // Fetch tracking data
+                    fetch('<?php echo site_url('deliveries/get-tracking/'); ?>' + orderId)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update info
+                            document.getElementById('trackStatus').textContent = data.status || '-';
+                            document.getElementById('trackExpectedDate').textContent = data.expected_date || '-';
+                            document.getElementById('trackLocation').textContent = data.location || 'In Transit';
+                            
+                            // Initialize map
+                            setTimeout(() => {
+                                initializeDeliveryMap(data);
+                            }, 300);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            document.getElementById('trackingMap').innerHTML = '<p style="text-align:center; padding:2rem; color:#666;">Unable to load map</p>';
+                        });
+                });
+            }
         });
+
+        function initializeDeliveryMap(data) {
+            const container = document.getElementById('trackingMap');
+            if (!container) return;
+
+            container.innerHTML = '';
+            container.style.height = '400px';
+            container.style.backgroundColor = '#f0f0f0';
+
+            // Check if Leaflet is loaded
+            if (typeof L === 'undefined') {
+                container.innerHTML = '<p style="text-align:center; padding:2rem; color:#666;">Map library not loaded</p>';
+                return;
+            }
+
+            try {
+                // Ensure data is valid
+                const supplierLat = parseFloat(data.supplier_lat) || 7.0500;
+                const supplierLng = parseFloat(data.supplier_lng) || 125.6000;
+                const branchLat = parseFloat(data.latitude) || 7.0731;
+                const branchLng = parseFloat(data.longitude) || 125.6121;
+
+                // Calculate center
+                const centerLat = (supplierLat + branchLat) / 2;
+                const centerLng = (supplierLng + branchLng) / 2;
+
+                // Create map
+                const map = L.map(container).setView([centerLat, centerLng], 11);
+
+                // Add tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '� OpenStreetMap',
+                    maxZoom: 19
+                }).addTo(map);
+
+                // Add supplier marker
+                L.circleMarker([supplierLat, supplierLng], {
+                    radius: 10,
+                    fillColor: '#0066cc',
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup('<b>Supplier</b><br>' + (data.supplier_name || 'Supplier'));
+
+                // Add branch marker
+                L.circleMarker([branchLat, branchLng], {
+                    radius: 10,
+                    fillColor: '#cc0000',
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup('<b>Delivery</b><br>' + (data.location || 'Branch'));
+
+                // Draw route line
+                L.polyline([
+                    [supplierLat, supplierLng],
+                    [branchLat, branchLng]
+                ], {
+                    color: '#0066cc',
+                    weight: 3,
+                    opacity: 0.7,
+                    dashArray: '5, 5'
+                }).addTo(map);
+
+            } catch (error) {
+                console.error('Map error:', error);
+                container.innerHTML = '<p style="text-align:center; padding:2rem; color:#666;">Error initializing map</p>';
+            }
+        }
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

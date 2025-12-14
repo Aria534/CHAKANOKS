@@ -80,6 +80,7 @@ $routes->post('/orders/(:num)/receive', 'OrderController::receive/$1');
 // Deliveries
 $routes->get('/deliveries', 'DeliveryController::index');
 $routes->get('/deliveries/view/(:num)', 'DeliveryController::view/$1');
+$routes->get('/deliveries/get-tracking/(:num)', 'DeliveryController::getTracking/$1');
 $routes->post('/deliveries/update-status', 'DeliveryController::updateStatus');
 
 // Manage Users
@@ -89,3 +90,4 @@ $routes->post('/users/create', 'CentralDashboard::createUser');
 $routes->get('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
 $routes->post('/users/edit/(:num)', 'CentralDashboard::editUser/$1');
 $routes->post('/users/delete/(:num)', 'CentralDashboard::deleteUser/$1');
+

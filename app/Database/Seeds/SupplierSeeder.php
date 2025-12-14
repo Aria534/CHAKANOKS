@@ -11,7 +11,7 @@ class SupplierSeeder extends Seeder
         $data = [
             [
                 'supplier_name' => 'Fresh Produce Supply Co.',
-                'contact_person' => 'Aira Verola',
+                'contact_person' => 'Lebron James',
                 'phone' => '+63 82 111-2222',
                 'email' => 'Aira@freshproduce.com',
                 'address' => '456 Market Street, Davao City, Philippines',
@@ -23,7 +23,7 @@ class SupplierSeeder extends Seeder
             ],
             [
                 'supplier_name' => 'Meat & Poultry Distributors',
-                'contact_person' => 'Jhondell Ranises',
+                'contact_person' => 'Stephen Curry',
                 'phone' => '+63 82 222-3333',
                 'email' => 'Jhondell@meatpoultry.com',
                 'address' => '789 Industrial Road, Davao City, Philippines',
@@ -35,7 +35,7 @@ class SupplierSeeder extends Seeder
             ],
             [
                 'supplier_name' => 'Beverage Solutions Inc.',
-                'contact_person' => 'Ralph Terrado',
+                'contact_person' => 'Jimmy Butler',
                 'phone' => '+63 82 333-4444',
                 'email' => 'Ralph@beveragesolutions.com',
                 'address' => '321 Commerce Avenue, Davao City, Philippines',
@@ -47,7 +47,7 @@ class SupplierSeeder extends Seeder
             ],
             [
                 'supplier_name' => 'Kitchen Essentials Supply',
-                'contact_person' => 'Mj Dimson',
+                'contact_person' => 'Micheal Jordan',
                 'phone' => '+63 82 444-5555',
                 'email' => 'Mj@kitchenessentials.com',
                 'address' => '654 Supply Chain Blvd, Davao City, Philippines',
@@ -59,7 +59,7 @@ class SupplierSeeder extends Seeder
             ],
             [
                 'supplier_name' => 'Dairy & Frozen Foods Co.',
-                'contact_person' => 'Mark Owen Lu',
+                'contact_person' => 'Kevin Durant',
                 'phone' => '+63 82 555-6666',
                 'email' => 'Mark@dairyfrozen.com',
                 'address' => '987 Cold Storage Complex, Davao City, Philippines',

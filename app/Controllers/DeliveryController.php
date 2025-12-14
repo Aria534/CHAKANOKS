@@ -15,6 +15,9 @@ class DeliveryController extends BaseController
 
         $db = db_connect();
 
+        // Setup map coordinates if not already done
+        $this->setupMapCoordinates($db);
+
         $branchId = $db->table('user_branches')
             ->select('branch_id')
             ->where('user_id', $userId)
@@ -146,4 +149,105 @@ class DeliveryController extends BaseController
 
         return redirect()->to(site_url('deliveries'))->with('success', 'Delivery status updated successfully!');
     }
+
+    public function getTracking($id)
+    {
+        $session = session();
+        $role = (string)($session->get('role') ?? '');
+
+        if ($role !== 'branch_manager') {
+            return response()->setJSON(['error' => 'Unauthorized access'], 403);
+        }
+
+        $db = db_connect();
+
+        $order = $db->table('purchase_orders po')
+            ->select('po.*, b.branch_name, b.latitude, b.longitude, s.supplier_name, s.latitude as supplier_lat, s.longitude as supplier_lng')
+            ->join('branches b', 'b.branch_id = po.branch_id')
+            ->join('suppliers s', 's.supplier_id = po.supplier_id')
+            ->where('po.purchase_order_id', (int)$id)
+            ->get()
+            ->getRowArray();
+
+        if (!$order) {
+            return response()->setJSON(['error' => 'Order not found'], 404);
+        }
+
+        // Map status to display text
+        $statusMap = [
+            'pending' => 'Pending',
+            'approved' => 'Approved',
+            'ordered' => 'In Transit',
+            'in_transit' => 'In Transit',
+            'delivered' => 'Delivered'
+        ];
+
+        // Use Davao coordinates as default if not set
+        $latitude = !empty($order['latitude']) ? (float)$order['latitude'] : 7.0731;
+        $longitude = !empty($order['longitude']) ? (float)$order['longitude'] : 125.6121;
+        $supplierLat = !empty($order['supplier_lat']) ? (float)$order['supplier_lat'] : 7.0731;
+        $supplierLng = !empty($order['supplier_lng']) ? (float)$order['supplier_lng'] : 125.6121;
+
+        return response()->setJSON([
+            'status' => $statusMap[$order['status']] ?? ucfirst($order['status']),
+            'expected_date' => !empty($order['expected_delivery_date']) ? date('M d, Y', strtotime($order['expected_delivery_date'])) : '-',
+            'location' => $order['branch_name'] ?? 'In Transit',
+            'supplier_name' => $order['supplier_name'] ?? 'Supplier',
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'supplier_lat' => $supplierLat,
+            'supplier_lng' => $supplierLng
+        ]);
+    }
+
+    private function setupMapCoordinates($db)
+    {
+        try {
+            // Add columns to suppliers if they don't exist
+            $result = $db->query("SHOW COLUMNS FROM suppliers LIKE 'latitude'");
+            if ($result->getNumRows() == 0) {
+                $db->query("ALTER TABLE suppliers ADD COLUMN latitude DECIMAL(10, 6) DEFAULT 7.0500");
+                $db->query("ALTER TABLE suppliers ADD COLUMN longitude DECIMAL(10, 6) DEFAULT 125.6000");
+            }
+
+            // Add columns to branches if they don't exist
+            $result = $db->query("SHOW COLUMNS FROM branches LIKE 'latitude'");
+            if ($result->getNumRows() == 0) {
+                $db->query("ALTER TABLE branches ADD COLUMN latitude DECIMAL(10, 6) DEFAULT 7.0731");
+                $db->query("ALTER TABLE branches ADD COLUMN longitude DECIMAL(10, 6) DEFAULT 125.6121");
+            }
+
+            // Update suppliers with different Davao locations
+            $suppliers = [
+                'Fresh Produce Supply Co.' => ['lat' => 7.0500, 'lng' => 125.6000],
+                'Meat & Poultry Distributors' => ['lat' => 7.0800, 'lng' => 125.6200],
+                'Beverage Solutions Inc.' => ['lat' => 7.0600, 'lng' => 125.6100],
+                'Kitchen Essentials Supply' => ['lat' => 7.0700, 'lng' => 125.5900],
+                'Dairy & Frozen Foods Co.' => ['lat' => 7.0900, 'lng' => 125.6300]
+            ];
+
+            foreach ($suppliers as $name => $coords) {
+                $db->table('suppliers')
+                    ->where('supplier_name', $name)
+                    ->update([
+                        'latitude' => $coords['lat'],
+                        'longitude' => $coords['lng']
+                    ]);
+            }
+
+            // Update all branches with Davao coordinates
+            $db->table('branches')->update([
+                'latitude' => 7.0731,
+                'longitude' => 125.6121
+            ]);
+        } catch (\Exception $e) {
+            // Silently fail if setup fails
+            log_message('error', 'Map setup error: ' . $e->getMessage());
+        }
+    }
 }
+
+
+
+
+
