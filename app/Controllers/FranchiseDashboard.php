@@ -58,7 +58,7 @@ class FranchiseDashboard extends BaseController
                 ->get()
                 ->getResultArray();
 
-            return view('dashboard/franchise_dashboard', [
+            return view('dashboard/franchise_manager/franchise_dashboard', [
                 'totalBranches' => $totalBranches,
                 'totalInventoryValue' => $totalInventoryValue['total_value'] ?? 0,
                 'totalOrders' => $totalOrders,

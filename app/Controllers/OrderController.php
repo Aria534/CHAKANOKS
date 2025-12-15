@@ -43,7 +43,7 @@ class OrderController extends BaseController
             $order['product_names'] = !empty($productNames) ? implode(', ', $productNames) : 'N/A';
         }
 
-        return view('dashboard/orders', ['orders' => $orders]);
+        return view('dashboard/branch_manager/orders', ['orders' => $orders]);
     }
 
     public function create()
@@ -90,7 +90,7 @@ class OrderController extends BaseController
             $branches = $db->table('branches')->select('branch_id, branch_name')->orderBy('branch_name')->get()->getResultArray();
         }
 
-        return view('dashboard/orders_create', compact('branches','suppliers','products','selectedBranchId'));
+        return view('dashboard/branch_manager/orders_create', compact('branches','suppliers','products','selectedBranchId'));
     }
 
     public function store()
@@ -328,7 +328,7 @@ class OrderController extends BaseController
             ->get()
             ->getResultArray();
         
-        return view('dashboard/order_view', [
+        return view('dashboard/branch_manager/order_view', [
             'po' => $po,
             'items' => $items,
             'userRole' => $role

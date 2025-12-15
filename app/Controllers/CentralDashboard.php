@@ -145,7 +145,7 @@ class CentralDashboard extends BaseController {
         }
 
         // Pass data to view
-        return view('dashboard/central_admin', [
+        return view('dashboard/central_office/central_admin', [
             'stockValue'    => $stockValue,
             'lowStock'      => $lowStock,
             'pendingOrders' => $pendingOrders,
@@ -184,7 +184,7 @@ class CentralDashboard extends BaseController {
             $users = $usersArray;
         }
 
-        return view('dashboard/manage_users', [
+        return view('dashboard/central_office/manage_users', [
             'users' => $users
         ]);
     }
@@ -215,7 +215,7 @@ class CentralDashboard extends BaseController {
             }
         }
 
-        return view('dashboard/create_user');
+        return view('dashboard/central_office/create_user');
     }
 
     public function editUser($userId = null) {
@@ -281,7 +281,7 @@ class CentralDashboard extends BaseController {
             }
         }
 
-        return view('dashboard/edit_user', ['user' => $user]);
+        return view('dashboard/central_office/edit_user', ['user' => $user]);
     }
 
     public function deleteUser($userId = null) {

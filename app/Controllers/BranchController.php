@@ -14,7 +14,7 @@ class BranchController extends BaseController
             ->get()
             ->getResultArray();
 
-        return view('dashboard/branches', ['branches' => $branches]);
+        return view('dashboard/shared/branches', ['branches' => $branches]);
     }
 
     public function dashboard()
@@ -47,7 +47,7 @@ class BranchController extends BaseController
             // Default branch_id if none found
             $branchId = $branch['branch_id'] ?? 0;
             if ($branchId === 0) {
-                return view('dashboard/branch_manager', [
+                return view('dashboard/branch_manager/branch_manager', [
                     'branch' => ['branch_name' => 'Not Assigned', 'manager_name' => session()->get('username')],
                     'summary' => ['stock_value' => 0, 'low_stock_items' => 0],
                     'pendingPOs' => 0,
@@ -118,7 +118,7 @@ class BranchController extends BaseController
                 log_message('error', 'Error fetching recent stock movements: ' . $e->getMessage());
             }
 
-            return view('dashboard/branch_manager', [
+            return view('dashboard/branch_manager/branch_manager', [
                 'branch' => $branch,
                 'summary' => $summary,
                 'pendingPOs' => $pendingPOs,
@@ -131,7 +131,7 @@ class BranchController extends BaseController
         } catch (\Exception $e) {
             log_message('error', 'Error in BranchController::dashboard: ' . $e->getMessage());
             
-            return view('dashboard/branch_manager', [
+            return view('dashboard/branch_manager/branch_manager', [
                 'branch' => ['branch_name' => 'Error', 'manager_name' => 'Error'],
                 'summary' => ['stock_value' => 0, 'low_stock_items' => 0],
                 'pendingPOs' => 0,

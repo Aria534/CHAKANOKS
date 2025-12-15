@@ -88,7 +88,7 @@ class LogisticsDashboard extends BaseController
                 'routeEfficiency' => $routeEfficiency,
             ];
 
-            return view('dashboard/logistics_dashboard', $data);
+            return view('dashboard/logistics_coordinator/logistics_dashboard', $data);
         } catch (\Exception $e) {
             log_message('error', 'Logistics Dashboard Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error loading logistics dashboard');
@@ -119,7 +119,7 @@ class LogisticsDashboard extends BaseController
                 'shipments' => $shipments
             ];
 
-            return view('dashboard/shipments', $data);
+            return view('dashboard/logistics_coordinator/shipments', $data);
         } catch (\Exception $e) {
             log_message('error', 'Shipments Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error loading shipments');
@@ -165,7 +165,7 @@ class LogisticsDashboard extends BaseController
                 'routes' => $routes
             ];
 
-            return view('dashboard/routes', $data);
+            return view('dashboard/logistics_coordinator/routes', $data);
         } catch (\Exception $e) {
             log_message('error', 'Routes Error: ' . $e->getMessage());
             log_message('error', 'Stack trace: ' . $e->getTraceAsString());
@@ -256,7 +256,7 @@ class LogisticsDashboard extends BaseController
                 'items' => $items
             ];
 
-            return view('dashboard/track_shipment', $data);
+            return view('dashboard/logistics_coordinator/track_shipment', $data);
         } catch (\Exception $e) {
             log_message('error', 'Track Shipment Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error tracking shipment');

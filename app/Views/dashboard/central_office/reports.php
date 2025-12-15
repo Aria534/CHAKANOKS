@@ -235,6 +235,30 @@
         <div class="form-card">
             <h3 class="chart-title">Select Date Range</h3>
             <form id="reportForm" class="row g-3">
+                <?php if (in_array($role, ['central_admin', 'system_admin'])): ?>
+                <div class="col-md-3">
+                    <label for="branchSelect" class="form-label">Branch</label>
+                    <select id="branchSelect" name="branch_id" class="form-select">
+                        <option value="">All Branches</option>
+                        <?php foreach ($branches as $branch): ?>
+                            <option value="<?= $branch['branch_id'] ?>"><?= esc($branch['branch_name']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" id="startDate" name="start_date" class="form-control" 
+                           value="<?= date('Y-m-01') ?>">
+                </div>
+                <div class="col-md-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" id="endDate" name="end_date" class="form-control" 
+                           value="<?= date('Y-m-t') ?>">
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Generate Report</button>
+                </div>
+                <?php else: ?>
                 <div class="col-md-4">
                     <label for="startDate" class="form-label">Start Date</label>
                     <input type="date" id="startDate" name="start_date" class="form-control" 
@@ -248,6 +272,7 @@
                 <div class="col-md-4 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary w-100">Generate Report</button>
                 </div>
+                <?php endif; ?>
             </form>
         </div>
 
@@ -336,9 +361,19 @@
         // Scroll to report output
         reportOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         
-        // Fetch report data from server
-        const url = `<?= site_url('reports/generate/') ?>${type}?start_date=${startDate}&end_date=${endDate}`;
+        // Build URL with parameters
+        let url = `<?= site_url('reports/generate/') ?>${type}?start_date=${startDate}&end_date=${endDate}`;
         
+        // Add branch_id if selected
+        const branchSelect = document.getElementById('branchSelect');
+        if (branchSelect) {
+            const branchId = branchSelect.value;
+            if (branchId) {
+                url += `&branch_id=${branchId}`;
+            }
+        }
+        
+        // Fetch report data from server
         fetch(url)
             .then(response => response.json())
             .then(data => {

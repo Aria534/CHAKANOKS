@@ -16,13 +16,13 @@ class SupplierController extends BaseController
     public function index()
     {
         $suppliers = $this->supplierModel->orderBy('supplier_id', 'DESC')->findAll();
-        return view('dashboard/suppliers', ['suppliers' => $suppliers]);
+        return view('dashboard/shared/suppliers', ['suppliers' => $suppliers]);
     }
 
     // Show create form
     public function create()
     {
-        return view('dashboard/create_supplier');
+        return view('dashboard/shared/create_supplier');
     }
 
     // Store new supplier
@@ -78,7 +78,7 @@ class SupplierController extends BaseController
             return redirect()->to(site_url('suppliers'))->with('error', 'Supplier not found.');
         }
 
-        return view('dashboard/edit_supplier', ['supplier' => $supplier]);
+        return view('dashboard/shared/edit_supplier', ['supplier' => $supplier]);
     }
 
     // Update supplier

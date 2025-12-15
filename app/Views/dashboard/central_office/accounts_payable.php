@@ -299,7 +299,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td><?= esc($payable['branch_name']) ?></td>
-                                    <td><?= date('M d, Y', strtotime($payable['actual_delivery_date'])) ?></td>
+                                    <td><?= !empty($payable['actual_delivery_date']) ? date('M d, Y', strtotime($payable['actual_delivery_date'])) : 'Pending' ?></td>
                                     <td>
                                         <?= !empty($payable['payment_due_date']) ? date('M d, Y', strtotime($payable['payment_due_date'])) : 'Not set' ?>
                                     </td>

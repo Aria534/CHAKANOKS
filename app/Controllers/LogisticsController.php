@@ -42,7 +42,7 @@ class LogisticsController extends BaseController
             ->get()
             ->getResultArray();
 
-        return view('dashboard/logistics_orders', [
+        return view('dashboard/logistics_coordinator/logistics_orders', [
             'approvedOrders' => $approvedOrders,
             'shipments' => $shipments,
             'drivers' => $drivers

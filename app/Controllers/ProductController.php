@@ -11,7 +11,7 @@ class ProductController extends BaseController
             ->join('categories c', 'c.category_id = p.category_id')
             ->get()->getResultArray();
 
-        return view('dashboard/products', ['products' => $products]);
+        return view('dashboard/shared/products', ['products' => $products]);
     }
 
     public function create()
@@ -39,7 +39,7 @@ class ProductController extends BaseController
             ->orderBy('branch_name', 'ASC')
             ->get()->getResultArray();
 
-        return view('dashboard/create_product', [
+        return view('dashboard/shared/create_product', [
             'categories' => $categories,
             'suppliers' => $suppliers,
             'branches' => $branches

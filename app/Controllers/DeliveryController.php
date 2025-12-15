@@ -57,7 +57,7 @@ class DeliveryController extends BaseController
             ->get()
             ->getResultArray();
 
-        return view('dashboard/deliveries', [
+        return view('dashboard/branch_manager/deliveries', [
             'deliveries' => $deliveries
         ]);
     }
@@ -92,7 +92,7 @@ class DeliveryController extends BaseController
             ->get()
             ->getResultArray();
 
-        return view('dashboard/delivery_view', [
+        return view('dashboard/branch_manager/delivery_view', [
             'purchaseOrder' => $purchaseOrder,
             'items' => $items
         ]);

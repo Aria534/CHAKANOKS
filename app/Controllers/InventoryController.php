@@ -125,7 +125,7 @@ private function getBranchInventoryView($db, $branchId, $allBranches, $userRole,
             $branchInventory = [];
         }
 
-        return view('dashboard/inventory_staff', [
+        return view('dashboard/inventory_staff/inventory_staff', [
             'lowStockItems' => $lowStockItems,
             'pendingReceives' => $pendingReceives,
             'products' => $branchInventory, // All products with inventory data
@@ -184,7 +184,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             ->get()
             ->getResultArray();
 
-        return view('dashboard/inventory_staff', [
+        return view('dashboard/inventory_staff/inventory_staff', [
             'lowStockItems' => $lowStockItems,
             'pendingReceives' => $pendingReceives,
             'products' => $branchInventory,
@@ -281,7 +281,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 ->get()
                 ->getResultArray();
             
-            return view('dashboard/inventory_staff_dashboard', [
+            return view('dashboard/inventory_staff/inventory_staff_dashboard', [
                 'branchName' => 'All Branches',
                 'summary' => $summary,
                 'pendingReceives' => $pendingReceives,
@@ -294,7 +294,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             
         } catch (\Exception $e) {
             log_message('error', 'Inventory Dashboard Error: ' . $e->getMessage());
-            return view('dashboard/inventory_staff_dashboard', [
+            return view('dashboard/inventory_staff/inventory_staff_dashboard', [
                 'branchName' => 'Error',
                 'summary' => ['stock_value' => 0, 'low_stock_items' => 0, 'total_products' => 0],
                 'pendingReceives' => 0,
@@ -424,7 +424,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                         ->get()
                         ->getRowArray();
                     if (!$branch || !isset($branch['branch_id'])) {
-                        return view('dashboard/inventory_staff', [
+                        return view('dashboard/inventory_staff/inventory_staff', [
                             'lowStockItems' => [],
                             'branchInventory' => [],
                             'pendingReceives' => [],
@@ -493,7 +493,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                         ->orderBy('product_name', 'ASC')
                         ->get()->getResultArray();
 
-                    return view('dashboard/inventory_staff', [
+                    return view('dashboard/inventory_staff/inventory_staff', [
                         'lowStockItems' => $lowStockItems,
                         'pendingReceives' => $pendingReceives,
                         'products' => $products,
@@ -534,7 +534,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                     ->get()
                     ->getResultArray();
                     
-                return view('dashboard/inventory', [
+                return view('dashboard/inventory_staff/inventory', [
                     'inventory' => $inventory,
                     'branches' => $allBranches,
                     'products' => $products,
@@ -611,7 +611,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
                 [$branchId]
             )->getResultArray();
 
-            return view('dashboard/inventory_staff', [
+            return view('dashboard/inventory_staff/inventory_staff', [
                 'lowStockItems' => $lowStockItems,
                 'pendingReceives' => $pendingReceives,
                 'products' => $products,
@@ -652,7 +652,7 @@ private function getAggregatedInventoryView($db, $allBranches, $isStaffView = fa
             ->get()
             ->getResultArray();
             
-        return view('dashboard/inventory', [
+        return view('dashboard/inventory_staff/inventory', [
             'inventory' => $inventory,
             'branches' => $allBranches,
             'products' => $products,

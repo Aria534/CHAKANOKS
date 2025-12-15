@@ -22,16 +22,16 @@ class AccountsPayableController extends BaseController
         $supplier = $this->request->getGet('supplier') ?? 'all';
         $branch = $this->request->getGet('branch') ?? 'all';
         
-        // Build query for payables (delivered purchase orders)
+        // Build query for payables (approved and beyond purchase orders)
         $builder = $db->table('purchase_orders po')
-            ->select('po.purchase_order_id, po.po_number, po.total_amount, 
+            ->select('po.purchase_order_id, po.po_number, po.total_amount, po.status,
                      po.requested_date, po.actual_delivery_date,
                      po.payment_status, po.payment_date, po.payment_due_date,
                      b.branch_name, s.supplier_name, s.contact_person, s.phone,
                      DATEDIFF(CURDATE(), po.payment_due_date) as days_overdue')
             ->join('branches b', 'b.branch_id = po.branch_id', 'left')
             ->join('suppliers s', 's.supplier_id = po.supplier_id', 'left')
-            ->where('po.status', 'delivered');
+            ->whereIn('po.status', ['approved', 'ordered', 'delivered']);
         
         // Apply filters
         if ($status !== 'all') {
@@ -96,7 +96,7 @@ class AccountsPayableController extends BaseController
             ->get()
             ->getResultArray();
         
-        return view('dashboard/accounts_payable', [
+        return view('dashboard/central_office/accounts_payable', [
             'payables' => $payables,
             'suppliers' => $suppliers,
             'branches' => $branches,
@@ -142,8 +142,8 @@ class AccountsPayableController extends BaseController
                 throw new \Exception('Purchase order not found');
             }
             
-            if ($po['status'] !== 'delivered') {
-                throw new \Exception('Only delivered orders can be marked as paid');
+            if (!in_array($po['status'], ['approved', 'ordered', 'delivered'])) {
+                throw new \Exception('Only approved, ordered, or delivered orders can be marked as paid');
             }
             
             // Update payment status
@@ -243,7 +243,7 @@ class AccountsPayableController extends BaseController
             ->get()
             ->getResultArray();
         
-        return view('dashboard/accounts_payable_view', [
+        return view('dashboard/central_office/accounts_payable_view', [
             'payable' => $payable,
             'items' => $items,
             'paymentHistory' => $paymentHistory

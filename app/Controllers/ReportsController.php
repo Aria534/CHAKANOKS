@@ -13,10 +13,22 @@ class ReportsController extends BaseController
 
         $data = [
             'title' => 'Reports',
-            'active' => 'reports'
+            'active' => 'reports',
+            'branches' => []
         ];
 
-        return view('dashboard/reports', $data);
+        // Get all branches for central admins
+        if (in_array($role, ['central_admin', 'system_admin'])) {
+            $db = \Config\Database::connect();
+            $data['branches'] = $db->table('branches')
+                ->select('branch_id, branch_name')
+                ->where('status', 'active')
+                ->orderBy('branch_name', 'ASC')
+                ->get()
+                ->getResultArray();
+        }
+
+        return view('dashboard/central_office/reports', $data);
     }
 
     public function generate($type = 'inventory')
@@ -37,7 +49,7 @@ class ReportsController extends BaseController
         
         $db = \Config\Database::connect();
         
-        // Get branch ID for branch managers
+        // Get branch ID for branch managers or central admins
         $branchId = null;
         if ($role === 'branch_manager') {
             $branch = $db->table('user_branches')
@@ -53,6 +65,12 @@ class ReportsController extends BaseController
                     'success' => false,
                     'error' => 'No branch assigned to this manager'
                 ]);
+            }
+        } elseif (in_array($role, ['central_admin', 'system_admin'])) {
+            // Central admins can select a branch via parameter
+            $selectedBranch = $this->request->getGet('branch_id');
+            if (!empty($selectedBranch) && is_numeric($selectedBranch)) {
+                $branchId = (int)$selectedBranch;
             }
         }
         
